@@ -1,42 +1,43 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
+  background: black;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+#title {
+  font-size: xx-large;
+  color: orangered;
   font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+#subtitle {
+  font-size: medium;
+  color: rgb(220,220,220);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.vdiv {
+  background: rgb(50,50,50);
+  height: 1px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+#tabbar {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+}
+
+.column {
+  width: 45vw;
+  height: 100vh;
+}
+
+.column-pair {
+  display: flex;
+  justify-content: space-evenly;
 }
