@@ -3,6 +3,7 @@
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 const bzlistItems = [
   {txt: 'We believe in a message-driven culture'},
@@ -247,20 +248,90 @@ function Vdiv() {
   )
 }
 
+// pointers for tickets
+// we stripped the boilerplate - only the parts that matter
+// no story points
+// simply drag and drog screenshots
+// beautifully linked branch
+
+const ticketMeta = {
+  app: 'iOS',
+  title: 'Make Billing Card',
+  desc: '',
+  branch: 'ftr/8022-make-billing-card',
+  status: 'Blocked',
+  statusColor: 'red'
+}
+
+function Badge({ txt, color }) {
+  return (
+    <div style={{display: 'flex', marginRight:'auto', alignItems: 'center', gap: '8px'}}>
+      <div style={{display:'flex', background: color, height:'fit-content', borderRadius: '4px', padding: '3px 4px 3px 4px'}}>
+        <p style={{color:'white', fontSize: '14px', margin: 0}}>{txt}</p>
+      </div>
+    </div>
+  )
+}
+
+function Ticket({ meta }) {
+  const ticketStyle = {
+    height: 'fit-content',
+    width: 'fit-content',
+    maxWidth: '350px',
+    padding: '0 10px 0 10px',
+    border: '1px solid rgb(100,100,100)', 
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  }
+
+  return (
+    <div style={ticketStyle}>
+      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
+        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+          <Badge txt={meta.app} color={'rgb(50,50,50)'}/>
+          <p style={{color:'white', fontSize: '14px'}}>{meta.title}</p>
+        </div>
+        <div style={{marginLeft: '140px'}}>
+          <Badge txt={meta.status} color={meta.statusColor}/>
+        </div>
+      </div>
+      <div style={{display:'flex', marginRight: 'auto'}}>
+        <p style={{color: 'white', fontSize: '14px'}}>{meta.desc}</p>
+      </div>
+      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+        <div style={{background: 'rgb(50,50,50)', borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
+          <i className='fa fa-code-branch' style={{color:'white', fontSize: '14px'}}></i>
+        </div>
+        <p style={{color:'white', fontSize: '14px'}}>{meta.branch}</p>
+      </div>
+    </div>
+  )
+}
+
+function TicketDiv() {
+  return (
+    <div>
+      <Ticket meta={ticketMeta}/>
+    </div>
+  )
+}
+
 const sections = [
   {left: IntroDiv, right: AnimDiv},
-  // {left: Title, right: Title},
-  // {left: Title, right: Title},
+  {left: TicketDiv, right: Title},
 ]
 
 export default function HomePage() {
   return (
     <div>
       <TabBar tabs={tabs}/>
-      <Vdiv/>
       {sections.map((section, i) => {
-        return <ContentPair key={i} left={section.left} right={section.right}/>
+        return <div key={i} ><Vdiv/><ContentPair left={section.left} right={section.right}/></div>
       })}
+      <Vdiv/>
+      <Footer/>
     </div>
   )
 }
