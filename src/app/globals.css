@@ -3,18 +3,17 @@ body {
   background: black;
   overflow-x: hidden;
   overflow-y: scroll;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #title {
-  font-size: xx-large;
+  font-size: 56px;
   color: orangered;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 #subtitle {
-  font-size: medium;
+  font-size: 24px;
   color: rgb(220,220,220);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .vdiv {
@@ -32,12 +31,28 @@ body {
   border: none;
 }
 
-.column {
+.content {
   width: 45vw;
   height: 100vh;
 }
 
-.column-pair {
+.content-pair {
   display: flex;
   justify-content: space-evenly;
+}
+
+#intro {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+.bzlis-item {
+  color: rgb(220,220,220);
+}
+
+.hidden-text {
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
