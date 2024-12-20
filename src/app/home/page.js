@@ -2,6 +2,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import { useState } from 'react'
 
 const bzlistItems = [
   {txt: 'We believe in a message-driven culture'},
@@ -38,6 +39,14 @@ function EndMeeting() {
       radius: 53,
       alt: 'Profile picture'
     }
+  }
+
+  function Pfp({ meta }) {
+    return <img 
+      src={meta.imgLink}
+      style={{width: meta.radius, height: meta.radius, objectFit:'cover', borderRadius:'50%'}} 
+      alt={meta.alt}
+    />
   }
 
   function CloseButton() {
@@ -90,18 +99,17 @@ function EndMeeting() {
           })}          
         </div>
         <CloseButton/>
-        <Popup/>
+        <motion.div
+          style={{position: 'absolute', zIndex: '2', display:'flex', justifyContent:'center', alignItems:'center'}}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 4 }}
+        >
+          <Popup/>
+        </motion.div>
       </div>
     </div>
   )
-}
-
-function Pfp({ meta }) {
-  return <img 
-    src={meta.imgLink}
-    style={{width: meta.radius, height: meta.radius, objectFit:'cover', borderRadius:'50%'}} 
-    alt={meta.alt}
-  />
 }
 
 function IntroDiv() {
@@ -123,12 +131,57 @@ function AnimDiv() {
   )
 }
 
+
+
 function Anim() {
+  const [state, setState] = useState(0)
+
+  setTimeout(() => {
+    setState([...Array(8)].map(_ => Math.round(Math.random())).join(''))
+  }, 80)
+
+  const leftLaptopMeta = {
+    imgLink: 'mac1.png',
+    width: '55px',
+    height: '60px',
+    margin: '',
+    alt: 'Laptop'
+  }
+
+  const rightLaptopMeta = {
+    imgLink: 'mac2.png',
+    width: '55px',
+    height: '38px',
+    margin: '11px 0 0 0',
+    alt: 'Laptop'
+  }
+
+  function Laptop({ meta }) {
+    return <img 
+      src={meta.imgLink}
+      style={{margin: meta.margin, width: meta.width, height: meta.height}} 
+      alt={meta.alt}
+    />
+  }
+
   return (
-    <div style={{display: 'flex'}}>
-      <p>I will display &#128187;</p>
-      
-      <p>I will display &#128187;</p>
+    <div style={{display: 'flex', gap:'10px'}}>
+      <Laptop meta={leftLaptopMeta}/>
+      <motion.div
+      style={{marginTop: '10px', width: '180px'}}
+      initial={{ x: 0, opacity: 0 }}
+      animate={{ x: 100, opacity: [0,1,0] }}
+      transition={{
+        duration: 1,
+        delay: 0.5,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        repeatDelay: 8
+      }}
+      >
+        <pre id='txt-transfer' className='txt-glow'>{state}</pre>
+      </motion.div>
+      <Laptop meta={rightLaptopMeta}/>
     </div>
   )
 }
