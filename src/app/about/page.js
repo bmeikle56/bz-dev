@@ -5,6 +5,7 @@ import { Pfp } from '../components/Pfp'
 import { TabBar } from '../components/TabBar'
 import { Vdiv } from '../components/Vdiv'
 import { motion } from 'motion/react'
+import { Spacer } from '../components/Spacer'
 
 function Anim({ margin, delay }) {
   return (
@@ -50,7 +51,7 @@ function About() {
           <p style={{margin: 0, color: 'rgb(90,90,90)', fontSize: '12px'}}>December 21st, 2024</p>
         </div>
       </div>
-      <span className='txt'>
+      <span className='txt' style={{lineHeight: 1.5}}>
         After graduating college in December 2023, I began work as a software engineer the
         following month, excited to enter the field. Amidst a year of waning job security and 
         increased attention on the tech sector spurred by the inevitable progression of 
@@ -78,6 +79,7 @@ function About() {
         legacy, change over certainty, and purpose over process. That's our winning formula
         for prolonged, adaptive success.
       </span>
+      <Spacer height={'100px'}/>
     </div>
   )
 }
@@ -91,6 +93,7 @@ export default function AboutPage() {
       <Vdiv/>
       <Anim margin={'10vh 0 0 10vw'} delay={4}/>
       <Anim margin={'50vh 0 0 85vw'} delay={10}/>
+      <Anim margin={'90vh 0 0 6vw'} delay={23}/>
       <About/>
     </div>
   )

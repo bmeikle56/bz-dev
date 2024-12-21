@@ -1,6 +1,8 @@
 
 'use client'
 
+import { Footer } from '../components/Footer'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { CBList } from '../components/CBList'
@@ -158,24 +160,26 @@ function Anim() {
   }, 80)
 
   const leftLaptopMeta = {
-    imgLink: 'mac1.png',
-    width: '55px',
-    height: '60px',
+    imgLink: '/mac1.png',
+    width: '55',
+    height: '60',
     margin: '',
     alt: 'Laptop'
   }
 
   const rightLaptopMeta = {
-    imgLink: 'mac2.png',
-    width: '55px',
-    height: '38px',
+    imgLink: '/mac2.png',
+    width: '55',
+    height: '38',
     margin: '11px 0 0 0',
     alt: 'Laptop'
   }
 
   function Laptop({ meta }) {
-    return <img 
+    return <Image 
       src={meta.imgLink}
+      width={meta.width}
+      height={meta.height}
       style={{margin: meta.margin, width: meta.width, height: meta.height}} 
       alt={meta.alt}
     />
@@ -321,8 +325,8 @@ function TicketDesc() {
 
     return (
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Spacer height={'5px'}/>
-        <p style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)', fontSize: '20px', marginBottom:8}}>Berzerk</p>
+        <Spacer height={'15px'}/>
+        <b style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 12px rgb(222, 218, 218)', fontSize: '20px', marginBottom:8}}>Berzerk</b>
         <Decoration/>
         <Spacer height={'10px'}/>
         <LoginField txt={'Email'}/>
@@ -479,6 +483,7 @@ export default function HomePage() {
         return <div key={i} ><Vdiv/><ContentPair left={section.left} right={section.right}/></div>
       })}
       <Vdiv/>
+      <Footer/>
     </div>
   )
 }
