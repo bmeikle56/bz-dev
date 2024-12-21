@@ -3,7 +3,9 @@
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { CBList } from '../components/CBList'
 import { Pfp } from '../components/Pfp'
+import { Spacer } from '../components/Spacer'
 import { TabBar } from '../components/TabBar'
 import { Vdiv } from '../components/Vdiv'
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -285,20 +287,6 @@ function TicketDesc() {
     )
   }
 
-  function CBList({ height, txt }) {
-    return (
-    <div style={{display: 'flex', height: '25px', alignItems: 'center', marginRight: 'auto', paddingLeft:'10px', gap: '8px'}}>
-      <input style={{marginTop: '3px'}} id={`checkbox-${txt}`} type='checkbox' name='cb' value='Bike'></input>
-      <label htmlFor={`checkbox-${txt}`}></label>
-      <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
-    </div>
-    )
-  } 
-
-  function Spacer({ height }) {
-    return <div style={{height: height}}></div>
-  }
-
   function DescTxt({ txt }) {
     return <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
   }
@@ -307,7 +295,7 @@ function TicketDesc() {
     function LoginField({ txt }) {
       return (
         <div style={{border: '1px solid rgb(26,26,26)', height: '18px', width: '120px', borderRadius: '4px'}}>
-          <p style={{color:'rgb(60,60,60)', position: 'absolute', margin: '3px 0 0 5px', fontSize: '9px'}}>{txt}</p>
+          <p style={{color:'rgb(60,60,60)', position: 'absolute', margin: '5px 0 0 5px', fontSize: '8px'}}>{txt}</p>
         </div>
       )
     }
@@ -340,6 +328,19 @@ function TicketDesc() {
         <LoginField txt={'Email'}/>
         <Spacer height={'5px'}/>
         <LoginField txt={'Secure password'}/>
+        <Spacer height={'5px'}/>
+        <button style={{
+          border: 'none',
+          background:'rgb(238, 0, 254)', 
+          width: '120px',
+          height: '18px',
+          borderRadius: '4px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <b style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Log in</b>
+        </button>
         <Spacer height={'8px'}/>
         <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
           <p style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Don't have an account?</p>
@@ -347,7 +348,7 @@ function TicketDesc() {
         </div>
         <Spacer height={'20px'}/>
         <CBList txt={'Golden image & unit tests'}/>
-        <CBList height={'30px'} txt={'Code merged + pipeline succeeded'}/>
+        <CBList txt={'Code merged + pipeline succeeded'}/>
       </div>
     )
   }
