@@ -5,19 +5,26 @@ import { motion } from 'motion/react'
 import { useState } from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-const bzlistItems = [
-  {txt: 'We believe in a message-driven culture'},
-  {txt: 'Productivity over processes and legacy'},
-  {txt: 'Agile has never been so lightweight'}
-]
-
-function BZList({ items }) {
+function BZList({ items, height }) {
   return (
-    <div>
-      {bzlistItems.map((item, i) => {
-        return <div key={i} style={{display:'flex', alignItems:'center', gap:'8px'}}>
-          <p className='bzlis-item'>&rArr;</p>
-          <p className='bzlis-item'>{item.txt}</p>
+    <div style={{display:'flex', flexDirection: 'column', height: height}}>
+      {items.map((item, i) => {
+        return <div key={i} style={{display:'flex', flexGrow: 1, alignItems:'center', gap:'8px'}}>
+          <p style={{margin: 0, color: 'rgb(60,60,60)'}}>&rArr;</p>
+          <p style={{margin: 0, color: 'rgb(220,220,220)'}}>{item.txt}</p>
+        </div>
+      })}
+    </div>
+  )
+}
+
+function BZList2({ items, height }) {
+  return (
+    <div style={{display:'flex', flexDirection: 'column', height: height}}>
+      {items.map((item, i) => {
+        return <div key={i} style={{display:'flex', flexGrow: 1, alignItems:'center', gap:'8px'}}>
+          <p style={{margin: 0, color: 'rgb(238, 0, 254)'}}>&diams;</p>
+          <p style={{margin: 0, color: 'rgb(220,220,220)'}}>{item.txt}</p>
         </div>
       })}
     </div>
@@ -85,7 +92,7 @@ function EndMeeting() {
   }
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', height: '150px', width: '225px', background: 'white', borderRadius: '10px'}}>
         <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap:'12px'}}>
           {imgLinks.map((imgLink, i) => { 
@@ -93,7 +100,7 @@ function EndMeeting() {
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 + (i * 0.25) }}
+                transition={{ delay: 1.5 + (i * 0.25) }}
               >
                 <Pfp meta={pfpMeta(imgLink)}/>
             </motion.div>
@@ -104,12 +111,12 @@ function EndMeeting() {
           style={{position: 'absolute', zIndex: '2', display:'flex', justifyContent:'center', alignItems:'center'}}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 4 }}
+          transition={{ delay: 7 }}
         >
           <Popup/>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -118,7 +125,12 @@ function IntroDiv() {
     <div id='intro'>
       <Title/>
       <Subtitle/>
-      <BZList items={bzlistItems}/>
+      <BZList items={[
+        {txt: 'We believe in a message-driven culture'},
+        {txt: 'Productivity over processes and legacy'},
+        {txt: 'Agile has never been so lightweight'}
+      ]} height={'120px'}/>
+      <TryUs/>
     </div>
   )
 }
@@ -203,11 +215,20 @@ function Subtitle() {
   )
 }
 
+function TryUs() {
+  return <div style={{display: 'flex', gap: '5px'}}>
+    <p style={{color: 'rgb(220,220,220)'}}>Try</p>
+    <p style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</p>
+    <p style={{color: 'rgb(220,220,220)'}}>free for 30 days</p>
+  </div>
+}
+
 const tabs = [
   {txt: 'Why Berzerk', action: () => {console.log('tap!')}},
   {txt: 'Who we are', action: () => {console.log('tap!')}},
   {txt: 'Log in', action: () => {console.log('tap!')}},
   {txt: 'Sign up', action: () => {console.log('tap!')}},
+  {txt: 'Pricing', action: () => {console.log('tap!')}},
 ]
 
 function TabBar({ tabs }) {
@@ -248,24 +269,138 @@ function Vdiv() {
   )
 }
 
-// pointers for tickets
-// we stripped the boilerplate - only the parts that matter
-// no story points
-// simply drag and drog screenshots
-// beautifully linked branch
+// max chars for ticket titles
+
+// no more links to Figmas
+// embedded video and screenshot
+// aesthetically pleasing
+// no scrolling
+// acceptance criteria automatically defaulted on ticket with interactible checkbox
+
+
+function TicketBenefits() {
+  return (
+    <div>
+      <BZList2 items={[
+        {txt: 'Only the data that matters'},
+        {txt: 'Seamlessly linked branches'},
+        {txt: 'Simply drag & drop screenshots'},
+        {txt: 'Elegant modern design'},
+      ]} height={'120px'}/>
+    </div>
+  )
+}
+
+function TicketDesc() {
+  function BBullet({ txt }) {
+    function Bullet() {
+      const bulletStyle = {
+        height: '5px', 
+        width: '5px', 
+        background: 'rgb(220,220,220)',
+        borderRadius: '5px',
+        marginTop: '2px',
+        marginLeft: '15px'
+      }
+  
+      return <div style={bulletStyle}></div>
+    }
+
+    return (
+      <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+        <Bullet/>
+        <b style={{color: 'white', fontSize: '14px'}}>{txt}</b>
+      </div>
+    )
+  }
+
+  function CBList({ height, txt }) {
+    return (
+    <div style={{display: 'flex', height: '25px', alignItems: 'center', marginRight: 'auto', paddingLeft:'10px', gap: '8px'}}>
+      <input style={{marginTop: '3px'}} id={`checkbox-${txt}`} type='checkbox' name='cb' value='Bike'></input>
+      <label htmlFor={`checkbox-${txt}`}></label>
+      <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
+    </div>
+    )
+  } 
+
+  function Spacer({ height }) {
+    return <div style={{height: height}}></div>
+  }
+
+  function DescTxt({ txt }) {
+    return <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
+  }
+
+  function LoginDesign() {
+    function LoginField({ txt }) {
+      return (
+        <div style={{border: '1px solid rgb(26,26,26)', height: '18px', width: '120px', borderRadius: '4px'}}>
+          <p style={{color:'rgb(60,60,60)', position: 'absolute', margin: '3px 0 0 5px', fontSize: '9px'}}>{txt}</p>
+        </div>
+      )
+    }
+
+    function Decoration() {
+      const json = {
+        usr: 'brd',
+        pwd: '82$!'
+      }
+
+      return (
+        <div>
+          <pre style={{
+            fontSize: '8px',
+            color: 'rgb(160,160,160)', 
+            textShadow: '0px 0px 15px rgb(46, 190, 238), 0px 0px 12px rgb(46, 190, 238), 0px 0px 15px rgb(46, 190, 238)'
+          }}>
+            {JSON.stringify(json, null, 2)}
+          </pre>
+        </div>
+      )
+    }
+
+    return (
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Spacer height={'5px'}/>
+        <p style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)', fontSize: '20px', marginBottom:8}}>Berzerk</p>
+        <Decoration/>
+        <Spacer height={'10px'}/>
+        <LoginField txt={'Email'}/>
+        <Spacer height={'5px'}/>
+        <LoginField txt={'Secure password'}/>
+        <Spacer height={'20px'}/>
+        <CBList txt={'Golden image & unit tests'}/>
+        <CBList height={'30px'} txt={'Code merged + pipeline succeeded'}/>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{}}>
+      <DescTxt txt={'The login screen should allow users to enter'}/>
+      <BBullet txt={'email'}/>
+      <Spacer height={'3px'}/>
+      <BBullet txt={'secure password'}/>
+      <Spacer height={'5px'}/>
+      <LoginDesign/>
+      <Spacer height={'20px'}/>
+    </div>
+  )
+}
 
 const ticketMeta = {
-  app: 'iOS',
-  title: 'Make Billing Card',
-  desc: '',
-  branch: 'ftr/8022-make-billing-card',
+  app: 'Web',
+  title: 'Make login screen for site',
+  desc: TicketDesc,
+  branch: 'ftr/8022-make-login-screen',
   status: 'Blocked',
   statusColor: 'red'
 }
 
 function Badge({ txt, color }) {
   return (
-    <div style={{display: 'flex', marginRight:'auto', alignItems: 'center', gap: '8px'}}>
+    <div style={{display: 'flex', marginRight:'auto', gap: '8px'}}>
       <div style={{display:'flex', background: color, height:'fit-content', borderRadius: '4px', padding: '3px 4px 3px 4px'}}>
         <p style={{color:'white', fontSize: '14px', margin: 0}}>{txt}</p>
       </div>
@@ -278,7 +413,7 @@ function Ticket({ meta }) {
     height: 'fit-content',
     width: 'fit-content',
     maxWidth: '350px',
-    padding: '0 10px 0 10px',
+    padding: '10px 20px 10px 20px',
     border: '1px solid rgb(100,100,100)', 
     borderRadius: '10px',
     display: 'flex',
@@ -289,22 +424,22 @@ function Ticket({ meta }) {
   return (
     <div style={ticketStyle}>
       <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
-        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
           <Badge txt={meta.app} color={'rgb(50,50,50)'}/>
-          <p style={{color:'white', fontSize: '14px'}}>{meta.title}</p>
+          <b style={{color:'white', fontSize: '14px'}}>{meta.title}</b>
         </div>
-        <div style={{marginLeft: '140px'}}>
+        <div style={{paddingLeft: '50px'}}>
           <Badge txt={meta.status} color={meta.statusColor}/>
         </div>
       </div>
       <div style={{display:'flex', marginRight: 'auto'}}>
-        <p style={{color: 'white', fontSize: '14px'}}>{meta.desc}</p>
+        {meta.desc()}
       </div>
       <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
         <div style={{background: 'rgb(50,50,50)', borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
           <i className='fa fa-code-branch' style={{color:'white', fontSize: '14px'}}></i>
         </div>
-        <p style={{color:'white', fontSize: '14px'}}>{meta.branch}</p>
+        <pre style={{color:'white', fontSize: '12px'}}>{meta.branch}</pre>
       </div>
     </div>
   )
@@ -312,16 +447,44 @@ function Ticket({ meta }) {
 
 function TicketDiv() {
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
       <Ticket meta={ticketMeta}/>
+      <TicketBenefits/>
     </div>
   )
 }
 
 const sections = [
   {left: IntroDiv, right: AnimDiv},
-  {left: TicketDiv, right: Title},
+  {left: TicketDiv, right: SurveyDiv},
 ]
+
+
+
+function SurveyDiv() {
+  function Asterisk() {
+    return <p style={{color: 'rgb(110,110,110)', fontSize: '12px'}}>*</p>
+  }
+  return (
+    <div style={{display: 'flex', flexDirection: 'column'}}>
+      <div style={{display: 'flex', alignItems: 'center', gap: '3px'}}>
+        <p style={{color: 'rgb(220,220,220)', fontSize: '24px'}}>We surveyed hundreds of software engineers and managers</p>
+        <Asterisk/>
+      </div>
+      <BZList items={[
+        {txt: '55% unaware or vaguely unaware of OKRs'},
+        {txt: '75% of ticket features unused'},
+        {txt: '68% reported purpose by ticket metrics/optics'}
+      ]} height={'120px'}/>
+      <div style={{display: 'flex', alignItems: 'center', gap: '3px'}}>
+        <Asterisk/>
+        <p style={{color: 'rgb(110,110,110)', fontSize: '10px'}}>
+          222 engineers and 128 managers from FAANG and startup companies were polled
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export default function HomePage() {
   return (
