@@ -284,6 +284,8 @@ function Vdiv() {
 // no scrolling
 // acceptance criteria automatically defaulted on ticket with interactible checkbox
 
+// blocked is the same as ready
+
 
 function TicketBenefits() {
   return (
@@ -376,6 +378,11 @@ function TicketDesc() {
         <LoginField txt={'Email'}/>
         <Spacer height={'5px'}/>
         <LoginField txt={'Secure password'}/>
+        <Spacer height={'8px'}/>
+        <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
+          <p style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Don't have an account?</p>
+          <b style={{color: 'rgb(238, 0, 254)', fontSize: '8px', textShadow: '0px 0px 5px rgb(192, 191, 191)'}}>Create one</b>
+        </div>
         <Spacer height={'20px'}/>
         <CBList txt={'Golden image & unit tests'}/>
         <CBList height={'30px'} txt={'Code merged + pipeline succeeded'}/>
@@ -401,8 +408,8 @@ const ticketMeta = {
   title: 'Make login screen for site',
   desc: TicketDesc,
   branch: 'ftr/8022-make-login-screen',
-  status: 'Blocked',
-  statusColor: 'red'
+  status: 'Feature',
+  statusColor: 'rgb(238, 0, 254)'
 }
 
 function Badge({ txt, color }) {
@@ -415,13 +422,13 @@ function Badge({ txt, color }) {
   )
 }
 
-function Loading() {
-  return (
-    <div>
-      <p style={{color: 'white'}}>Loading...</p>
-    </div>
-  )
-}
+// function Loading() {
+//   return (
+//     <div>
+//       <p style={{color: 'white'}}>Loading...</p>
+//     </div>
+//   )
+// }
 
 function Ticket({ meta }) {
   const ticketStyle = {
@@ -443,7 +450,7 @@ function Ticket({ meta }) {
           <Badge txt={meta.app} color={'rgb(50,50,50)'}/>
           <b style={{color:'white', fontSize: '14px'}}>{meta.title}</b>
         </div>
-        <div style={{paddingLeft: '50px'}}>
+        <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
           <Badge txt={meta.status} color={meta.statusColor}/>
         </div>
       </div>
