@@ -137,7 +137,14 @@ function IntroDiv() {
 
 function AnimDiv() {
   return (
-    <div id='intro'>
+    <div id='intro' style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginRight: '250px',
+      marginTop: '100px',
+      gap: '120px'
+    }}>
       <Anim/>
       <EndMeeting/>
     </div>
@@ -408,12 +415,20 @@ function Badge({ txt, color }) {
   )
 }
 
+function Loading() {
+  return (
+    <div>
+      <p style={{color: 'white'}}>Loading...</p>
+    </div>
+  )
+}
+
 function Ticket({ meta }) {
   const ticketStyle = {
     height: 'fit-content',
     width: 'fit-content',
     maxWidth: '350px',
-    padding: '10px 20px 10px 20px',
+    padding: '20px 20px 10px 20px',
     border: '1px solid rgb(100,100,100)', 
     borderRadius: '10px',
     display: 'flex',
