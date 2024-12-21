@@ -1,8 +1,10 @@
 
 'use client'
 
+import { motion } from 'motion/react'
 import { Spacer } from '../components/Spacer'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 function BackBtn() {
   const router = useRouter()
@@ -35,6 +37,37 @@ function LoginField({ txt }) {
   )
 }
 
+function LoginSignupBtn({ txt, onClick }) {
+  return (
+    <button style={{
+      border: 'none',
+      background:'rgb(238, 0, 254)', 
+      width: '240px',
+      height: '37px',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+    onClick={onClick}
+    >
+      <b style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</b>
+    </button>
+  )
+}
+
+function Title() {
+  return (
+    <b style={{
+      color: 'rgb(238, 0, 254)', 
+      textShadow: '0px 0px 20px rgb(222, 218, 218)', 
+      fontSize: '44px', 
+      marginBottom: 30,
+      marginTop: '21vh'
+    }}>Berzerk</b>
+  )
+}
+
 function Decoration() {
   const json = {
     usr: 'brd',
@@ -54,85 +87,100 @@ function Decoration() {
   )
 }
 
-function SignUp() {
+function SignUp({ setState }) {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Spacer height={'5px'}/>
-      <p style={{
-        color: 'rgb(238, 0, 254)', 
-        textShadow: '0px 0px 20px rgb(222, 218, 218)', 
-        fontSize: '44px', 
-        marginBottom: 30,
-        marginTop: '21vh'
-      }}>Berzerk</p>
+      <Title/>
       <Decoration/>
-      <Spacer height={'25px'}/>
-      <div style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
-        <p style={{
-          fontSize: '12px',
-          color: 'rgb(150,150,150)',
-          margin: 0
-        }}>Enter a valid email</p>
-        <LoginField txt={'Email'}/>
-        <p style={{
-          fontSize: '12px',
-          color: 'rgb(150,150,150)',
-          paddingTop: 18,
-          margin: 0
-        }}>Enter a secure password</p>
-        <LoginField txt={'Secure password'}/>
-        <LoginField txt={'Re-enter password'}/>
-      </div>
-      <Spacer height={'40px'}/>
+      <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.1
+      }}
+      >
+        <Spacer height={'25px'}/>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
+          <p style={{
+            fontSize: '12px',
+            color: 'rgb(150,150,150)',
+            margin: 0
+          }}>Enter a valid email</p>
+          <LoginField txt={'Email'}/>
+          <p style={{
+            fontSize: '12px',
+            color: 'rgb(150,150,150)',
+            paddingTop: 18,
+            margin: 0
+          }}>Enter a secure password</p>
+          <LoginField txt={'Secure password'}/>
+          <LoginField txt={'Re-enter password'}/>
+        </div>
+        <Spacer height={'18px'}/>
+        <LoginSignupBtn onClick={() => {console.log('sign up')}} txt={'Sign up'}/>
+        <Spacer height={'5px'}/>
+        <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+          <p style={{color: 'rgb(220,220,220)', fontSize: '13px'}}>Have an account?</p>
+          <button onClick={() => setState(true)} style={{padding: '0 0 0 4px', border: 'none', background: 'none', cursor: 'pointer'}}>
+            <b style={{color: 'rgb(238, 0, 254)', fontSize: '13px', textShadow: '0px 0px 8px rgb(192, 191, 191)'}}>Login</b>
+          </button>
+        </div>
+      </motion.div>
     </div>
   )
 }
 
-function Login() {
+function Login({ setState }) {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Spacer height={'5px'}/>
-      <p style={{
-        color: 'rgb(238, 0, 254)', 
-        textShadow: '0px 0px 20px rgb(222, 218, 218)', 
-        fontSize: '44px', 
-        marginBottom: 30,
-        marginTop: '21vh'
-      }}>Berzerk</p>
+      <Title/>
       <Decoration/>
-      <Spacer height={'25px'}/>
-      <div style={{display: 'flex', flexDirection: 'column', justifyContent:'center'}}>
-        <LoginField txt={'Email'}/>
-        <LoginField txt={'Secure password'}/>
-      </div>
-      <Spacer height={'18px'}/>
-      <button style={{
-        border: 'none',
-        background:'rgb(238, 0, 254)', 
-        width: '240px',
-        height: '37px',
-        borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <b style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>Log in</b>
-      </button>
-      <Spacer height={'18px'}/>
-      <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
-        <p style={{color: 'rgb(220,220,220)', fontSize: '13px'}}>Don't have an account?</p>
-        <b style={{color: 'rgb(238, 0, 254)', fontSize: '13px', textShadow: '0px 0px 8px rgb(192, 191, 191)'}}>Create one</b>
-      </div>
+      <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.1
+      }}
+      >
+        <Spacer height={'25px'}/>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent:'center'}}>
+          <LoginField txt={'Email'}/>
+          <LoginField txt={'Secure password'}/>
+        </div>
+        <Spacer height={'18px'}/>
+        <LoginSignupBtn onClick={() => {console.log('login')}} txt={'Login'}/>
+        <Spacer height={'10px'}/>
+        <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+          <p style={{color: 'rgb(220,220,220)', fontSize: '13px'}}>Don't have an account?</p>
+          <button onClick={() => setState(false)} style={{padding: '0 0 0 4px', border: 'none', background: 'none', cursor: 'pointer'}}>
+            <b style={{color: 'rgb(238, 0, 254)', fontSize: '13px', textShadow: '0px 0px 8px rgb(192, 191, 191)'}}>Create one</b>
+          </button>
+        </div>
+      </motion.div>
     </div>
   )
 }
+
+/// Exported function to allow tab bar to properly display login/signup
+let showLogin = true
+function toggleLogin(val) { showLogin = val }
+export { toggleLogin }
 
 export default function AuthPage() {
+  const [isLogin, setLogin] = useState(showLogin)
+
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{
+      delay: 0.1
+    }}
+    >
       <BackBtn/>
-      <Login/>
-      {/* <SignUp/> */}
-    </div>
+      {isLogin ? <Login setState={setLogin}/> : <SignUp setState={setLogin}/>}
+    </motion.div>
   )
 }
