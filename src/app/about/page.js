@@ -33,7 +33,17 @@ function Anim({ margin, delay }) {
 
 function About() {
   return (
-    <div style={{display: 'flex', padding: '0 25vw 0 25vw', flexDirection: 'column', alignItems: 'center', paddingTop: '80px'}}>
+    <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.2 }}
+    style={{
+      display: 'flex', 
+      padding: '0 25vw 0 25vw', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      paddingTop: '80px'
+    }}>
       <div style={{display: 'flex', paddingBottom: '80px'}}>
         <Pfp meta={{imgLink: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg', radius: 80, alt: 'Author picture'}}/>
         <div style={{
@@ -80,7 +90,7 @@ function About() {
         for prolonged, adaptive success.
       </span>
       <Spacer height={'100px'}/>
-    </div>
+    </motion.div>
   )
 }
 

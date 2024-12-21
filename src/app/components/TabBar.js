@@ -18,11 +18,11 @@ function TabBar() {
   return (
     <div style={{display: 'flex', width: 'fit-content', margin:'auto', paddingBottom: '10px', paddingTop: '5px'}}>
       {tabs.map((tab, i) => {
-        return <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <button key={tabs.txt} className='tab-btn' onClick={tab.action}>
+        return <div key={i} style={{display: 'flex', justifyContent: 'space-between'}}>
+          <button className='tab-btn' onClick={tab.action}>
             <p className='tab'>{tab.txt}</p>
           </button>
-          {i < tabs.length-1 ? <div key={i} style={{
+          {i < tabs.length-1 ? <div style={{
             height: '40px',
             width: '1px',
             backgroundClip: 'content-box',
