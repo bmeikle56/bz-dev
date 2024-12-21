@@ -3,6 +3,9 @@
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { Pfp } from '../components/Pfp'
+import { TabBar } from '../components/TabBar'
+import { Vdiv } from '../components/Vdiv'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 function BZList({ items, height }) {
@@ -47,14 +50,6 @@ function EndMeeting() {
       radius: 53,
       alt: 'Profile picture'
     }
-  }
-
-  function Pfp({ meta }) {
-    return <img 
-      src={meta.imgLink}
-      style={{width: meta.radius, height: meta.radius, objectFit:'cover', borderRadius:'50%'}} 
-      alt={meta.alt}
-    />
   }
 
   function CloseButton() {
@@ -230,26 +225,6 @@ function TryUs() {
   </div>
 }
 
-const tabs = [
-  {txt: 'Why Berzerk', action: () => {console.log('tap!')}},
-  {txt: 'Who we are', action: () => {console.log('tap!')}},
-  {txt: 'Log in', action: () => {console.log('tap!')}},
-  {txt: 'Sign up', action: () => {console.log('tap!')}},
-  {txt: 'Pricing', action: () => {console.log('tap!')}},
-]
-
-function TabBar({ tabs }) {
-  return (
-    <div id='tabbar'>
-      {tabs.map((tab, i) => {
-        return <button key={i} className='tab-btn' onClick={tab.action}>
-          <p style={{color:'white'}} className='tab'>{tab.txt}</p>
-        </button>
-      })}
-    </div>
-  )
-}
-
 function ContentPair({ left, right }) {
   return (
     <div className='content-pair'>
@@ -262,19 +237,6 @@ function ContentPair({ left, right }) {
   )
 }
 
-function Footer() {
-  return (
-    <div id='footer'>
-      
-    </div>
-  )
-}
-
-function Vdiv() {
-  return (
-    <div className='vdiv'></div>
-  )
-}
 
 // max chars for ticket titles
 
@@ -511,12 +473,11 @@ function SurveyDiv() {
 export default function HomePage() {
   return (
     <div>
-      <TabBar tabs={tabs}/>
+      <TabBar/>
       {sections.map((section, i) => {
         return <div key={i} ><Vdiv/><ContentPair left={section.left} right={section.right}/></div>
       })}
       <Vdiv/>
-      <Footer/>
     </div>
   )
 }
