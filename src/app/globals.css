@@ -115,12 +115,17 @@ input {
   transition: all 0.4s ease;
 }
 
-input[type=text], input[type=text]:focus {
+input[type=text], input[type=text]:focus,
+input[type=password], input[type=password]:focus {
   border: none;
   outline: none;
   caret-color: transparent;
 }
 
-input[type=text]::placeholder {
+input[type=text]::placeholder, input[type=password]::placeholder {
   color: rgb(60,60,60);
+}
+
+.item-status:hover {
+
 }

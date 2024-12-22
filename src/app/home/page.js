@@ -39,22 +39,14 @@ function BZList2({ items, height }) {
 }
 
 function EndMeeting() {
-  const imgLinks = [
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'
+  const initials = [
+    'BM',
+    'GT',
+    'WA',
+    'BC',
+    'DR',
+    'DP'
   ]
-
-  const pfpMeta = (imgLink) => {
-    return {
-      imgLink: imgLink,
-      radius: 53,
-      alt: 'Profile picture'
-    }
-  }
 
   function CloseButton() {
     const style = { 
@@ -93,15 +85,25 @@ function EndMeeting() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', height: '150px', width: '225px', background: 'white', borderRadius: '10px'}}>
-        <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap:'12px'}}>
-          {imgLinks.map((imgLink, i) => { 
+        <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap:'15px'}}>
+          {initials.map((initial, i) => { 
             return <motion.div 
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 + (i * 0.25) }}
               >
-                <Pfp meta={pfpMeta(imgLink)}/>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  background:'rgb(210,210,210)',
+                  borderRadius: '50%',
+                  width: 50,
+                  height: 50
+                }}>
+                  <p style={{position: 'absolute', color: 'rgb(40,40,40)'}}>{initial}</p>
+                </div>
             </motion.div>
           })}          
         </div>
@@ -379,23 +381,15 @@ const ticketMeta = {
   statusColor: 'rgb(238, 0, 254)'
 }
 
-function Badge({ txt, color }) {
+function Badge({ className, txt, color }) {
   return (
-    <div style={{display: 'flex', marginRight:'auto', gap: '8px'}}>
-      <div style={{display:'flex', background: color, height:'fit-content', borderRadius: '4px', padding: '3px 4px 3px 4px'}}>
+    <div className={className} style={{display: 'flex', marginRight:'auto', gap: '8px'}}>
+      <div style={{display:'flex', background: color, height:'fit-content', borderRadius: '4px', padding: '3px 5px 3px 5px'}}>
         <p style={{color:'white', fontSize: '14px', margin: 0}}>{txt}</p>
       </div>
     </div>
   )
 }
-
-// function Loading() {
-//   return (
-//     <div>
-//       <p style={{color: 'white'}}>Loading...</p>
-//     </div>
-//   )
-// }
 
 function Ticket({ meta }) {
   const ticketStyle = {
@@ -414,11 +408,11 @@ function Ticket({ meta }) {
     <div style={ticketStyle}>
       <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
-          <Badge txt={meta.app} color={'rgb(50,50,50)'}/>
+          <Badge className={'item-app'} txt={meta.app} color={'rgb(50,50,50)'}/>
           <b style={{color:'white', fontSize: '14px'}}>{meta.title}</b>
         </div>
         <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
-          <Badge txt={meta.status} color={meta.statusColor}/>
+          <Badge className={'item-status'} txt={meta.status} color={meta.statusColor}/>
         </div>
       </div>
       <div style={{display:'flex', marginRight: 'auto'}}>

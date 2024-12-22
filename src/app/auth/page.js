@@ -26,11 +26,11 @@ function BackBtn() {
   )
 }
 
-function LoginField({ placeholder, onChange }) {
+function LoginField({ placeholder, onChange, isSecure }) {
   return (
     <div>
       <input 
-      type='text' 
+      type={isSecure ? 'password' : 'text'}
       placeholder={placeholder} 
       id={`${placeholder}-txt-field`} 
       onChange={onChange}
@@ -141,11 +141,13 @@ function SignUp({ setState }) {
           <LoginField 
             placeholder={'Secure password'}
             onChange={(event) => setPwd(event.target.value)}
+            isSecure={true}
           />
           <Spacer height={'18px'}/>
           <LoginField 
             placeholder={'Re-enter password'} 
             onChange={(event) => setPwdAgain(event.target.value)}
+            isSecure={true}
           />
         </div>
         <Spacer height={'18px'}/>
@@ -192,6 +194,7 @@ function Login({ setState }) {
           <LoginField 
             placeholder={'Secure password'}
             onChange={(event) => setPwd(event.target.value)}
+            isSecure={true}
           />
         </div>
         <Spacer height={'18px'}/>
