@@ -471,6 +471,9 @@ function SurveyDiv() {
           222 engineers and 128 managers from FAANG and startup companies were polled
         </p>
       </div>
+      <div>
+        <p className='txt'>Less meetings and more doing, that's why our tickets are automated</p>
+      </div>
     </div>
   )
 }
@@ -479,11 +482,17 @@ export default function HomePage() {
   return (
     <div>
       <TabBar/>
-      {sections.map((section, i) => {
-        return <div key={i} ><Vdiv/><ContentPair left={section.left} right={section.right}/></div>
-      })}
       <Vdiv/>
-      <Footer/>
+      <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.1 }}
+      >
+        {sections.map((section, i) => {
+          return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
+        })}
+        <Footer/>
+      </motion.div>
     </div>
   )
 }
