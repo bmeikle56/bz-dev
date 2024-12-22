@@ -114,3 +114,13 @@ input[type=checkbox]:checked {
 input {
   transition: all 0.4s ease;
 }
+
+input[type=text], input[type=text]:focus {
+  border: none;
+  outline: none;
+  caret-color: transparent;
+}
+
+input[type=text]::placeholder {
+  color: rgb(60,60,60);
+}

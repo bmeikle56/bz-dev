@@ -4,7 +4,7 @@
 import { motion } from 'motion/react'
 import { Spacer } from '../components/Spacer'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function BackBtn() {
   const router = useRouter()
@@ -26,13 +26,22 @@ function BackBtn() {
   )
 }
 
-function LoginField({ txt }) {
+function LoginField({ placeholder, onChange }) {
   return (
     <div>
-      <input type='text' style={{opacity: 0}}></input>
-      <div style={{border: '1px solid rgb(26,26,26)', height: '37px', width: '240px', borderRadius: '8px'}}>
-        <p style={{color:'rgb(60,60,60)', position: 'absolute', margin: '10px 0 0 8px', fontSize: '14px'}}>{txt}</p>
-      </div>
+      <input 
+      type='text' 
+      placeholder={placeholder} 
+      id={`${placeholder}-txt-field`} 
+      onChange={onChange}
+      style={{
+        background: 'none',
+        position: 'absolute',
+        color:'rgb(120,120,120)', 
+        margin: '10px 0 0 8px', 
+        fontSize: '14px'
+      }}/>
+      <div style={{border: '1px solid rgb(26,26,26)', height: '37px', width: '240px', borderRadius: '8px'}}/>
     </div>
   )
 }
@@ -88,6 +97,16 @@ function Decoration() {
 }
 
 function SignUp({ setState }) {
+  const [email, setEmail] = useState(null)
+  const [pwd, setPwd] = useState(null)
+  const [pwdAgain, setPwdAgain] = useState(null)
+
+  function printCredentials() {
+    console.log(email)
+    console.log(pwd)
+    console.log(pwdAgain)
+  }
+  
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Spacer height={'5px'}/>
@@ -107,18 +126,30 @@ function SignUp({ setState }) {
             color: 'rgb(150,150,150)',
             margin: 0
           }}>Enter a valid email</p>
-          <LoginField txt={'Email'}/>
+          <Spacer height={'18px'}/>
+          <LoginField 
+            placeholder={'Email'}
+            onChange={(event) => setEmail(event.target.value)}
+          />
           <p style={{
             fontSize: '12px',
             color: 'rgb(150,150,150)',
             paddingTop: 18,
             margin: 0
           }}>Enter a secure password</p>
-          <LoginField txt={'Secure password'}/>
-          <LoginField txt={'Re-enter password'}/>
+          <Spacer height={'18px'}/>
+          <LoginField 
+            placeholder={'Secure password'}
+            onChange={(event) => setPwd(event.target.value)}
+          />
+          <Spacer height={'18px'}/>
+          <LoginField 
+            placeholder={'Re-enter password'} 
+            onChange={(event) => setPwdAgain(event.target.value)}
+          />
         </div>
         <Spacer height={'18px'}/>
-        <LoginSignupBtn onClick={() => {console.log('sign up')}} txt={'Sign up'}/>
+        <LoginSignupBtn onClick={() => {printCredentials()}} txt={'Sign up'}/>
         <Spacer height={'5px'}/>
         <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
           <p style={{color: 'rgb(220,220,220)', fontSize: '13px'}}>Have an account?</p>
@@ -132,6 +163,14 @@ function SignUp({ setState }) {
 }
 
 function Login({ setState }) {
+  const [email, setEmail] = useState(null)
+  const [pwd, setPwd] = useState(null)
+
+  function printCredentials() {
+    console.log(email)
+    console.log(pwd)
+  }
+
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Spacer height={'5px'}/>
@@ -145,12 +184,18 @@ function Login({ setState }) {
       }}
       >
         <Spacer height={'25px'}/>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent:'center'}}>
-          <LoginField txt={'Email'}/>
-          <LoginField txt={'Secure password'}/>
+        <div style={{display: 'flex', flexDirection: 'column', gap: '18px', justifyContent:'center'}}>
+          <LoginField 
+            placeholder={'Email'}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <LoginField 
+            placeholder={'Secure password'}
+            onChange={(event) => setPwd(event.target.value)}
+          />
         </div>
         <Spacer height={'18px'}/>
-        <LoginSignupBtn onClick={() => {console.log('login')}} txt={'Login'}/>
+        <LoginSignupBtn onClick={() => printCredentials()} txt={'Login'}/>
         <Spacer height={'10px'}/>
         <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
           <p style={{color: 'rgb(220,220,220)', fontSize: '13px'}}>Don't have an account?</p>
