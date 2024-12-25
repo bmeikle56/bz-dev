@@ -126,6 +126,10 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   color: rgb(60,60,60);
 }
 
-.item-status:hover {
+/* we want the 'Feature' badge to be dropdown to switch it to
 
-}
+' Research' or 'Refactor' depending on the type of cours
+*/
+/* .item-status:hover {
+
+} */

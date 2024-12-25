@@ -6,9 +6,10 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { CBList } from '../components/CBList'
-import { Pfp } from '../components/Pfp'
+// import { Pfp } from '../components/Pfp'
 import { Spacer } from '../components/Spacer'
 import { TabBar } from '../components/TabBar'
+import { Ticket } from '../components/tickets/Ticket'
 import { Vdiv } from '../components/Vdiv'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
@@ -373,6 +374,8 @@ function TicketDesc() {
 }
 
 const ticketMeta = {
+  author: 'Braeden Meikle',
+  pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
   title: 'Make login screen for site',
   desc: TicketDesc,
@@ -381,57 +384,10 @@ const ticketMeta = {
   statusColor: 'rgb(238, 0, 254)'
 }
 
-function Badge({ className, txt, color }) {
-  return (
-    <div className={className} style={{display: 'flex', marginRight:'auto', gap: '8px'}}>
-      <div style={{display:'flex', background: color, height:'fit-content', borderRadius: '4px', padding: '3px 5px 3px 5px'}}>
-        <p style={{color:'white', fontSize: '14px', margin: 0}}>{txt}</p>
-      </div>
-    </div>
-  )
-}
-
-function Ticket({ meta }) {
-  const ticketStyle = {
-    height: 'fit-content',
-    width: 'fit-content',
-    maxWidth: '350px',
-    padding: '20px 20px 10px 20px',
-    border: '1px solid rgb(100,100,100)', 
-    borderRadius: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-  }
-
-  return (
-    <div style={ticketStyle}>
-      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
-        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
-          <Badge className={'item-app'} txt={meta.app} color={'rgb(50,50,50)'}/>
-          <b style={{color:'white', fontSize: '14px'}}>{meta.title}</b>
-        </div>
-        <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
-          <Badge className={'item-status'} txt={meta.status} color={meta.statusColor}/>
-        </div>
-      </div>
-      <div style={{display:'flex', marginRight: 'auto'}}>
-        {meta.desc()}
-      </div>
-      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
-        <div style={{background: 'rgb(50,50,50)', borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
-          <i className='fa fa-code-branch' style={{color:'white', fontSize: '14px'}}></i>
-        </div>
-        <pre style={{color:'white', fontSize: '12px'}}>{meta.branch}</pre>
-      </div>
-    </div>
-  )
-}
-
 function TicketDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <Ticket meta={ticketMeta}/>
+      <Ticket meta={ticketMeta} isMerging={true} isToggled={true}/>
       <TicketBenefits/>
     </div>
   )
