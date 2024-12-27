@@ -37,6 +37,7 @@ function LoginField({ placeholder, onChange, isSecure }) {
       onChange={onChange}
       style={{
         background: 'none',
+        width: '224px',
         position: 'absolute',
         color:'rgb(120,120,120)', 
         margin: '10px 0 0 8px', 
