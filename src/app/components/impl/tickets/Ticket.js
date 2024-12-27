@@ -2,11 +2,12 @@
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import { motion } from 'motion/react'
+
 import { Pfp } from '../Pfp'
 
-// Tickets will start untoggled
-// once a ticket is clicked, we toggle it and its parents and children
-// if another ticket is clicked, we toggle that and its parents and children
+/// Tickets will start untoggled
+/// once a ticket is clicked, we toggle it and its parents and children
+/// if another ticket is clicked, we toggle that and its parents and children
 
 function Badge({ className, txt, txtColor, backgroundColor }) {
   return (
@@ -34,7 +35,7 @@ const untoggledPalette = {
   type: 'rgb(147, 0, 158)'
 }
 
-function Ticket({ meta, isToggled, isMerging }) {
+function Ticket({ meta, isToggled, isMerging, onClick }) {
   const palette = isToggled ? toggledPalette : untoggledPalette
 
   function MergingAnim() {
@@ -60,42 +61,45 @@ function Ticket({ meta, isToggled, isMerging }) {
   }
 
   return (
-    <div style={{
-      height: 'fit-content',
-      width: 'fit-content',
-      maxWidth: '350px',
-      padding: '20px 20px 10px 20px',
-      border: `1px solid ${palette.border}`, 
-      borderRadius: '10px',
-      display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-    }}>
-      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
-        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
-          <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
-          <b style={{color: palette.text, fontSize: '14px'}}>{meta.title}</b>
+    <button style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
+      <div style={{
+        height: 'fit-content',
+        width: 'fit-content',
+        maxWidth: '410px',
+        padding: '20px 20px 10px 20px',
+        border: `1px solid ${palette.border}`, 
+        borderRadius: '10px',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+      >
+        <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
+          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
+            <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
+            <b style={{color: palette.text, fontSize: '14px'}}>{meta.title}</b>
+          </div>
+          <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
+            <Badge className={'item-status'} txt={meta.status} txtColor={'white'} backgroundColor={meta.statusColor}/>
+          </div>
         </div>
-        <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
-          <Badge className={'item-status'} txt={meta.status} txtColor={'white'} backgroundColor={meta.statusColor}/>
+        <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+          <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
+          <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
+        </div>
+        <div style={{display:'flex', marginRight: 'auto'}}>
+          {meta.desc()}
+        </div>
+        <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+          <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
+            <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
+          </div>
+          {isMerging 
+            ? MergingAnim()
+            : <pre style={{color: palette.text, fontSize: '12px'}}>{meta.branch}</pre>}
         </div>
       </div>
-      <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
-        <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
-        <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
-      </div>
-      <div style={{display:'flex', marginRight: 'auto'}}>
-        {meta.desc()}
-      </div>
-      <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
-        <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
-          <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
-        </div>
-        {isMerging 
-          ? MergingAnim()
-          : <pre style={{color: palette.text, fontSize: '12px'}}>{meta.branch}</pre>}
-      </div>
-    </div>
+    </button>
   )
 }
 
