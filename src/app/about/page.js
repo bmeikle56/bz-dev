@@ -83,6 +83,9 @@ function About() {
         time progresses, all sectors increasingly become intertwined with the latest
         software innovations. 
         <br></br><br></br><br></br>
+        By swapping text for visualization and embracing a minimalist, lazy mindset, Berzerk
+        was born.
+        <br></br><br></br><br></br>
         At <p style={{display:'inline'}} className='bz-txt'>Berzerk</p>, we embrace modern over
         legacy, change over certainty, and purpose over process. That's our winning formula
         for prolonged, adaptive success.

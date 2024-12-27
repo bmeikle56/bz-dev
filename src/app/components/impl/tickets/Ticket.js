@@ -65,31 +65,39 @@ function Ticket({ meta, isToggled, isMerging, onClick }) {
       <div style={{
         height: 'fit-content',
         width: 'fit-content',
-        maxWidth: '410px',
+        maxWidth: '400px',
         padding: '20px 20px 10px 20px',
         border: `1px solid ${palette.border}`, 
         borderRadius: '10px',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
+        justifyContent: 'center',
       }}
       >
-        <div style={{display:'flex', marginRight: 'auto', alignItems: 'center'}}>
-          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px', paddingBottom:'10px'}}>
+        { /* Title portion of the ticket */ }
+        <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
+          <div style={{display: 'flex'}}>
             <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
-            <b style={{color: palette.text, fontSize: '14px'}}>{meta.title}</b>
           </div>
-          <div style={{paddingLeft: '50px', marginBottom: '8px'}}>
+          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{meta.title}</span>
+          <div style={{display: 'flex'}}>
             <Badge className={'item-status'} txt={meta.status} txtColor={'white'} backgroundColor={meta.statusColor}/>
           </div>
         </div>
+
+        { /* Author portion of the ticket */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
           <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
         </div>
+        
+        { /* Description portion of the ticket */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
           {meta.desc()}
         </div>
+
+        { /* Branch portion of the ticket */ }
         <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
