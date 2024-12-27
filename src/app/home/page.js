@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { BZtxt, CBList, Footer, Spacer, TabBar, Ticket, Vdiv } from '../components/Components'
+import { BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, Work } from '../components/Components'
 
 function BZList({ items, height }) {
   return (
@@ -243,18 +243,18 @@ function ContentPair({ left, right }) {
 }
 
 
-// max chars for ticket titles
+// max chars for work item titles
 
 // no more links to Figmas
 // embedded video and screenshot
 // aesthetically pleasing
 // no scrolling
-// acceptance criteria automatically defaulted on ticket with interactible checkbox
+// acceptance criteria automatically defaulted on work with interactible checkbox
 
 // blocked is the same as ready
 
 
-function TicketBenefits() {
+function WorkBenefits() {
   return (
     <div>
       <BZList2 items={[
@@ -267,7 +267,7 @@ function TicketBenefits() {
   )
 }
 
-function TicketDesc() {
+function WorkDesc() {
   function BBullet({ txt }) {
     function Bullet() {
       const bulletStyle = {
@@ -310,7 +310,7 @@ function TicketDesc() {
       }
 
       return (
-        <div>
+        <div style={{display: 'flex', textAlign: 'left'}}>
           <pre style={{
             fontSize: '8px',
             color: 'rgb(160,160,160)', 
@@ -369,29 +369,29 @@ function TicketDesc() {
   )
 }
 
-const ticketMeta = {
+const workMeta = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
   title: 'Make login screen for site',
-  desc: TicketDesc,
+  desc: WorkDesc,
   branch: 'ftr/8022-make-login-screen',
   status: 'Feature',
   statusColor: 'rgb(238, 0, 254)'
 }
 
-function TicketDiv() {
+function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <Ticket meta={ticketMeta} isMerging={true} isToggled={true}/>
-      <TicketBenefits/>
+      <Work meta={workMeta} isMerging={true} isToggled={true}/>
+      <WorkBenefits/>
     </div>
   )
 }
 
 const sections = [
   {left: IntroDiv, right: AnimDiv},
-  {left: TicketDiv, right: SurveyDiv},
+  {left: WorkDiv, right: SurveyDiv},
 ]
 
 
@@ -408,8 +408,8 @@ function SurveyDiv() {
       </div>
       <BZList items={[
         {txt: '55% unaware or vaguely unaware of OKRs'},
-        {txt: '75% of ticket features unused'},
-        {txt: '68% reported purpose by ticket metrics/optics'}
+        {txt: '75% of work item features unused'},
+        {txt: '68% reported purpose by work item metrics/optics'}
       ]} height={'120px'}/>
       <div style={{display: 'flex', alignItems: 'center', gap: '3px'}}>
         <Asterisk/>
@@ -418,7 +418,7 @@ function SurveyDiv() {
         </p>
       </div>
       <div>
-        <p className='txt'>Less meetings and more doing, that's why our tickets are automated</p>
+        <p className='txt'>Less meetings and more doing, that's why our work items are automated</p>
       </div>
     </div>
   )

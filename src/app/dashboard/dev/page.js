@@ -3,13 +3,104 @@
 
 import { useState } from 'react'
 
-import { CBList, SideBar, Spacer, Ticket } from '../../components/Components'
+import { CBList, ccode, CCode, SideBar, Spacer, Work } from '../../components/Components'
 
-function Desc() {
-  return (<div></div>)
+
+function BarrelDesc() {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      textAlign: 'start',
+      paddingBottom: '8px'
+    }}>
+      <p style={{color: 'rgb(220,220,220)', fontSize: 14}}>
+        The file structure should be
+      </p>
+      <div style={{display: 'block'}}>
+        <CCode txt={'import'} color={ccode.reserved}/>
+        <CCode txt={' { '} color={ccode.yellow}/>
+        <CCode txt={'Component'} color={ccode.lightblue}/>
+        <CCode txt={' } '} color={ccode.yellow}/>
+        <CCode txt={'from'} color={ccode.reserved}/>
+        <CCode txt={` './impl/Component' `} color={ccode.salmon}/>
+        <Spacer height={6}/>
+        <CCode txt={'// ...'} color={ccode.green}/>
+        <Spacer height={20}/>
+        <CCode txt={'export'} color={ccode.reserved}/>
+        <CCode txt={' { '} color={ccode.yellow}/>
+        <Spacer height={6}/>
+        <CCode txt={'  Component'} color={ccode.lightyellow}/>
+        <Spacer height={6}/>
+        <CCode txt={'  // ...'} color={ccode.green}/>
+        <Spacer height={6}/>
+        <CCode txt={'} '} color={ccode.yellow}/>
+      </div>
+    </div>
+  )
 }
 
-function FrictionPointDiv() {
+function BackendDesc() {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      textAlign: 'start',
+      paddingBottom: '8px'
+    }}>
+      <p style={{color: 'rgb(220,220,220)', fontSize: 14}}>
+        The backend should have core account APIs in Express
+      </p>
+      <div style={{display: 'block'}}>
+        <CCode txt={'// config server...'} color={ccode.green}/>
+        <Spacer height={20}/>
+        <CCode txt={'// make sure to properly document API'} color={ccode.green}/>
+        <Spacer height={6}/>
+        <CCode txt={'server'} color={ccode.lightblue}/>
+        <CCode txt={'.post'} color={ccode.lightyellow}/>
+        <CCode txt={'('} color={ccode.yellow}/>
+        <CCode txt={`'/login'`} color={ccode.salmon}/>
+        <CCode txt={', '} color={ccode.lightblue}/>
+        <CCode txt={'('} color={ccode.reserved}/>
+        <CCode txt={'req, res'} color={ccode.lightblue}/>
+        <CCode txt={')'} color={ccode.reserved}/>
+        <CCode txt={' => '} color={ccode.darkblue}/>
+        <CCode txt={'{'} color={ccode.reserved}/>
+        <Spacer height={6}/>
+        <CCode txt={'  // login with values in URL params'} color={ccode.green}/>
+        <Spacer height={6}/>
+        <CCode txt={'  // update db'} color={ccode.green}/>
+        <Spacer height={6}/>
+        <CCode txt={'}'} color={ccode.reserved}/>
+        <Spacer height={20}/>
+
+
+
+        <CCode txt={'server'} color={ccode.lightblue}/>
+        <CCode txt={'.post'} color={ccode.lightyellow}/>
+        <CCode txt={'('} color={ccode.yellow}/>
+        <CCode txt={`'/deleteAccount'`} color={ccode.salmon}/>
+        <CCode txt={', '} color={ccode.lightblue}/>
+        <CCode txt={'('} color={ccode.reserved}/>
+        <CCode txt={'req, res'} color={ccode.lightblue}/>
+        <CCode txt={')'} color={ccode.reserved}/>
+        <CCode txt={' => '} color={ccode.darkblue}/>
+        <CCode txt={'{'} color={ccode.reserved}/>
+        <Spacer height={6}/>
+        <CCode txt={'  // delete account!'} color={ccode.green}/>
+        <Spacer height={6}/>
+        <CCode txt={'}'} color={ccode.reserved}/>
+      </div>
+      <Spacer height={10}/>
+      <CBList txt={'Unit tests'}/>
+      <CBList txt={'Environment config'}/>
+      <CBList txt={'Encrypted'}/>
+      <CBList txt={'Deployed to server'}/>
+    </div>
+  )
+}
+
+function FrictionPointDesc() {
   function Circle({ dx, dy, color }) {
     return <div style={{
       position: 'absolute',
@@ -70,10 +161,9 @@ function FrictionPointDiv() {
   return (
     <div style={{
       display: 'flex', 
-      // gap: '60px', 
       justifyContent: 'center', 
       flexDirection: 'column',
-      paddingBottom: '20px',
+      paddingBottom: '10px',
       textAlign: 'left'
     }}>
       <p style={{color: 'rgb(220,220,220)', fontSize: 14}}>
@@ -84,7 +174,7 @@ function FrictionPointDiv() {
       <div style={{
         display: 'flex', 
         gap: '60px', 
-        height: '150px',
+        height: '140px',
         justifyContent: 'center', 
         flexDirection: 'column',
         marginLeft: '155px',
@@ -100,137 +190,39 @@ function FrictionPointDiv() {
   )
 }
 
-function LoginTicketDesc() {
-  function BBullet({ txt }) {
-    function Bullet() {
-      const bulletStyle = {
-        height: '5px', 
-        width: '5px', 
-        background: 'rgb(220,220,220)',
-        borderRadius: '5px',
-        marginTop: '2px',
-        marginLeft: '15px'
-      }
-  
-      return <div style={bulletStyle}></div>
-    }
+/// Feature = ftr
+/// Refactor = ref
+/// Research = rsc
 
-    return (
-      <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-        <Bullet/>
-        <b style={{color: 'white', fontSize: '14px'}}>{txt}</b>
-      </div>
-    )
-  }
-
-  function DescTxt({ txt }) {
-    return <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
-  }
-
-  function LoginDesign() {
-    function LoginField({ txt }) {
-      return (
-        <div style={{border: '1px solid rgb(26,26,26)', height: '18px', width: '120px', borderRadius: '4px'}}>
-          <p style={{color:'rgb(60,60,60)', position: 'absolute', margin: '5px 0 0 5px', fontSize: '8px'}}>{txt}</p>
-        </div>
-      )
-    }
-
-    function Decoration() {
-      const json = {
-        usr: 'brd',
-        pwd: '82$!'
-      }
-
-      return (
-        <div>
-          <pre style={{
-            fontSize: '8px',
-            color: 'rgb(160,160,160)', 
-            textShadow: '0px 0px 15px rgb(46, 190, 238), 0px 0px 12px rgb(46, 190, 238), 0px 0px 15px rgb(46, 190, 238)'
-          }}>
-            {JSON.stringify(json, null, 2)}
-          </pre>
-        </div>
-      )
-    }
-
-    return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Spacer height={'15px'}/>
-        <b style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 12px rgb(222, 218, 218)', fontSize: '20px', marginBottom:8}}>Berzerk</b>
-        <Decoration/>
-        <Spacer height={'10px'}/>
-        <LoginField txt={'Email'}/>
-        <Spacer height={'5px'}/>
-        <LoginField txt={'Secure password'}/>
-        <Spacer height={'5px'}/>
-        <div style={{
-          border: 'none',
-          background:'rgb(238, 0, 254)', 
-          width: '120px',
-          height: '18px',
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <b style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Log in</b>
-        </div>
-        <Spacer height={'8px'}/>
-        <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
-          <p style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Don't have an account?</p>
-          <b style={{color: 'rgb(238, 0, 254)', fontSize: '8px', textShadow: '0px 0px 5px rgb(192, 191, 191)'}}>Create one</b>
-        </div>
-        <Spacer height={'20px'}/>
-        <CBList txt={'Golden image & unit tests'}/>
-        <CBList txt={'Code merged + pipeline succeeded'}/>
-      </div>
-    )
-  }
-
-  return (
-    <div style={{}}>
-      <DescTxt txt={'The login screen should allow users to enter'}/>
-      <BBullet txt={'email'}/>
-      <Spacer height={'3px'}/>
-      <BBullet txt={'secure password'}/>
-      <Spacer height={'5px'}/>
-      <LoginDesign/>
-      <Spacer height={'20px'}/>
-    </div>
-  )
-}
-
-const ticketMeta1 = {
+const workMeta1 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
-  title: 'Ad Visualization',
-  desc: FrictionPointDiv,
+  title: 'Visualization Marketing',
+  desc: FrictionPointDesc,
   branch: 'ftr/713-make-friction-anim',
   status: 'Feature',
   statusColor: 'rgb(108, 0, 124)'
 }
 
-const ticketMeta2 = {
+const workMeta2 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
   title: 'Barrel file for components',
-  desc: Desc,
+  desc: BarrelDesc,
   branch: 'ftr/101-add-barrel-file',
   status: 'Refactor',
   statusColor: 'rgb(156, 86, 0)'
 }
 
-const ticketMeta3 = {
+const workMeta3 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
-  title: 'Express Backend',
-  desc: Desc,
-  branch: 'ftr/713-init-backend',
+  title: 'Backend Account APIs',
+  desc: BackendDesc,
+  branch: 'rsc/713-init-backend',
   status: 'Research',
   statusColor: 'rgb(0, 109, 0)'
 }
@@ -254,9 +246,9 @@ export default function DevDashboardPage() {
         {txt: 'Four', action: () => {console.log('four!')}},
         {txt: 'Five', action: () => {console.log('five!')}},
       ]}/> */}
-      <Ticket meta={ticketMeta1} isToggled={selected == 0} isMerging={false} onClick={() => select(0)}/>
-      <Ticket meta={ticketMeta2} isToggled={selected == 1} isMerging={true} onClick={() => select(1)}/>
-      <Ticket meta={ticketMeta3} isToggled={selected == 2} isMerging={false} onClick={() => select(2)}/>
+      <Work meta={workMeta1} isToggled={selected == 0} isMerging={false} onClick={() => select(0)}/>
+      <Work meta={workMeta2} isToggled={selected == 1} isMerging={true} onClick={() => select(1)}/>
+      <Work meta={workMeta3} isToggled={selected == 2} isMerging={false} onClick={() => select(2)}/>
     </div>
   )
 }

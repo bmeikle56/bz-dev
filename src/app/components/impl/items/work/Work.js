@@ -3,11 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import { motion } from 'motion/react'
 
-import { Pfp } from '../Pfp'
-
-/// Tickets will start untoggled
-/// once a ticket is clicked, we toggle it and its parents and children
-/// if another ticket is clicked, we toggle that and its parents and children
+import { Pfp } from '../../Pfp'
 
 function Badge({ className, txt, txtColor, backgroundColor }) {
   return (
@@ -35,7 +31,7 @@ const untoggledPalette = {
   type: 'rgb(147, 0, 158)'
 }
 
-function Ticket({ meta, isToggled, isMerging, onClick }) {
+function Work({ meta, isToggled, isMerging, onClick }) {
   const palette = isToggled ? toggledPalette : untoggledPalette
 
   function MergingAnim() {
@@ -75,7 +71,7 @@ function Ticket({ meta, isToggled, isMerging, onClick }) {
         justifyContent: 'center',
       }}
       >
-        { /* Title portion of the ticket */ }
+        { /* Title portion of the work item */ }
         <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
             <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
@@ -86,18 +82,18 @@ function Ticket({ meta, isToggled, isMerging, onClick }) {
           </div>
         </div>
 
-        { /* Author portion of the ticket */ }
+        { /* Author portion of the work item */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
           <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
         </div>
         
-        { /* Description portion of the ticket */ }
+        { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
           {meta.desc()}
         </div>
 
-        { /* Branch portion of the ticket */ }
+        { /* Branch portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
@@ -111,4 +107,4 @@ function Ticket({ meta, isToggled, isMerging, onClick }) {
   )
 }
 
-export { Ticket }
+export { Work }

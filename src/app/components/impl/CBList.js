@@ -1,4 +1,6 @@
 
+/// [C]heck [B]ox List
+///
 function CBList({ txt }) {
   return (
   <div style={{display: 'flex', height: '25px', alignItems: 'center', marginRight: 'auto', paddingLeft:'10px', gap: '8px'}}>
