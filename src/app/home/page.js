@@ -395,7 +395,8 @@ function TicketDiv() {
 
 const sections = [
   {left: IntroDiv, right: AnimDiv},
-  {left: TicketDiv, right: SurveyDiv},
+  {left: FrictionPointDiv, right: FrictionPointDiv}
+  // {left: TicketDiv, right: SurveyDiv},
 ]
 
 
@@ -427,6 +428,86 @@ function SurveyDiv() {
     </div>
   )
 }
+
+function FrictionPointDiv() {
+  function Circle({ dx, dy, color }) {
+    return <div style={{
+      position: 'absolute',
+      zIndex: 2,
+      width: '6px', 
+      height: '6px', 
+      background: color, 
+      borderRadius: '50%',
+      transform: `translate(${dx}px,${dy}px)`
+    }}/>
+  }
+
+  function Line({ dx, dy, theta, width }) {
+    return <div style={{
+      position: 'absolute',
+      zIndex: 0,
+      width: `${width}px`, 
+      background: 'rgb(75,75,75)', 
+      height: '1px',
+      transform: `translate(${dx}px,${dy}px) rotate(${theta}deg)`
+    }}/>
+  }
+
+  function OldFrictionPoints() {
+    const color = 'rgb(180,180,180)'
+  
+    return (
+      <div>
+        <Circle dx={0} dy={-1} color={color}/>
+        <Line dx={-14} dy={8} theta={-45} width={20}/>
+        <Circle dx={12} dy={8} color={color}/>
+        <Line dx={4} dy={6} theta={42} width={10}/>
+        <Circle dx={3} dy={20} color={color}/>
+        <Line dx={4} dy={15} theta={-52} width={15}/>
+        <Circle dx={-14} dy={12} color={color}/>
+        <Line dx={8} dy={21} theta={-8} width={11}/>
+        <Circle dx={16} dy={18} color={color}/>
+        <Line dx={21} dy={17} theta={-18} width={16}/>
+        <Circle dx={34} dy={12} color={color}/>
+      </div>
+    )
+  }
+  
+  function NewFrictionPoints() {
+    const color = 'rgb(238, 0, 254)'
+  
+    return (
+      <div>
+        <Circle dx={-14} dy={6} color={color}/>
+        <Line dx={-10} dy={8.5} theta={0} width={20}/>
+        <Circle dx={10} dy={6} color={color}/>
+        <Line dx={15} dy={8.5} theta={0} width={20}/>
+        <Circle dx={34} dy={6} color={color}/>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{display: 'flex', gap: '60px', flexDirection: 'column'}}>
+      <div style={{display: 'flex'}}>
+        <OldFrictionPoints/>
+        <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '5px'}}>
+          Old software development: lots of friction points
+        </p>
+      </div>
+      <div style={{display: 'flex'}}>
+        <NewFrictionPoints/>
+        <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '0px'}}>
+          Berzerk software development: as few friction points as possible
+        </p>
+      </div>
+    </div>
+  )
+}
+
+
+
+
 
 export default function HomePage() {
   return (
