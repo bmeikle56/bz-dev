@@ -3,7 +3,7 @@
 
 import { useState } from 'react'
 
-import { CBList, ccode, CCode, SideBar, Spacer, Work } from '../../components/Components'
+import { CBList, ccode, CCode, Goal, SideBar, Spacer, Work } from '../../cmp/Components'
 
 
 function BarrelDesc() {
@@ -12,10 +12,9 @@ function BarrelDesc() {
       display: 'flex',
       flexDirection: 'column',
       textAlign: 'start',
-      paddingBottom: '8px'
     }}>
       <p style={{color: 'rgb(220,220,220)', fontSize: 14}}>
-        The file structure should be
+        The file structure should be (in alphabetical order)
       </p>
       <div style={{display: 'block'}}>
         <CCode txt={'import'} color={ccode.reserved}/>
@@ -35,6 +34,24 @@ function BarrelDesc() {
         <CCode txt={'  // ...'} color={ccode.green}/>
         <Spacer height={6}/>
         <CCode txt={'} '} color={ccode.yellow}/>
+      </div>
+      <p style={{color: 'rgb(220,220,220)', fontSize: 14}}>
+        All files can import necessary components from this 
+        barrel file rather than import each component 
+        individually
+      </p>
+      <div style={{display: 'block'}}>
+        <CCode txt={'import'} color={ccode.reserved}/>
+        <CCode txt={' { '} color={ccode.yellow}/>
+        <CCode txt={'a'} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
+        <CCode txt={'b'} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
+        <CCode txt={'c'} color={ccode.lightblue}/>
+        <CCode txt={' } '} color={ccode.yellow}/>
+        <CCode txt={'from'} color={ccode.reserved}/>
+        <CCode txt={` './components/Components' `} color={ccode.salmon}/>
+        <Spacer height={6}/>
       </div>
     </div>
   )
@@ -57,12 +74,15 @@ function BackendDesc() {
         <CCode txt={'// make sure to properly document API'} color={ccode.green}/>
         <Spacer height={6}/>
         <CCode txt={'server'} color={ccode.lightblue}/>
-        <CCode txt={'.post'} color={ccode.lightyellow}/>
+        <CCode txt={'.'} color={ccode.white}/>
+        <CCode txt={'post'} color={ccode.lightyellow}/>
         <CCode txt={'('} color={ccode.yellow}/>
         <CCode txt={`'/login'`} color={ccode.salmon}/>
-        <CCode txt={', '} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
         <CCode txt={'('} color={ccode.reserved}/>
-        <CCode txt={'req, res'} color={ccode.lightblue}/>
+        <CCode txt={'req'} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
+        <CCode txt={'res'} color={ccode.lightblue}/>
         <CCode txt={')'} color={ccode.reserved}/>
         <CCode txt={' => '} color={ccode.darkblue}/>
         <CCode txt={'{'} color={ccode.reserved}/>
@@ -77,12 +97,15 @@ function BackendDesc() {
 
 
         <CCode txt={'server'} color={ccode.lightblue}/>
-        <CCode txt={'.post'} color={ccode.lightyellow}/>
+        <CCode txt={'.'} color={ccode.white}/>
+        <CCode txt={'post'} color={ccode.lightyellow}/>
         <CCode txt={'('} color={ccode.yellow}/>
         <CCode txt={`'/deleteAccount'`} color={ccode.salmon}/>
-        <CCode txt={', '} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
         <CCode txt={'('} color={ccode.reserved}/>
-        <CCode txt={'req, res'} color={ccode.lightblue}/>
+        <CCode txt={'req'} color={ccode.lightblue}/>
+        <CCode txt={', '} color={ccode.white}/>
+        <CCode txt={'res'} color={ccode.lightblue}/>
         <CCode txt={')'} color={ccode.reserved}/>
         <CCode txt={' => '} color={ccode.darkblue}/>
         <CCode txt={'{'} color={ccode.reserved}/>
@@ -209,6 +232,17 @@ const workMeta2 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
+  title: 'Backend Account APIs',
+  desc: BackendDesc,
+  branch: 'rsc/713-account-apis',
+  status: 'Research',
+  statusColor: 'rgb(0, 109, 0)'
+}
+
+const workMeta3 = {
+  author: 'Braeden Meikle',
+  pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
+  app: 'Web',
   title: 'Barrel file for components',
   desc: BarrelDesc,
   branch: 'ftr/101-add-barrel-file',
@@ -216,28 +250,56 @@ const workMeta2 = {
   statusColor: 'rgb(156, 86, 0)'
 }
 
-const workMeta3 = {
-  author: 'Braeden Meikle',
-  pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-  app: 'Web',
-  title: 'Backend Account APIs',
-  desc: BackendDesc,
-  branch: 'rsc/713-init-backend',
-  status: 'Research',
-  statusColor: 'rgb(0, 109, 0)'
+const goalMeta1 = {
+  title: 'Improve Advertisement + Marketing',
+  criteria: [
+    {txt: 'Bullet 1'},
+    {txt: 'Bullet 2'},
+    {txt: 'Bullet 3'}
+  ],
+  deadline: 'March 2025'
+}
+
+const goalMeta2 = {
+  title: 'Complete Web App MVP',
+  criteria: [
+    {txt: 'Bullet 1'}
+  ],
+  deadline: 'March 2025'
+}
+
+const goalMeta3 = {
+  title: 'Prepare for Scale',
+  criteria: [
+    {txt: 'Bullet 1'}
+  ],
+  deadline: 'March 2025'
 }
 
 export default function DevDashboardPage() {
   const [selected, select]= useState(0)
 
+  function Connect({ port1, port2, isToggled }) {
+    return (
+      <svg>
+        <path style={{
+          color: isToggled ? 'rgb(120,120,120)' : 'rgb(50,50,50)'
+        }} d={`M${port1.x} ${port1.y} L${port2.x} ${port2.y}`}/>
+      </svg>
+    )
+  }
+
   return (
     <div style={{
       zIndex: 0,
       height: '100vh', 
-      display: 'flex',
-      gap: '30px',
-      justifyContent: 'center',
-      alignItems: 'center'
+      rowGap: '150px',
+      display: 'grid',
+      alignItems: 'start',
+      justifyItems: 'center', // center items horizontally
+      gridTemplateRows: 'auto 1fr',
+      gridTemplateColumns: 'repeat(3, auto)',
+      padding: 80
     }}>
       {/* <SideBar tabs={[
         {txt: 'One', action: () => {console.log('one!')}},
@@ -246,6 +308,9 @@ export default function DevDashboardPage() {
         {txt: 'Four', action: () => {console.log('four!')}},
         {txt: 'Five', action: () => {console.log('five!')}},
       ]}/> */}
+      <Goal meta={goalMeta1} isToggled={selected == -3} isMerging={false} onClick={() => select(-3)}/>
+      <Goal meta={goalMeta2} isToggled={selected == -2} isMerging={false} onClick={() => select(-2)}/>
+      <Goal meta={goalMeta3} isToggled={selected == -1} isMerging={false} onClick={() => select(-1)}/>
       <Work meta={workMeta1} isToggled={selected == 0} isMerging={false} onClick={() => select(0)}/>
       <Work meta={workMeta2} isToggled={selected == 1} isMerging={true} onClick={() => select(1)}/>
       <Work meta={workMeta3} isToggled={selected == 2} isMerging={false} onClick={() => select(2)}/>

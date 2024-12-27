@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { Spacer } from '../components/Components'
+import { Spacer } from '../cmp/Components'
 
 function BackBtn() {
   const router = useRouter()

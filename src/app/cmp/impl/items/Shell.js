@@ -37,7 +37,7 @@ function Shell({ body, isToggled, isMerging, onClick }) {
         justifyContent: 'center',
       }}
       >
-        {body({ isToggled, isMerging })}
+        {body({ palette, isMerging })}
       </div>
     </button>
   )

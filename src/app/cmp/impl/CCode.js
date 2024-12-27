@@ -3,6 +3,7 @@
 /// palette for JS
 ///
 const ccode = {
+  white: 'rgb(225,225,225)',
   reserved: 'rgb(178, 111, 160)',
   lightblue: 'rgb(125, 183, 214)',
   darkblue: 'rgb(90, 137, 218)',
@@ -19,7 +20,7 @@ const ccode = {
 function CCode({ txt, color }) {
   return (
     <div style={{display: 'inline'}}>
-      <pre style={{display: 'inline', color: color, fontSize: 14}}>{txt}</pre>
+      <pre style={{display: 'inline', color: color, fontSize: 13}}>{txt}</pre>
     </div>
   )
 }

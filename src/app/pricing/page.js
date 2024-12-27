@@ -1,5 +1,5 @@
 
-import { TabBar, Vdiv } from '../components/Components'
+import { TabBar, Vdiv } from '../cmp/Components'
 
 function Pricing() {
   

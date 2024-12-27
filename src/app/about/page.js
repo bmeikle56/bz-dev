@@ -3,7 +3,7 @@
 
 import { motion } from 'motion/react'
 
-import { Footer, Pfp, Spacer, TabBar, Vdiv } from '../components/Components'
+import { Footer, Pfp, Spacer, TabBar, Vdiv } from '../cmp/Components'
 
 function Anim({ margin, delay }) {
   return (

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, Work } from '../components/Components'
+import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, Work } from '../cmp/Components'
 
 function BZList({ items, height }) {
   return (
@@ -268,28 +268,6 @@ function WorkBenefits() {
 }
 
 function WorkDesc() {
-  function BBullet({ txt }) {
-    function Bullet() {
-      const bulletStyle = {
-        height: '5px', 
-        width: '5px', 
-        background: 'rgb(220,220,220)',
-        borderRadius: '5px',
-        marginTop: '2px',
-        marginLeft: '15px'
-      }
-  
-      return <div style={bulletStyle}></div>
-    }
-
-    return (
-      <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-        <Bullet/>
-        <b style={{color: 'white', fontSize: '14px'}}>{txt}</b>
-      </div>
-    )
-  }
-
   function DescTxt({ txt }) {
     return <p style={{color: 'rgb(220,220,220)', fontSize: '14px'}}>{txt}</p>
   }
@@ -359,9 +337,9 @@ function WorkDesc() {
   return (
     <div style={{}}>
       <DescTxt txt={'The login screen should allow users to enter'}/>
-      <BBullet txt={'email'}/>
+      <BBullet txt={'email'} color={'rgb(220,220,220)'}/>
       <Spacer height={'3px'}/>
-      <BBullet txt={'secure password'}/>
+      <BBullet txt={'secure password'} color={'rgb(220,220,220)'}/>
       <Spacer height={'5px'}/>
       <LoginDesign/>
       <Spacer height={'20px'}/>
