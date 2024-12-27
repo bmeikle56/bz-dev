@@ -1,4 +1,6 @@
 
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
 import { motion } from 'motion/react'
 import { Pfp } from '../Pfp'
 
@@ -39,18 +41,18 @@ function Ticket({ meta, isToggled, isMerging }) {
     return (
       <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
         <pre style={{color: palette.text, fontSize: '12px'}}>Merging</pre>
-        <div style={{width: '25px', background: 'rgb(70,70,70)', height: '1px'}}>
+        <div style={{width: '25px', background: 'rgb(70,70,70)', height: '1px', marginBottom:'-1px'}}>
           <motion.div 
           style={{
             borderRadius: '50%', 
             height: '4px', 
             width: '4px', 
             background: 'rgb(238, 0, 254)',
-            marginTop: '-1px'
+            marginTop: '-1.5px'
           }}
-          initial={{ x: 0 }}
-          animate={{ x: 20 }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut', repeatDelay: 0.5 }}
+          initial={{ x: -2 }}
+          animate={{ x: 22 }}
+          transition={{ repeat: Infinity, duration: 1.3, ease: 'easeInOut', repeatDelay: 0.5 }}
           />
         </div>
       </div>
@@ -86,8 +88,8 @@ function Ticket({ meta, isToggled, isMerging }) {
         {meta.desc()}
       </div>
       <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
-        <div style={{background: 'rgb(50,50,50)', borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
-          <i className='fa fa-code-branch' style={{color:'white', fontSize: '14px'}}></i>
+        <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
+          <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
         </div>
         {isMerging 
           ? MergingAnim()

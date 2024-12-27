@@ -2,7 +2,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { toggleLogin } from '../auth/page'
+import { toggleLogin } from '../../auth/page'
 
 function TabBar() {
   const router = useRouter()

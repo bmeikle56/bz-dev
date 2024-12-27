@@ -1,11 +1,9 @@
 
 'use client'
 
-import { Pfp } from '../components/Pfp'
-import { TabBar } from '../components/TabBar'
-import { Vdiv } from '../components/Vdiv'
 import { motion } from 'motion/react'
-import { Spacer } from '../components/Spacer'
+
+import { Footer, Pfp, Spacer, TabBar, Vdiv } from '../components/Components'
 
 function Anim({ margin, delay }) {
   return (
@@ -105,6 +103,8 @@ export default function AboutPage() {
       <Anim margin={'50vh 0 0 85vw'} delay={10}/>
       <Anim margin={'90vh 0 0 6vw'} delay={23}/>
       <About/>
+      <Vdiv/>
+      <Footer/>
     </div>
   )
 }

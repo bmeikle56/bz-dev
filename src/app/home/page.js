@@ -1,17 +1,11 @@
 
 'use client'
 
-import { Footer } from '../components/Footer'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { CBList } from '../components/CBList'
-// import { Pfp } from '../components/Pfp'
-import { Spacer } from '../components/Spacer'
-import { TabBar } from '../components/TabBar'
-import { Ticket } from '../components/tickets/Ticket'
-import { Vdiv } from '../components/Vdiv'
-import '@fortawesome/fontawesome-free/css/all.min.css'
+
+import { BZtxt, CBList, Footer, Spacer, TabBar, Ticket, Vdiv } from '../components/Components'
 
 function BZList({ items, height }) {
   return (
@@ -132,7 +126,9 @@ function IntroDiv() {
         {txt: 'Productivity over processes and legacy'},
         {txt: 'Agile has never been so lightweight'}
       ]} height={'120px'}/>
-      <TryUs/>
+      {/* <TryUs/> */}
+      <Spacer height={100}/>
+      <FrictionPointDiv/>
     </div>
   )
 }
@@ -227,9 +223,9 @@ function Subtitle() {
 }
 
 function TryUs() {
-  return <div style={{display: 'flex', gap: '5px'}}>
+  return <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
     <p style={{color: 'rgb(220,220,220)'}}>Try</p>
-    <p style={{color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</p>
+    <BZtxt/>
     <p style={{color: 'rgb(220,220,220)'}}>free for 30 days</p>
   </div>
 }
@@ -395,8 +391,7 @@ function TicketDiv() {
 
 const sections = [
   {left: IntroDiv, right: AnimDiv},
-  {left: FrictionPointDiv, right: FrictionPointDiv}
-  // {left: TicketDiv, right: SurveyDiv},
+  {left: TicketDiv, right: SurveyDiv},
 ]
 
 
@@ -492,22 +487,19 @@ function FrictionPointDiv() {
       <div style={{display: 'flex'}}>
         <OldFrictionPoints/>
         <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '5px'}}>
-          Old software development: lots of friction points
+          Legacy software development
         </p>
       </div>
       <div style={{display: 'flex'}}>
         <NewFrictionPoints/>
-        <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '0px'}}>
-          Berzerk software development: as few friction points as possible
+        <b style={{display: 'inline', marginLeft: '150px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
+        <p style={{color:'white', position: 'absolute', marginLeft: '214px', marginTop: '0px'}}>
+          software development
         </p>
       </div>
     </div>
   )
 }
-
-
-
-
 
 export default function HomePage() {
   return (

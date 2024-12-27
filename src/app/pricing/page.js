@@ -1,6 +1,5 @@
 
-import { TabBar } from '../components/TabBar'
-import { Vdiv } from '../components/Vdiv'
+import { TabBar, Vdiv } from '../components/Components'
 
 function Pricing() {
   

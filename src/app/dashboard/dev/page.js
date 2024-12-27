@@ -1,8 +1,7 @@
 
 'use client'
 
-import { SideBar } from '../../components/SideBar'
-import { Ticket } from '../../components/tickets/Ticket'
+import { SideBar, Ticket } from '../../components/Components'
 
 function Desc() {
   return (<div></div>)
