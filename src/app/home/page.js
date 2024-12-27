@@ -332,7 +332,7 @@ function TicketDesc() {
         <Spacer height={'5px'}/>
         <LoginField txt={'Secure password'}/>
         <Spacer height={'5px'}/>
-        <button style={{
+        <div style={{
           border: 'none',
           background:'rgb(238, 0, 254)', 
           width: '120px',
@@ -343,7 +343,7 @@ function TicketDesc() {
           justifyContent: 'center'
         }}>
           <b style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Log in</b>
-        </button>
+        </div>
         <Spacer height={'8px'}/>
         <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
           <p style={{color: 'rgb(220,220,220)', fontSize: '8px'}}>Don't have an account?</p>
