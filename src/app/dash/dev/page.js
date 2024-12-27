@@ -1,6 +1,8 @@
 
 'use client'
 
+import Image from 'next/image'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 
 import { CBList, ccode, CCode, Goal, SideBar, Spacer, Work } from '../../cmp/Components'
@@ -213,9 +215,40 @@ function FrictionPointDesc() {
   )
 }
 
-/// Feature = ftr
-/// Refactor = ref
-/// Research = rsc
+function ImageFlickerDesc() {
+  function FlickeringLaptop() {
+    return (
+      <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: [1,0.2,1,0.2,1,0.2,1] }}
+      transition={{
+        delay: 3,
+        repeat: Infinity,
+        repeatDelay: 6
+      }}
+      >
+        <Image 
+          src='/mac1.png'
+          width='55'
+          height='60'
+          alt='Laptop'
+        />
+      </motion.div>
+    )
+  }
+  
+  return (
+    <div style={{display: 'flex', textAlign: 'left', alignItems: 'center', flexDirection: 'column', width: '200px'}}>
+      <p style={{color: 'white'}}>Some text</p>
+      <FlickeringLaptop/>
+    </div>
+  )
+}
+
+/// Feature  : ftr
+/// Refactor : ref
+/// Research : rsc
+/// Bug      : bug
 
 const workMeta1 = {
   author: 'Braeden Meikle',
@@ -234,7 +267,7 @@ const workMeta2 = {
   app: 'Web',
   title: 'Backend Account APIs',
   desc: BackendDesc,
-  branch: 'rsc/713-account-apis',
+  branch: 'rsc/8088-account-apis',
   status: 'Research',
   statusColor: 'rgb(0, 109, 0)'
 }
@@ -248,6 +281,17 @@ const workMeta3 = {
   branch: 'ftr/101-add-barrel-file',
   status: 'Refactor',
   statusColor: 'rgb(156, 86, 0)'
+}
+
+const workMeta4 = {
+  author: 'Braeden Meikle',
+  pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
+  app: 'Web',
+  title: 'Fix image flickering',
+  desc: ImageFlickerDesc,
+  branch: 'bug/6036-fix-image-flicker',
+  status: 'Bug',
+  statusColor: 'rgb(156, 0, 0)'
 }
 
 const goalMeta1 = {
@@ -314,6 +358,7 @@ export default function DevDashboardPage() {
       <Work meta={workMeta1} isToggled={selected == 0} isMerging={false} onClick={() => select(0)}/>
       <Work meta={workMeta2} isToggled={selected == 1} isMerging={true} onClick={() => select(1)}/>
       <Work meta={workMeta3} isToggled={selected == 2} isMerging={false} onClick={() => select(2)}/>
+      <Work meta={workMeta4} isToggled={selected == 3} isMerging={false} onClick={() => select(3)}/>
     </div>
   )
 }
