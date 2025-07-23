@@ -119,7 +119,7 @@ function BackendDesc() {
       <Spacer height={10}/>
       <CBList txt={'Unit tests'}/>
       <CBList txt={'Environment config'}/>
-      <CBList txt={'Encrypted'}/>
+      <CBList txt={'Encrypted password'}/>
       <CBList txt={'Deployed to server'}/>
     </div>
   )
@@ -239,7 +239,6 @@ function ImageFlickerDesc() {
   
   return (
     <div style={{display: 'flex', textAlign: 'left', alignItems: 'center', flexDirection: 'column', width: '200px'}}>
-      <p style={{color: 'white'}}>Some text</p>
       <FlickeringLaptop/>
     </div>
   )
@@ -253,7 +252,7 @@ function ImageFlickerDesc() {
 const workMeta1 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-  app: 'Web',
+  app: 'berzerk-web',
   title: 'Visualization Marketing',
   desc: FrictionPointDesc,
   branch: 'ftr/713-make-friction-anim',
@@ -264,7 +263,7 @@ const workMeta1 = {
 const workMeta2 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-  app: 'Web',
+  app: 'berzerk-server',
   title: 'Backend Account APIs',
   desc: BackendDesc,
   branch: 'rsc/8088-account-apis',
@@ -275,7 +274,7 @@ const workMeta2 = {
 const workMeta3 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-  app: 'Web',
+  app: 'berzerk-web',
   title: 'Barrel file for components',
   desc: BarrelDesc,
   branch: 'ftr/101-add-barrel-file',
@@ -286,7 +285,7 @@ const workMeta3 = {
 const workMeta4 = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-  app: 'Web',
+  app: 'berzerk-web',
   title: 'Fix image flickering',
   desc: ImageFlickerDesc,
   branch: 'bug/6036-fix-image-flicker',
@@ -336,14 +335,14 @@ export default function DevDashboardPage() {
   return (
     <div style={{
       zIndex: 0,
-      height: '100vh', 
+      height: '100%', 
       rowGap: '150px',
       display: 'grid',
       alignItems: 'start',
       justifyItems: 'center', // center items horizontally
       gridTemplateRows: 'auto 1fr',
       gridTemplateColumns: 'repeat(3, auto)',
-      padding: 80
+      padding: 80,
     }}>
       {/* <SideBar tabs={[
         {txt: 'One', action: () => {console.log('one!')}},
@@ -352,13 +351,15 @@ export default function DevDashboardPage() {
         {txt: 'Four', action: () => {console.log('four!')}},
         {txt: 'Five', action: () => {console.log('five!')}},
       ]}/> */}
-      <Goal meta={goalMeta1} isToggled={selected == -3} isMerging={false} onClick={() => select(-3)}/>
+      {/* <Goal meta={goalMeta1} isToggled={selected == -3} isMerging={false} onClick={() => select(-3)}/>
       <Goal meta={goalMeta2} isToggled={selected == -2} isMerging={false} onClick={() => select(-2)}/>
-      <Goal meta={goalMeta3} isToggled={selected == -1} isMerging={false} onClick={() => select(-1)}/>
+      <Goal meta={goalMeta3} isToggled={selected == -1} isMerging={false} onClick={() => select(-1)}/> */}
       <Work meta={workMeta1} isToggled={selected == 0} isMerging={false} onClick={() => select(0)}/>
       <Work meta={workMeta2} isToggled={selected == 1} isMerging={true} onClick={() => select(1)}/>
       <Work meta={workMeta3} isToggled={selected == 2} isMerging={false} onClick={() => select(2)}/>
-      <Work meta={workMeta4} isToggled={selected == 3} isMerging={false} onClick={() => select(3)}/>
+      <div style={{marginTop: -260, marginRight: -90}}>
+        <Work meta={workMeta4} isToggled={selected == 3} isMerging={false} onClick={() => select(3)}/>
+      </div>
     </div>
   )
 }
