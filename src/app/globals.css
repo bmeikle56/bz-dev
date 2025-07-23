@@ -32,6 +32,11 @@ body {
   height: 1px;
 }
 
+.fixed-page {
+  overflow: hidden !important;
+  height: 100%;
+}
+
 #tabbar {
   display: flex;
   justify-content: space-evenly;
