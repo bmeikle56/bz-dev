@@ -62,6 +62,17 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled
     merging: 'rgba(255, 0, 255, 1)'
   }
 
+  function Notes({ notes }) {
+    // split notes by comma and trim whitespace
+    const items = notes.split(',').map(item => item.trim())
+
+    return <div style={{display: 'flex', alignItems:'start', flexDirection:'column'}}>
+      {items.map((item, index) => (
+        <p style={{color: 'white', paddingTop: 5, paddingBottom: 5, margin: 5}} key={index}>&rArr; {item}</p>
+      ))}
+    </div>
+  }
+
   return (
     <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
       <div style={{
@@ -96,7 +107,7 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled
         
         { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
-          <p style={{color: 'rgb(160,160,160)'}}>{notes}</p>
+          <Notes notes={notes}/>
         </div>
 
         { /* Branch portion of the work item */ }
