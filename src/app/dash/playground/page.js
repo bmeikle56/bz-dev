@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useState } from 'react'
+import { Work } from '../../cmp/Components'
 
 function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
   const control = height / 4;
@@ -39,33 +40,46 @@ function TicketList() {
             'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
           },
           body: JSON.stringify({ username: 'braeden' }),
-        });
+        })
 
-        const data = await response.json();
+        const data = await response.json()
 
         console.log(data)
 
         if (!response.ok) {
-          throw new Error(data.error || 'failed to fetch tickets');
+          throw new Error(data.error || 'failed to fetch tickets')
         }
 
-        setTickets(data.tickets);
+        setTickets(data.tickets)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       }
-    };
-    fetchTickets();
-  }, []);
+    }
+    fetchTickets()
+  }, [])
+
+  function Desc() {
+    return <div></div>
+  }
+
+  const workMeta1 = {
+    author: 'Braeden Meikle',
+    pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
+    app: 'berzerk-web',
+    title: 'Visualization Marketing',
+    desc: Desc,
+    branch: 'ftr/713-make-friction-anim',
+    status: 'Feature',
+    statusColor: 'rgb(108, 0, 124)'
+  }
 
   return (
     <div>
-      <h2>Tickets</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
-        {tickets.map((ticket, index) => (
-          <li key={index}>
-            <strong>{ticket.title}</strong> — {ticket.repo} [{ticket.status}]
-          </li>
+        {tickets.map((ticket, index) => ( <div key={index}>
+          <Work meta={workMeta1} isToggled={true} isMerging={false} onClick={() => {}}/>
+          </div>
         ))}
       </ul>
     </div>
