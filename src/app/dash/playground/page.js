@@ -62,26 +62,27 @@ function TicketList() {
     return <div></div>
   }
 
-  const workMeta1 = {
-    author: 'Braeden Meikle',
-    pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
-    app: 'berzerk-web',
-    title: 'Visualization Marketing',
-    desc: Desc,
-    branch: 'ftr/713-make-friction-anim',
-    status: 'Feature',
-    statusColor: 'rgb(108, 0, 124)'
-  }
-
   return (
     <div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul>
-        {tickets.map((ticket, index) => ( <div key={index}>
-          <Work meta={workMeta1} isToggled={true} isMerging={false} onClick={() => {}}/>
-          </div>
-        ))}
-      </ul>
+      {tickets.map((ticket, index) => (
+        <div key={index}>
+          <Work 
+          id={index} 
+          repo={ticket.repo}
+          dev={ticket.dev}
+          tag={ticket.tag}
+          pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
+          title={ticket.title}
+          notes={ticket.notes}
+          branch={`${ticket.tag}/${ticket.title}`}
+          isToggled={ticket.status == 'active'} 
+          isMerging={ticket.status == 'merging'} 
+          statusColor={'rgb(108, 0, 124)'}
+          onClick={() => {}}
+          />
+        </div>
+      ))}
     </div>
   );
 }
@@ -91,7 +92,14 @@ export default function DevPlaygroundPage() {
   return (
     <div style={{display: 'flex'}}>
       <TicketList/>
-      {/* <div style={{display:'flex', flexDirection:'column', gap: 10}}>
+    </div>
+  )
+}
+
+
+// this goes on the home page for marketing:
+
+{/* <div style={{display:'flex', flexDirection:'column', gap: 10}}>
         <div>
           <p style={{color:'rgb(125,125,125)'}}>Make a ticket</p>
           <p style={{color:'rgb(125,125,125)'}}>Fill out details</p>
@@ -114,6 +122,3 @@ export default function DevPlaygroundPage() {
       {/* <div style={{marginTop: 100, marginLeft: 150}}>
         <pre style={{color:'rgba(255, 64, 242, 1)'}}>{'bz make <repo> <tag> <title> <notes>'}</pre>
       </div> */}
-    </div>
-  )
-}

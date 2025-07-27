@@ -31,7 +31,7 @@ const untoggledPalette = {
   type: 'rgb(147, 0, 158)'
 }
 
-function Work({ meta, isToggled, isMerging, onClick }) {
+function Work({ id, repo, dev, tag, pfp, title, notes, branch, statusColor, isToggled, isMerging, onClick }) {
   const palette = isToggled ? toggledPalette : untoggledPalette
 
   function MergingAnim() {
@@ -57,7 +57,7 @@ function Work({ meta, isToggled, isMerging, onClick }) {
   }
 
   return (
-    <button style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
+    <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
       <div style={{
         height: 'fit-content',
         width: 'fit-content',
@@ -74,23 +74,23 @@ function Work({ meta, isToggled, isMerging, onClick }) {
         { /* Title portion of the work item */ }
         <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
-            <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
+            <Badge className={'item-app'} txt={repo} txtColor={palette.text} backgroundColor={palette.gray}/>
           </div>
-          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{meta.title}</span>
+          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{title}</span>
           <div style={{display: 'flex'}}>
-            <Badge className={'item-status'} txt={meta.status} txtColor={'white'} backgroundColor={meta.statusColor}/>
+            <Badge className={'item-status'} txt={tag} txtColor={'white'} backgroundColor={statusColor}/>
           </div>
         </div>
 
         { /* Author portion of the work item */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
-          <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
-          <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
+          <Pfp meta={{imgLink: pfp, radius: 25, alt: 'Dev picture'}}/>
+          <p style={{color: palette.author, fontSize: '12px'}}>{dev}</p>
         </div>
         
         { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
-          {meta.desc()}
+          <p style={{color: 'rgb(160,160,160)'}}>{notes}</p>
         </div>
 
         { /* Branch portion of the work item */ }
@@ -100,7 +100,7 @@ function Work({ meta, isToggled, isMerging, onClick }) {
           </div>
           {isMerging 
             ? MergingAnim()
-            : <pre style={{color: palette.text, fontSize: '12px'}}>{meta.branch}</pre>}
+            : <pre style={{color: palette.text, fontSize: '12px'}}>{branch}</pre>}
         </div>
       </div>
     </button>
