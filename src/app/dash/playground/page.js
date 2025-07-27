@@ -58,12 +58,8 @@ function TicketList() {
     fetchTickets()
   }, [])
 
-  function Desc() {
-    return <div></div>
-  }
-
   return (
-    <div>
+    <div style={{display: 'flex', gap: 50}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket, index) => (
         <div key={index}>
@@ -90,7 +86,7 @@ function TicketList() {
 
 export default function DevPlaygroundPage() {
   return (
-    <div style={{display: 'flex'}}>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
       <TicketList/>
     </div>
   )
