@@ -31,7 +31,7 @@ const untoggledPalette = {
   type: 'rgb(147, 0, 158)'
 }
 
-function Work({ id, repo, dev, tag, pfp, title, notes, branch, statusColor, isToggled, isMerging, onClick }) {
+function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled, isMerging, onClick }) {
   const palette = isToggled ? toggledPalette : untoggledPalette
 
   function MergingAnim() {
@@ -56,6 +56,12 @@ function Work({ id, repo, dev, tag, pfp, title, notes, branch, statusColor, isTo
     )
   }
 
+  const tagColors = {
+    new: 'rgba(255, 0, 255, 0.33)',
+    active: 'rgba(255, 0, 255, 0.66)',
+    merging: 'rgba(255, 0, 255, 1)'
+  }
+
   return (
     <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
       <div style={{
@@ -78,7 +84,7 @@ function Work({ id, repo, dev, tag, pfp, title, notes, branch, statusColor, isTo
           </div>
           <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{title}</span>
           <div style={{display: 'flex'}}>
-            <Badge className={'item-status'} txt={tag} txtColor={'white'} backgroundColor={statusColor}/>
+            <Badge className={'item-status'} txt={tag} txtColor={'white'} backgroundColor={tagColors[status]}/>
           </div>
         </div>
 

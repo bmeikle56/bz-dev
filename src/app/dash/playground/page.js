@@ -75,10 +75,10 @@ function TicketList() {
           pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
           title={ticket.title}
           notes={ticket.notes}
+          status={ticket.status}
           branch={`${ticket.tag}/${ticket.title}`}
           isToggled={ticket.status == 'active'} 
           isMerging={ticket.status == 'merging'} 
-          statusColor={'rgb(108, 0, 124)'}
           onClick={() => {}}
           />
         </div>
