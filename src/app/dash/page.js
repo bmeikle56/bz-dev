@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useState } from 'react'
-import { Work } from '../../cmp/Components'
+import { Work } from '../cmp/Components'
 
 function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
   const control = height / 4;

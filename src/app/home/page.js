@@ -4,8 +4,10 @@
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
 
-import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, Work } from '../cmp/Components'
+import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList({ items, height }) {
   return (
@@ -116,19 +118,68 @@ function EndMeeting() {
   )
 }
 
+function Circle({ color }) {
+  return (
+    <div style={{borderRadius: '50%', background: color, width: 11, height: 11}}/>
+  )
+}
+
+// 'Message-driven, autonomous culture'
+
 function IntroDiv() {
   return (
     <div id='intro'>
-      <Title/>
-      <Subtitle/>
-      <BZList items={[
-        {txt: 'We believe in a message-driven culture'},
-        {txt: 'Productivity over processes and legacy'},
-        {txt: 'Agile has never been so lightweight'}
-      ]} height={'120px'}/>
-      {/* <TryUs/> */}
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
+        <Title/>
+        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', alignItems: 'center', padding: 20, gap: 40}}>
+          <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+            <div style={{display: 'flex'}}>
+              <BZtxt txt={'Fast'}/>
+              <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
+            </div>
+            <div style={{display: 'flex'}}>
+              <BZtxt txt={'Command line software'}/>
+            </div>
+            <div style={{display: 'flex'}}>
+              <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
+              <BZtxt txt={'for devs'}/>
+            </div>
+          </div>
+          <FrictionPointDiv/>
+        </div>
+      </div>
       <Spacer height={100}/>
-      <FrictionPointDiv/>
+      <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', width: 'fit-content', height: 'fit-content', padding: 20, marginLeft: -50}}>
+        <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
+          <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
+            <Circle color={'rgba(255,0,0,0.4)'}/>
+            <Circle color={'rgba(255,255,0,0.4)'}/>
+            <Circle color={'rgba(0,255,0,0.4)'}/>
+          </div>
+          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
+            <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
+            <Inlinetxt txt={'berzerk-dev'} color={'rgb(60,60,60)'}/>
+          </div>
+          
+        </div>
+        <Spacer height={16}/>
+        <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
+        <Spacer height={10}/>
+        <CCode txt={'# make a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# work on a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz workon --title=ipad-constraints'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# submit a PR'} color={ccode.green}/>
+        <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# delete a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz delete --title=launch-site'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# fetch tickets'} color={ccode.green}/>
+        <BZCCode txt={'bz fetch'}/>
+      </div>
     </div>
   )
 }
@@ -225,7 +276,7 @@ function Subtitle() {
 function TryUs() {
   return <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
     <p style={{color: 'rgb(220,220,220)'}}>Try</p>
-    <BZtxt/>
+    <BZtxt txt={'Berzerk'}/>
     <p style={{color: 'rgb(220,220,220)'}}>free for 30 days</p>
   </div>
 }
@@ -242,25 +293,13 @@ function ContentPair({ left, right }) {
   )
 }
 
-
-// max chars for work item titles
-
-// no more links to Figmas
-// embedded video and screenshot
-// aesthetically pleasing
-// no scrolling
-// acceptance criteria automatically defaulted on work with interactible checkbox
-
-// blocked is the same as ready
-
-
 function WorkBenefits() {
   return (
     <div>
       <BZList2 items={[
         {txt: 'Only the data that matters'},
         {txt: 'Seamlessly linked branches'},
-        {txt: 'Simply drag & drop screenshots'},
+        {txt: 'Optimized development'},
         {txt: 'Elegant modern design'},
       ]} height={'120px'}/>
     </div>
@@ -361,15 +400,15 @@ const workMeta = {
 function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <Work meta={workMeta} isMerging={true} isToggled={true}/>
+      <RichWork meta={workMeta} isMerging={true} isToggled={true}/>
       <WorkBenefits/>
     </div>
   )
 }
 
 const sections = [
-  {left: IntroDiv, right: AnimDiv},
-  {left: WorkDiv, right: SurveyDiv},
+  {left: IntroDiv, right: WorkDiv},
+  // {left: WorkDiv, right: SurveyDiv},
 ]
 
 
@@ -461,17 +500,17 @@ function FrictionPointDiv() {
   }
 
   return (
-    <div style={{display: 'flex', gap: '60px', flexDirection: 'column'}}>
+    <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
       <div style={{display: 'flex'}}>
         <OldFrictionPoints/>
-        <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '5px'}}>
+        <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
           Legacy software development
         </p>
       </div>
-      <div style={{display: 'flex'}}>
+      <div style={{display: 'flex', width: '280px'}}>
         <NewFrictionPoints/>
-        <b style={{display: 'inline', marginLeft: '150px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
-        <p style={{color:'white', position: 'absolute', marginLeft: '214px', marginTop: '0px'}}>
+        <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
+        <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
           software development
         </p>
       </div>

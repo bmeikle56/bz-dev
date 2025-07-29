@@ -2,9 +2,9 @@
 /// Component barrel file for convenient imports
 
 import { BBullet } from './impl/BBullet'
-import { BZtxt } from './impl/BZtxt'
+import { BZtxt, Inlinetxt } from './impl/BZtxt'
 import { CBList } from './impl/CBList'
-import { ccode, CCode } from './impl/CCode'
+import { ccode, CCode,BZCCode } from './impl/CCode'
 import { Footer } from './impl/Footer'
 import { Goal } from './impl/items/goal/Goal'
 import { Pfp } from './impl/Pfp'
@@ -13,7 +13,7 @@ import { SideBar } from './impl/SideBar'
 import { Spacer } from './impl/Spacer'
 import { TabBar } from './impl/TabBar'
 import { Vdiv } from './impl/Vdiv'
-import { Work } from './impl/items/work/Work'
+import { Work, RichWork } from './impl/items/work/Work'
 
 export { 
   BBullet,
@@ -29,5 +29,8 @@ export {
   Spacer,
   TabBar,
   Vdiv,
-  Work
+  Work,
+  RichWork,
+  BZCCode,
+  Inlinetxt
 }

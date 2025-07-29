@@ -8,11 +8,9 @@ function TabBar() {
   const router = useRouter()
 
   const tabs = [
-    {txt: 'Why Berzerk', action: () => { router.push('/home') }},
-    {txt: 'Who we are',  action: () => { router.push('/about') }},
+    {txt: 'About Berzerk', action: () => { router.push('/home') }},
+    {txt: 'Dashboard',  action: () => { router.push('/dash') }},
     {txt: 'Log in',      action: () => { router.push('/auth'); toggleLogin(true) }},
-    {txt: 'Sign up',     action: () => { router.push('/auth'); toggleLogin(false) }},
-    {txt: 'Pricing',     action: () => { router.push('/pricing') }},
   ]
 
   return (
