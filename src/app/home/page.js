@@ -123,26 +123,22 @@ function IntroDiv() {
     <div id='intro'>
       <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
         <Title/>
-        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', padding: 20, gap: 10}}>
-          <div style={{display: 'flex'}}>
-            <BZtxt txt={'Fast'}/>
-            <Inlinetxt txt={'processes and no legacy'} marginLeft={8}/>
+        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', alignItems: 'center', padding: 20, gap: 40}}>
+          <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+            <div style={{display: 'flex'}}>
+              <BZtxt txt={'Fast'}/>
+              <Inlinetxt txt={'processes and no legacy'} marginLeft={8}/>
+            </div>
+            <div style={{display: 'flex'}}>
+              <BZtxt txt={'Command line software'}/>
+            </div>
+            <div style={{display: 'flex'}}>
+              <Inlinetxt txt={'Built by devs, '} marginRight={8}/>
+              <BZtxt txt={'for devs'}/>
+            </div>
           </div>
-          <div style={{display: 'flex'}}>
-            <BZtxt txt={'Command line software'}/>
-          </div>
-          <div style={{display: 'flex'}}>
-            <Inlinetxt txt={'Built by devs, '} marginRight={8}/>
-            <BZtxt txt={'for devs'}/>
-          </div>
-          <BZtxt txt={''}/>
+          <FrictionPointDiv/>
         </div>
-        
-        {/* <BZList items={[
-          {txt: 'Fast processes and no legacy'},
-          {txt: 'Command line software management'},
-          {txt: 'Built by devs, for devs'}
-        ]} height={'120px'}/> */}
       </div>
       <CCode txt={'# make a ticket'} color={ccode.green}/>
       <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
@@ -158,9 +154,8 @@ function IntroDiv() {
       <Spacer height={16}/>
       <CCode txt={'# fetch tickets'} color={ccode.green}/>
       <BZCCode txt={'bz fetch'}/>
-      {/* <TryUs/> */}
       <Spacer height={100}/>
-      <FrictionPointDiv/>
+      
     </div>
   )
 }
@@ -481,14 +476,14 @@ function FrictionPointDiv() {
   }
 
   return (
-    <div style={{display: 'flex', gap: '60px', flexDirection: 'column'}}>
+    <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
       <div style={{display: 'flex'}}>
         <OldFrictionPoints/>
         <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
           Legacy software development
         </p>
       </div>
-      <div style={{display: 'flex', width: '400px'}}>
+      <div style={{display: 'flex', width: '280px'}}>
         <NewFrictionPoints/>
         <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
         <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>

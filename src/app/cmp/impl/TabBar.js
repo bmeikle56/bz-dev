@@ -8,7 +8,7 @@ function TabBar() {
   const router = useRouter()
 
   const tabs = [
-    {txt: 'Why Berzerk', action: () => { router.push('/home') }},
+    {txt: 'About Berzerk', action: () => { router.push('/home') }},
     {txt: 'Dashboard',  action: () => { router.push('/dash') }},
     {txt: 'Log in',      action: () => { router.push('/auth'); toggleLogin(true) }},
   ]
