@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, Work } from '../cmp/Components'
+import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork } from '../cmp/Components'
 
 function BZList({ items, height }) {
   return (
@@ -361,7 +361,7 @@ const workMeta = {
 function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <Work meta={workMeta} isMerging={true} isToggled={true}/>
+      <RichWork meta={workMeta} isMerging={true} isToggled={true}/>
       <WorkBenefits/>
     </div>
   )

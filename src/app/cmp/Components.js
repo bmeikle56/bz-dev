@@ -13,7 +13,7 @@ import { SideBar } from './impl/SideBar'
 import { Spacer } from './impl/Spacer'
 import { TabBar } from './impl/TabBar'
 import { Vdiv } from './impl/Vdiv'
-import { Work } from './impl/items/work/Work'
+import { Work, RichWork } from './impl/items/work/Work'
 
 export { 
   BBullet,
@@ -29,5 +29,6 @@ export {
   Spacer,
   TabBar,
   Vdiv,
-  Work
+  Work,
+  RichWork
 }
