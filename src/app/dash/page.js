@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useState } from 'react'
-import { Work } from '../cmp/Components'
+import { Work, TabBar } from '../cmp/Components'
 
 function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
   const control = height / 4;
@@ -59,10 +59,10 @@ function TicketList() {
   }, [])
 
   return (
-    <div style={{display: 'flex', gap: 50}}>
+    <div style={{display: 'flex', gap: 50, position: 'absolute', zIndex: 1}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket, index) => (
-        <div key={index}>
+        <div key={index} style={{zIndex: 1, background:'black', height:'fit-content', borderRadius: 10}}>
           <Work 
           id={index} 
           repo={ticket.repo}
@@ -83,11 +83,22 @@ function TicketList() {
   );
 }
 
+function Wallpaper() {
+  return (
+    <div style={{display: 'flex', position: 'absolute', zIndex: 0, width: '100vw', height: '100vh', background: 'rgb(20,20,20)'}}>
+
+    </div>
+  )
+}
 
 export default function DevPlaygroundPage() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
-      <TicketList/>
+      <Wallpaper/>
+      <div style={{marginBottom: 'auto', zIndex: 1}}>
+        <TabBar/>
+      </div>
+      <TicketList/>      
     </div>
   )
 }
