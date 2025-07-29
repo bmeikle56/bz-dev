@@ -116,28 +116,31 @@ function EndMeeting() {
   )
 }
 
+// 'Message-driven, autonomous culture'
+
 function IntroDiv() {
   return (
     <div id='intro'>
-      <Title/>
-      <Subtitle/>
-      <BZList items={[
-        {txt: 'We believe in a message-driven culture'},
-        {txt: 'Productivity over processes and legacy'},
-        {txt: 'Agile has never been so lightweight'}
-      ]} height={'120px'}/>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
+        <Title/>
+        <BZList items={[
+          {txt: 'Fast processes and no legacy'},
+          {txt: 'Command line software management'},
+          {txt: 'Built by devs, for devs'}
+        ]} height={'120px'}/>
+      </div>
       <CCode txt={'# make a ticket'} color={ccode.green}/>
       <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
-      <Spacer height={10}/>
+      <Spacer height={16}/>
       <CCode txt={'# work on a ticket'} color={ccode.green}/>
       <BZCCode txt={'bz workon --title=ipad-constraints'}/>
-      <Spacer height={10}/>
+      <Spacer height={16}/>
       <CCode txt={'# submit a PR'} color={ccode.green}/>
       <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
-      <Spacer height={10}/>
+      <Spacer height={16}/>
       <CCode txt={'# delete a ticket'} color={ccode.green}/>
       <BZCCode txt={'bz delete --title=launch-site'}/>
-      <Spacer height={10}/>
+      <Spacer height={16}/>
       <CCode txt={'# fetch tickets'} color={ccode.green}/>
       <BZCCode txt={'bz fetch'}/>
       {/* <TryUs/> */}
@@ -466,14 +469,14 @@ function FrictionPointDiv() {
     <div style={{display: 'flex', gap: '60px', flexDirection: 'column'}}>
       <div style={{display: 'flex'}}>
         <OldFrictionPoints/>
-        <p style={{color:'white', position: 'absolute', marginLeft: '150px', marginTop: '5px'}}>
+        <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
           Legacy software development
         </p>
       </div>
-      <div style={{display: 'flex'}}>
+      <div style={{display: 'flex', width: '400px'}}>
         <NewFrictionPoints/>
-        <b style={{display: 'inline', marginLeft: '150px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
-        <p style={{color:'white', position: 'absolute', marginLeft: '214px', marginTop: '0px'}}>
+        <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
+        <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
           software development
         </p>
       </div>
