@@ -242,25 +242,13 @@ function ContentPair({ left, right }) {
   )
 }
 
-
-// max chars for work item titles
-
-// no more links to Figmas
-// embedded video and screenshot
-// aesthetically pleasing
-// no scrolling
-// acceptance criteria automatically defaulted on work with interactible checkbox
-
-// blocked is the same as ready
-
-
 function WorkBenefits() {
   return (
     <div>
       <BZList2 items={[
         {txt: 'Only the data that matters'},
         {txt: 'Seamlessly linked branches'},
-        {txt: 'Simply drag & drop screenshots'},
+        {txt: 'Optimized development'},
         {txt: 'Elegant modern design'},
       ]} height={'120px'}/>
     </div>
@@ -368,8 +356,8 @@ function WorkDiv() {
 }
 
 const sections = [
-  {left: IntroDiv, right: AnimDiv},
-  {left: WorkDiv, right: SurveyDiv},
+  {left: IntroDiv, right: WorkDiv},
+  // {left: WorkDiv, right: SurveyDiv},
 ]
 
 
