@@ -521,7 +521,9 @@ function FrictionPointDiv() {
 export default function HomePage() {
   return (
     <div>
-      <TabBar/>
+      <div style={{display: 'flex', justifyContent: 'center', padding: 0, margin: 0}}>
+        <TabBar/>
+      </div>
       <Vdiv/>
       <motion.div
       initial={{ opacity: 0 }}

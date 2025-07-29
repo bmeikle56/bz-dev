@@ -85,17 +85,53 @@ function TicketList() {
 
 function Wallpaper() {
   return (
-    <div style={{display: 'flex', position: 'absolute', zIndex: 0, width: '100vw', height: '100vh', background: 'rgb(20,20,20)'}}>
-
+    <div style={{display: 'flex', position: 'absolute', zIndex: 0, width: '100vw', height: '100vh'}}>
+      <DiamondWallpaper/>
     </div>
   )
 }
+
+function DiamondWallpaper() {
+  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
+  const diamondSize = 40; // width & height in pixels (includes padding)
+
+  useEffect(() => {
+    const updateSize = () => {
+      setScreenSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  const cols = Math.ceil(screenSize.width / diamondSize);
+  const rows = Math.ceil(screenSize.height / diamondSize);
+  const total = rows * cols;
+
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cols}, ${diamondSize}px)`,
+        gridTemplateRows: `repeat(${rows}, ${diamondSize}px)`,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 1
+      }}
+    >
+      {Array.from({ length: total }).map((_, i) => (
+        <p key={i} style={{color: 'rgba(58, 0, 62, 1)', zIndex: 1}}>&diams;</p>
+      ))}
+    </div>
+  );
+};
 
 export default function DevPlaygroundPage() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
       <Wallpaper/>
-      <div style={{marginBottom: 'auto', zIndex: 1}}>
+      <div style={{marginBottom: 'auto', zIndex: 1,  padding: 0}}>
         <TabBar/>
       </div>
       <TicketList/>      
