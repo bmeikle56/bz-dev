@@ -131,7 +131,7 @@ export default function DevPlaygroundPage() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
       <Wallpaper/>
-      <div style={{marginBottom: 'auto', zIndex: 1,  padding: 0}}>
+      <div style={{display: 'flex', justifyContent: 'center', marginBottom: 'auto', paddingLeft: 0, paddingRight: 16, zIndex: 1, width: '100%'}}>
         <TabBar/>
       </div>
       <TicketList/>      
