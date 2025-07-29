@@ -2,7 +2,7 @@
 /// Component barrel file for convenient imports
 
 import { BBullet } from './impl/BBullet'
-import { BZtxt } from './impl/BZtxt'
+import { BZtxt, Inlinetxt } from './impl/BZtxt'
 import { CBList } from './impl/CBList'
 import { ccode, CCode,BZCCode } from './impl/CCode'
 import { Footer } from './impl/Footer'
@@ -31,5 +31,6 @@ export {
   Vdiv,
   Work,
   RichWork,
-  BZCCode
+  BZCCode,
+  Inlinetxt
 }

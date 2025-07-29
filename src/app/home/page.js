@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
+import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList({ items, height }) {
   return (
@@ -123,11 +123,26 @@ function IntroDiv() {
     <div id='intro'>
       <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
         <Title/>
-        <BZList items={[
+        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', padding: 20, gap: 10}}>
+          <div style={{display: 'flex'}}>
+            <BZtxt txt={'Fast'}/>
+            <Inlinetxt txt={'processes and no legacy'} marginLeft={8}/>
+          </div>
+          <div style={{display: 'flex'}}>
+            <BZtxt txt={'Command line software'}/>
+          </div>
+          <div style={{display: 'flex'}}>
+            <Inlinetxt txt={'Built by devs, '} marginRight={8}/>
+            <BZtxt txt={'for devs'}/>
+          </div>
+          <BZtxt txt={''}/>
+        </div>
+        
+        {/* <BZList items={[
           {txt: 'Fast processes and no legacy'},
           {txt: 'Command line software management'},
           {txt: 'Built by devs, for devs'}
-        ]} height={'120px'}/>
+        ]} height={'120px'}/> */}
       </div>
       <CCode txt={'# make a ticket'} color={ccode.green}/>
       <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
@@ -242,7 +257,7 @@ function Subtitle() {
 function TryUs() {
   return <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
     <p style={{color: 'rgb(220,220,220)'}}>Try</p>
-    <BZtxt/>
+    <BZtxt txt={'Berzerk'}/>
     <p style={{color: 'rgb(220,220,220)'}}>free for 30 days</p>
   </div>
 }
