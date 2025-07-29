@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork } from '../cmp/Components'
+import { BBullet, BZtxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList({ items, height }) {
   return (
@@ -126,6 +126,20 @@ function IntroDiv() {
         {txt: 'Productivity over processes and legacy'},
         {txt: 'Agile has never been so lightweight'}
       ]} height={'120px'}/>
+      <CCode txt={'# make a ticket'} color={ccode.green}/>
+      <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
+      <Spacer height={10}/>
+      <CCode txt={'# work on a ticket'} color={ccode.green}/>
+      <BZCCode txt={'bz workon --title=ipad-constraints'}/>
+      <Spacer height={10}/>
+      <CCode txt={'# submit a PR'} color={ccode.green}/>
+      <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
+      <Spacer height={10}/>
+      <CCode txt={'# delete a ticket'} color={ccode.green}/>
+      <BZCCode txt={'bz delete --title=launch-site'}/>
+      <Spacer height={10}/>
+      <CCode txt={'# fetch tickets'} color={ccode.green}/>
+      <BZCCode txt={'bz fetch'}/>
       {/* <TryUs/> */}
       <Spacer height={100}/>
       <FrictionPointDiv/>

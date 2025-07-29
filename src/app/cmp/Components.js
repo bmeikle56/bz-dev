@@ -4,7 +4,7 @@
 import { BBullet } from './impl/BBullet'
 import { BZtxt } from './impl/BZtxt'
 import { CBList } from './impl/CBList'
-import { ccode, CCode } from './impl/CCode'
+import { ccode, CCode,BZCCode } from './impl/CCode'
 import { Footer } from './impl/Footer'
 import { Goal } from './impl/items/goal/Goal'
 import { Pfp } from './impl/Pfp'
@@ -30,5 +30,6 @@ export {
   TabBar,
   Vdiv,
   Work,
-  RichWork
+  RichWork,
+  BZCCode
 }

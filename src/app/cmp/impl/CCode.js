@@ -10,7 +10,8 @@ const ccode = {
   lightyellow: 'rgb(205, 198, 156)',
   yellow: 'rgb(244, 216, 63)',
   salmon: 'rgb(199, 136, 108)',
-  green: 'rgb(42, 121, 43)'
+  green: 'rgb(42, 121, 43)',
+
 }
 
 /// Colored code shared component
@@ -25,4 +26,12 @@ function CCode({ txt, color }) {
   )
 }
 
-export { ccode, CCode }
+function BZCCode({ txt }) {
+  return (
+    <div style={{display: 'inline'}}>
+      <pre style={{display: 'inline', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)', fontSize: 13}}>{txt}</pre>
+    </div>
+  )
+}
+
+export { ccode, CCode, BZCCode }
