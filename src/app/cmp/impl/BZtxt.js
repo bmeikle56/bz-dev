@@ -7,10 +7,10 @@ function BZtxt({ txt }) {
   )
 }
 
-function Inlinetxt({ txt, marginLeft, marginRight }) {
+function Inlinetxt({ txt, color, marginLeft, marginRight }) {
   return (
     <div style={{display: 'inline'}}>
-      <p style={{display: 'inline', marginLeft: marginLeft, marginRight: marginRight, color: 'rgb(180,180,180)'}}>{txt}</p>
+      <p style={{display: 'inline', marginLeft: marginLeft, marginRight: marginRight, color: color}}>{txt}</p>
     </div>
   )
 }

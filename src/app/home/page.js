@@ -4,6 +4,8 @@
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
 
 import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
 
@@ -116,6 +118,12 @@ function EndMeeting() {
   )
 }
 
+function Circle({ color }) {
+  return (
+    <div style={{borderRadius: '50%', background: color, width: 11, height: 11}}/>
+  )
+}
+
 // 'Message-driven, autonomous culture'
 
 function IntroDiv() {
@@ -127,35 +135,51 @@ function IntroDiv() {
           <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
-              <Inlinetxt txt={'processes and no legacy'} marginLeft={8}/>
+              <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
             </div>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Command line software'}/>
             </div>
             <div style={{display: 'flex'}}>
-              <Inlinetxt txt={'Built by devs, '} marginRight={8}/>
+              <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
               <BZtxt txt={'for devs'}/>
             </div>
           </div>
           <FrictionPointDiv/>
         </div>
       </div>
-      <CCode txt={'# make a ticket'} color={ccode.green}/>
-      <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
-      <Spacer height={16}/>
-      <CCode txt={'# work on a ticket'} color={ccode.green}/>
-      <BZCCode txt={'bz workon --title=ipad-constraints'}/>
-      <Spacer height={16}/>
-      <CCode txt={'# submit a PR'} color={ccode.green}/>
-      <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
-      <Spacer height={16}/>
-      <CCode txt={'# delete a ticket'} color={ccode.green}/>
-      <BZCCode txt={'bz delete --title=launch-site'}/>
-      <Spacer height={16}/>
-      <CCode txt={'# fetch tickets'} color={ccode.green}/>
-      <BZCCode txt={'bz fetch'}/>
       <Spacer height={100}/>
-      
+      <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', width: 'fit-content', height: 'fit-content', padding: 20, marginLeft: -50}}>
+        <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
+          <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
+            <Circle color={'rgba(255,0,0,0.4)'}/>
+            <Circle color={'rgba(255,255,0,0.4)'}/>
+            <Circle color={'rgba(0,255,0,0.4)'}/>
+          </div>
+          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
+            <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
+            <Inlinetxt txt={'berzerk-dev'} color={'rgb(60,60,60)'}/>
+          </div>
+          
+        </div>
+        <Spacer height={16}/>
+        <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
+        <Spacer height={10}/>
+        <CCode txt={'# make a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# work on a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz workon --title=ipad-constraints'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# submit a PR'} color={ccode.green}/>
+        <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# delete a ticket'} color={ccode.green}/>
+        <BZCCode txt={'bz delete --title=launch-site'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# fetch tickets'} color={ccode.green}/>
+        <BZCCode txt={'bz fetch'}/>
+      </div>
     </div>
   )
 }
