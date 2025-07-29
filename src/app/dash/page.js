@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useState } from 'react'
-import { Work } from '../cmp/Components'
+import { Work, TabBar } from '../cmp/Components'
 
 function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
   const control = height / 4;
@@ -59,10 +59,10 @@ function TicketList() {
   }, [])
 
   return (
-    <div style={{display: 'flex', gap: 50}}>
+    <div style={{display: 'flex', gap: 50, position: 'absolute', zIndex: 1}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket, index) => (
-        <div key={index}>
+        <div key={index} style={{zIndex: 1, background:'black', height:'fit-content', borderRadius: 10}}>
           <Work 
           id={index} 
           repo={ticket.repo}
@@ -83,11 +83,58 @@ function TicketList() {
   );
 }
 
+function Wallpaper() {
+  return (
+    <div style={{display: 'flex', position: 'absolute', zIndex: 0, width: '100vw', height: '100vh'}}>
+      <DiamondWallpaper/>
+    </div>
+  )
+}
+
+function DiamondWallpaper() {
+  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
+  const diamondSize = 40; // width & height in pixels (includes padding)
+
+  useEffect(() => {
+    const updateSize = () => {
+      setScreenSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  const cols = Math.ceil(screenSize.width / diamondSize);
+  const rows = Math.ceil(screenSize.height / diamondSize);
+  const total = rows * cols;
+
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cols}, ${diamondSize}px)`,
+        gridTemplateRows: `repeat(${rows}, ${diamondSize}px)`,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 1
+      }}
+    >
+      {Array.from({ length: total }).map((_, i) => (
+        <p key={i} style={{color: 'rgba(58, 0, 62, 1)', zIndex: 1}}>&diams;</p>
+      ))}
+    </div>
+  );
+};
 
 export default function DevPlaygroundPage() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
-      <TicketList/>
+      <Wallpaper/>
+      <div style={{display: 'flex', justifyContent: 'center', marginBottom: 'auto', paddingLeft: 0, paddingRight: 16, zIndex: 1, width: '100%'}}>
+        <TabBar/>
+      </div>
+      <TicketList/>      
     </div>
   )
 }
