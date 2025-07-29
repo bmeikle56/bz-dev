@@ -10,7 +10,7 @@ const ccode = {
   lightyellow: 'rgb(205, 198, 156)',
   yellow: 'rgb(244, 216, 63)',
   salmon: 'rgb(199, 136, 108)',
-  green: 'rgb(42, 121, 43)',
+  green: 'rgba(43, 207, 46, 1)',
 
 }
 
