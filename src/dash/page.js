@@ -27,21 +27,13 @@ function TicketList() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-
     const fetchTickets = async () => {
       try {
-        const response = await fetch('https://berzerk-agile-dev-backend-production.up.railway.app/fetch', {
+        const response = await fetch('/.netlify/functions/fetchTickets', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-          },
-          body: JSON.stringify({ username: 'braeden' }),
         })
 
         const data = await response.json()
-
-        console.log(data)
 
         if (!response.ok) {
           throw new Error(data.error || 'failed to fetch tickets')
