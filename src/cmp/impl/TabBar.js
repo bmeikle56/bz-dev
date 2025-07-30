@@ -1,13 +1,12 @@
-
-import { toggleLogin } from '../../auth/page'
+import { useNavigate } from 'react-router-dom'
 
 function TabBar() {
-  // const router = useRouter()
+  const navigate = useNavigate()
 
   const tabs = [
-    {txt: 'About Berzerk', action: () => {}},
-    {txt: 'Dashboard',  action: () => {}},
-    {txt: 'Log in',      action: () => {}},
+    {txt: 'About Berzerk', action: () => { navigate('/home') }},
+    {txt: 'Dashboard', action: () => { navigate('/dashboard') }},
+    {txt: 'Log in', action: () => { navigate('/login') }},
   ]
 
   return (

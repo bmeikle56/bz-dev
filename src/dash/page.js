@@ -35,7 +35,7 @@ function TicketList() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+            'Authorization': `Bearer ${process.env.AUTH_TOKEN}`,
           },
           body: JSON.stringify({ username: 'braeden' }),
         })
@@ -125,7 +125,7 @@ function DiamondWallpaper() {
   );
 };
 
-export default function DevPlaygroundPage() {
+export default function DashboardPage() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
       <Wallpaper/>
