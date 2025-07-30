@@ -19,7 +19,7 @@ function Footer() {
         ? 
           <p key={i} style={{color:'rgb(150,150,150)', fontSize: '10px'}}>{tab.txt}</p>
         : 
-          <a href={tab.href} target='_blank' key={i}  style={{textDecoration: 'none'}}>
+          <a href={tab.href} target='_blank' rel='noreferrer' key={i}  style={{textDecoration: 'none'}}>
             <p style={{color:'rgb(150,150,150)', fontSize: '10px'}}>{tab.txt}</p>
           </a>
       })}

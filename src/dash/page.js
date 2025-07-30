@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
 import { Work, TabBar } from '../cmp/Components'
 
-function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
-  const control = height / 4;
+// function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
+//   const control = height / 4;
 
-  const path = `
-    M ${x + width} ${y}
-    q -${width} ${control}, 0 ${control * 2}
-    q ${width} ${control}, 0 ${control * 2}
-  `;
+//   const path = `
+//     M ${x + width} ${y}
+//     q -${width} ${control}, 0 ${control * 2}
+//     q ${width} ${control}, 0 ${control * 2}
+//   `;
 
-  return (
-    <svg style={{ position: 'absolute', top: y, left: x }} width={width * 2} height={height}>
-      <path
-        d={path}
-        fill="transparent"
-        stroke={stroke}
-        strokeWidth="2"
-      />
-    </svg>
-  );
-};
+//   return (
+//     <svg style={{ position: 'absolute', top: y, left: x }} width={width * 2} height={height}>
+//       <path
+//         d={path}
+//         fill="transparent"
+//         stroke={stroke}
+//         strokeWidth="2"
+//       />
+//     </svg>
+//   );
+// };
 
 function TicketList() {
   const [tickets, setTickets] = useState([])
