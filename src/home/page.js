@@ -131,13 +131,36 @@ function IntroDiv() {
           <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
-              <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
+              <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0,1] }}
+              transition={{ 
+                duration: 1, 
+                delay: 3,
+                repeatDelay: 5,
+                repeat: Infinity,
+                repeatType: 'reverse'
+              }}
+              >
+                <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
+              </motion.div>
             </div>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Command line software'}/>
             </div>
             <div style={{display: 'flex'}}>
-              <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
+              <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0,1] }}
+              transition={{ 
+                duration: 1, 
+                delay: 3,
+                repeatDelay: 5,
+                repeat: Infinity,
+                repeatType: 'reverse'
+              }}>
+                <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
+              </motion.div>
               <BZtxt txt={'for devs'}/>
             </div>
           </div>
