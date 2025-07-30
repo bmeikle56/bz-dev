@@ -1,3 +1,0 @@
-## Berzerk
-
-Work in progress!
