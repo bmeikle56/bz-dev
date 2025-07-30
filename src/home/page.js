@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion'
 // import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -518,21 +517,19 @@ function FrictionPointDiv() {
 
 export default function HomePage() {
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.1 }}
+    >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
       </div>
       <Vdiv/>
-      <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.1 }}
-      >
-        {sections.map((section, i) => {
-          return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
-        })}
-        <Footer/>
-      </motion.div>
-    </div>
+      {sections.map((section, i) => {
+        return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
+      })}
+      <Footer/>
+    </motion.div>
   )
 }
