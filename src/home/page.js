@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion'
 // import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -132,13 +131,36 @@ function IntroDiv() {
           <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
-              <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
+              <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0,1] }}
+              transition={{ 
+                duration: 1, 
+                delay: 3,
+                repeatDelay: 5,
+                repeat: Infinity,
+                repeatType: 'reverse'
+              }}
+              >
+                <Inlinetxt txt={'processes and no legacy'} marginLeft={8} color={'rgb(180,180,180)'}/>
+              </motion.div>
             </div>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Command line software'}/>
             </div>
             <div style={{display: 'flex'}}>
-              <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
+              <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0,1] }}
+              transition={{ 
+                duration: 1, 
+                delay: 3,
+                repeatDelay: 5,
+                repeat: Infinity,
+                repeatType: 'reverse'
+              }}>
+                <Inlinetxt txt={'Built by devs, '} marginRight={8} color={'rgb(180,180,180)'}/>
+              </motion.div>
               <BZtxt txt={'for devs'}/>
             </div>
           </div>
@@ -518,21 +540,19 @@ function FrictionPointDiv() {
 
 export default function HomePage() {
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.1 }}
+    >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
       </div>
       <Vdiv/>
-      <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.1 }}
-      >
-        {sections.map((section, i) => {
-          return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
-        })}
-        <Footer/>
-      </motion.div>
-    </div>
+      {sections.map((section, i) => {
+        return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
+      })}
+      <Footer/>
+    </motion.div>
   )
 }

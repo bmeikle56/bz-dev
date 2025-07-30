@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { Work, TabBar } from '../cmp/Components'
 
 // function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
@@ -118,13 +119,18 @@ function DiamondWallpaper() {
 
 export default function DashboardPage() {
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.1 }}
+    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}
+    >
       <Wallpaper/>
       <div style={{display: 'flex', justifyContent: 'center', marginBottom: 'auto', paddingLeft: 0, paddingRight: 16, zIndex: 1, width: '100%'}}>
         <TabBar/>
       </div>
       <TicketList/>      
-    </div>
+    </motion.div>
   )
 }
 
