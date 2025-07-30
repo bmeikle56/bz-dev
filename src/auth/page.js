@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import { Spacer } from '../cmp/Components'
 
 function BackBtn() {
-  //const router = useRouter()
-
-  // function onClickHome() {
-  //   router.push('/home')
-  // }
+  const navigate = useNavigate()
 
   return (
     <div style={{
@@ -16,7 +12,7 @@ function BackBtn() {
       zIndex: '2',
       margin: '3vh 0 0 2vw',
     }}>
-      <button className='tab-btn' onClick={() => {}}>
+      <button className='tab-btn' onClick={() => navigate('/home')}>
         <span className='tab'>&lArr; Home</span>
       </button>
     </div>

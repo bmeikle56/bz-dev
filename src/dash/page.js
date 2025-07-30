@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Work, TabBar } from '../cmp/Components'
 
 function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
