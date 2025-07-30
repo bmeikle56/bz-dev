@@ -34,7 +34,7 @@ function TicketList() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.AUTH_TOKEN}`,
+            'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
           },
           body: JSON.stringify({ username: 'braeden' }),
         })
