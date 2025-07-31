@@ -7,7 +7,7 @@ export async function handler(event, context) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.AUTH_TOKEN}`,
     },
-    body: JSON.stringify({ username: `${process.env.USER}` }),
+    body: JSON.stringify({ username: 'braeden' }),
   })
 
   const data = await response.json()
