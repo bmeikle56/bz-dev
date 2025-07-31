@@ -1,13 +1,13 @@
 export async function handler(event, context) {
   const token = process.env.AUTH_TOKEN
 
-  const response = await fetch('https://berzerk-agile-dev-backend-production.up.railway.app/fetch', {
+  const response = await fetch(`${process.env.FETCH_TICKETS_URL}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.AUTH_TOKEN}`,
     },
-    body: JSON.stringify({ username: 'braeden' }),
+    body: JSON.stringify({ username: `${process.env.USER}` }),
   })
 
   const data = await response.json()
