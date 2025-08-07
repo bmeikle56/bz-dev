@@ -12,7 +12,7 @@ function BackBtn() {
       zIndex: '2',
       margin: '3vh 0 0 2vw',
     }}>
-      <button className='tab-btn' onClick={() => navigate('/home')}>
+      <button className='tab-btn' onClick={() => navigate('/')}>
         <span className='tab'>&lArr; Home</span>
       </button>
     </div>
