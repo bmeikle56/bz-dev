@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Work, TabBar } from '../cmp/Components'
 
 // function CurlyBrace({ x = 0, y = 0, height = 200, width = 20, stroke = "white" }) {
@@ -47,6 +47,19 @@ function TicketList({ error, tickets }) {
       ))}
     </div>
   );
+}
+
+function ByteTransfer() {
+  return (
+    <div
+    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh'}}
+    >
+      <pre id='loading' style={{
+        color: 'rgb(160,160,160)',
+        textShadow: '0px 0px 15px rgb(46, 190, 238), 0px 0px 12px rgb(46, 190, 238), 0px 0px 15px rgb(46, 190, 238)'
+      }}></pre>
+    </div>
+  )
 }
 
 function Wallpaper() {
@@ -101,9 +114,17 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch('/.netlify/functions/fetchTickets', {
-          method: 'POST',
-        })
+        const response = await fetch(
+          'https://berzerk-agile-dev-backend-production.up.railway.app/fetch',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer bzdev`,
+            },
+            body: JSON.stringify({ username: 'braeden' }),
+          }
+        )
 
         const data = await response.json()
 
@@ -111,38 +132,81 @@ export default function DashboardPage() {
           throw new Error(data.error || 'failed to fetch tickets')
         }
 
-        setTickets(data.tickets)
-        setLoading(false)
+        setTimeout(() => {
+          setTickets(data.tickets)
+          setLoading(false)
+        }, 2000)
       } catch (err) {
-        setError(err.message)
-        setLoading(false)
+        setTimeout(() => {
+          setError(err.message)
+          setLoading(false)
+        }, 2000)
       }
     }
     fetchTickets()
   }, [])
 
-  if (loading) {
-    return <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh'}}>
-      <p style={{color: 'white', fontSize: 24}}>Loading...</p>
-    </div>
-  } else {
-    return (
-      <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.1 }}
-      style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}
-      >
-        <Wallpaper/>
-        <div style={{display: 'flex', justifyContent: 'center', marginBottom: 'auto', paddingLeft: 0, paddingRight: 16, zIndex: 1, width: '100%'}}>
-          <TabBar/>
-        </div>
-        <TicketList error={error} tickets={tickets}/>      
-      </motion.div>
-    )
-  }
+  return (
+    <AnimatePresence mode='wait'>
+      {loading ? (
+        <motion.div
+          key='loading'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100vw',
+          }}
+        >
+          <ByteTransfer />
+        </motion.div>
+      ) : (
+        <motion.div
+          key='content'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100vw',
+          }}
+        >
+          <Wallpaper />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: 'auto',
+              paddingLeft: 0,
+              paddingRight: 16,
+              zIndex: 1,
+              width: '100%',
+            }}
+          >
+            <TabBar />
+          </div>
+          <TicketList error={error} tickets={tickets} />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
 }
 
+setInterval(() => {
+  if (document.getElementById('loading')) {
+    document.getElementById('loading').textContent = [...Array(8)].map(_ => Math.round(Math.random())).join('')
+  }
+}, 80)
 
 // this goes on the home page for marketing:
 
