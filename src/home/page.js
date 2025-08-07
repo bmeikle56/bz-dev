@@ -185,19 +185,20 @@ function IntroDiv() {
         <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
         <Spacer height={10}/>
         <CCode txt={'# make a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz make --repo=bz-dev --tag=ftr --title=launch-site --notes="purchase domain, forward DNS"'}/>
+        <BZCCode txt={'bz make --repo=bz-dev --id=launch-site --notes="purchase domain, forward DNS"'}/>
         <Spacer height={16}/>
         <CCode txt={'# work on a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz workon --title=ipad-constraints'}/>
+        <BZCCode txt={'bz workon --repo=bz-dev --id=launch-site'}/>
         <Spacer height={16}/>
         <CCode txt={'# submit a PR'} color={ccode.green}/>
-        <BZCCode txt={'bz submit --repo=poker-degen --title=allow-logout'}/>
+        <BZCCode txt={'bz submit'}/>
         <Spacer height={16}/>
         <CCode txt={'# delete a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz delete --title=launch-site'}/>
+        <BZCCode txt={'bz delete --repo=bz-dev --id=launch-site'}/>
         <Spacer height={16}/>
-        <CCode txt={'# fetch tickets'} color={ccode.green}/>
-        <BZCCode txt={'bz fetch'}/>
+        <Spacer height={16}/>
+        <CCode txt={'# update me on my tickets'} color={ccode.green}/>
+        <BZCCode txt={'bz updateme'}/>
       </div>
     </div>
   )
@@ -543,7 +544,7 @@ export default function HomePage() {
     <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 0.1 }}
+    transition={{ delay: 0.8 }}
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
