@@ -111,6 +111,8 @@ export default function DashboardPage() {
   const [tickets, setTickets] = useState([])
   const [error, setError] = useState(null)
 
+  const animTime = 1250 // 1.25 seconds + service transit
+
   useEffect(() => {
     const fetchTickets = async () => {
       try {
@@ -127,12 +129,12 @@ export default function DashboardPage() {
         setTimeout(() => {
           setTickets(data.tickets)
           setLoading(false)
-        }, 2000)
+        }, animTime)
       } catch (err) {
         setTimeout(() => {
           setError(err.message)
           setLoading(false)
-        }, 2000)
+        }, animTime)
       }
     }
     fetchTickets()
