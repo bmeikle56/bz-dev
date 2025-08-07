@@ -196,10 +196,8 @@ function IntroDiv() {
         <CCode txt={'# delete a ticket'} color={ccode.green}/>
         <BZCCode txt={'bz delete --repo=bz-dev --id=launch-site'}/>
         <Spacer height={16}/>
-        <CCode txt={'# fetch tickets'} color={ccode.green}/>
-        <BZCCode txt={'bz fetch'}/>
         <Spacer height={16}/>
-        <CCode txt={'# updateme'} color={ccode.green}/>
+        <CCode txt={'# update me on my tickets'} color={ccode.green}/>
         <BZCCode txt={'bz updateme'}/>
       </div>
     </div>
