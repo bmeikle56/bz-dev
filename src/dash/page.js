@@ -94,7 +94,7 @@ function DiamondWallpaper() {
 }
 
 export default function DashboardPage() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [tickets, setTickets] = useState([])
   const [error, setError] = useState(null)
 
