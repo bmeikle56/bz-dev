@@ -4,9 +4,10 @@ function TabBar() {
   const navigate = useNavigate()
 
   const tabs = [
-    {txt: 'About Berzerk', action: () => { navigate('/') }},
-    {txt: 'Dashboard', action: () => { navigate('/dashboard') }},
+    {txt: 'Berzerk', action: () => { navigate('/') }},
+    {txt: 'Dashboard', action: () => { navigate('/dash') }},
     {txt: 'Log in', action: () => { navigate('/login') }},
+    {txt: 'Get CLI', action: () => { navigate('/dwnld') }},
   ]
 
   return (
