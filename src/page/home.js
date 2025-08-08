@@ -77,9 +77,8 @@ function IntroDiv() {
           </div>
           <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
             <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
-            <Inlinetxt txt={'berzerk-dev'} color={'rgb(60,60,60)'}/>
+            <Inlinetxt txt={'bz-dev'} color={'rgb(60,60,60)'}/>
           </div>
-          
         </div>
         <Spacer height={16}/>
         <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
@@ -92,9 +91,6 @@ function IntroDiv() {
         <Spacer height={16}/>
         <CCode txt={'# submit a PR'} color={ccode.green}/>
         <BZCCode txt={'bz submit'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# delete a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz delete --repo=bz-dev --id=launch-site'}/>
         <Spacer height={16}/>
         <CCode txt={'# update me on my tickets'} color={ccode.green}/>
         <BZCCode txt={'bz updateme'}/>
