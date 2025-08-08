@@ -31,10 +31,9 @@ const untoggledPalette = {
   type: 'rgb(147, 0, 158)'
 }
 
-function MergingAnim({ color }) {
+function ActiveAnim() {
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-      <pre style={{color: color, fontSize: '12px'}}>Merging</pre>
       <div style={{width: '25px', background: 'rgb(70,70,70)', height: '1px', marginBottom:'-1px'}}>
         <motion.div 
         style={{
@@ -64,8 +63,8 @@ function Notes({ notes }) {
   </div>
 }
 
-function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled, isMerging, onClick }) {
-  const palette = isToggled ? toggledPalette : untoggledPalette
+function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }) {
+  const palette = status == 'active' ? toggledPalette : untoggledPalette
 
   const tagColors = {
     new: 'rgba(255, 0, 255, 0.33)',
@@ -115,9 +114,8 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
           </div>
-          {isMerging 
-            ? MergingAnim({ color: palette.text })
-            : <pre style={{color: palette.text, fontSize: '12px'}}>{branch}</pre>}
+          <pre style={{color: palette.text, fontSize: '12px'}}>{branch}</pre>
+          {status === 'active' && ActiveAnim({ color: palette.text })}
         </div>
       </div>
     </button>
@@ -125,8 +123,8 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, isToggled
 }
 
 
-function RichWork({ meta, isToggled, isMerging, onClick }) {
-  const palette = isToggled ? toggledPalette : untoggledPalette
+function RichWork({ meta, status, onClick }) {
+  const palette = status == 'active' ? toggledPalette : untoggledPalette
 
   return (
     <button style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
@@ -170,9 +168,8 @@ function RichWork({ meta, isToggled, isMerging, onClick }) {
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
           </div>
-          {isMerging 
-            ? MergingAnim({ color: palette.text })
-            : <pre style={{color: palette.text, fontSize: '12px'}}>{meta.branch}</pre>}
+          <pre style={{color: palette.text, fontSize: '12px'}}>{meta.branch}</pre>
+          {status === 'active' && ActiveAnim({ color: palette.text })}
         </div>
       </div>
     </button>

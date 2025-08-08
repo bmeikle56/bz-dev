@@ -1,22 +1,7 @@
 import { motion } from 'framer-motion'
-// import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
-
 import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
-
-// function BZList({ items, height }) {
-//   return (
-//     <div style={{display:'flex', flexDirection: 'column', height: height}}>
-//       {items.map((item, i) => {
-//         return <div key={i} style={{display:'flex', flexGrow: 1, alignItems:'center', gap:'8px'}}>
-//           <p style={{margin: 0, color: 'rgb(60,60,60)'}}>&rArr;</p>
-//           <p style={{margin: 0, color: 'rgb(220,220,220)'}}>{item.txt}</p>
-//         </div>
-//       })}
-//     </div>
-//   )
-// }
 
 function BZList2({ items, height }) {
   return (
@@ -31,96 +16,11 @@ function BZList2({ items, height }) {
   )
 }
 
-// function EndMeeting() {
-//   const initials = [
-//     'BM',
-//     'GT',
-//     'WA',
-//     'BC',
-//     'DR',
-//     'DP'
-//   ]
-
-//   function CloseButton() {
-//     const style = { 
-//       position: 'absolute',
-//       zIndex: '2',
-//       height:'7px', 
-//       width: '7px', 
-//       margin: '0 0 125px 200px',
-//       borderRadius: '5px', 
-//       background: 'red'
-//     }
-//     return (
-//       <div style={style}></div>
-//     )
-//   }
-
-//   function Popup() {
-//     const style = {
-//       background: 'rgb(235,235,235)',
-//       borderRadius: '8px',
-//       width: '100px',
-//       height: '50px',
-//       position: 'absolute',
-//       zIndex: '2',
-//       textAlign: 'center'
-//     }
-//     return (
-//       <div style={style}>
-//         <p style={{color: 'black', fontSize: '8px', marginBottom: '10px'}}>Meeting has ended</p>
-//         <div style={{background: 'rgb(200,200,200)', width: '100px', height: '0.5px'}}></div>
-//         <p style={{color: 'rgb(0, 167, 250)', fontSize: '8px'}}>Close</p>
-//       </div>
-//     )
-//   }
-
-//   return (
-//     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-//       <div style={{display:'flex', justifyContent:'center', alignItems:'center', height: '150px', width: '225px', background: 'white', borderRadius: '10px'}}>
-//         <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap:'15px'}}>
-//           {initials.map((initial, i) => { 
-//             return <motion.div 
-//                 key={i}
-//                 initial={{ opacity: 0 }}
-//                 animate={{ opacity: 1 }}
-//                 transition={{ delay: 1.5 + (i * 0.25) }}
-//               >
-//                 <div style={{
-//                   display: 'flex',
-//                   justifyContent: 'center',
-//                   alignItems: 'center',
-//                   background:'rgb(210,210,210)',
-//                   borderRadius: '50%',
-//                   width: 50,
-//                   height: 50
-//                 }}>
-//                   <p style={{position: 'absolute', color: 'rgb(40,40,40)'}}>{initial}</p>
-//                 </div>
-//             </motion.div>
-//           })}          
-//         </div>
-//         <CloseButton/>
-//         <motion.div
-//           style={{position: 'absolute', zIndex: '2', display:'flex', justifyContent:'center', alignItems:'center'}}
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ delay: 7 }}
-//         >
-//           <Popup/>
-//         </motion.div>
-//       </div>
-//     </motion.div>
-//   )
-// }
-
 function Circle({ color }) {
   return (
     <div style={{borderRadius: '50%', background: color, width: 11, height: 11}}/>
   )
 }
-
-// 'Message-driven, autonomous culture'
 
 function IntroDiv() {
   return (
@@ -204,80 +104,6 @@ function IntroDiv() {
   )
 }
 
-// function AnimDiv() {
-//   return (
-//     <div id='intro' style={{
-//       display: 'flex',
-//       flexDirection: 'column',
-//       alignItems: 'center',
-//       marginRight: '250px',
-//       marginTop: '100px',
-//       gap: '120px'
-//     }}>
-//       <Anim/>
-//       <EndMeeting/>
-//     </div>
-//   )
-// }
-
-
-
-// function Anim() {
-//   const [state, setState] = useState(0)
-
-//   setTimeout(() => {
-//     setState([...Array(8)].map(_ => Math.round(Math.random())).join(''))
-//   }, 80)
-
-//   const leftLaptopMeta = {
-//     imgLink: '/mac1.png',
-//     width: '55',
-//     height: '60',
-//     margin: '',
-//     alt: 'Laptop'
-//   }
-
-//   const rightLaptopMeta = {
-//     imgLink: '/mac2.png',
-//     width: '55',
-//     height: '38',
-//     margin: '11px 0 0 0',
-//     alt: 'Laptop'
-//   }
-
-//   function Laptop({ meta }) {
-//     return <div></div>
-//     // return <Image 
-//     //   src={meta.imgLink}
-//     //   width={meta.width}
-//     //   height={meta.height}
-//     //   style={{margin: meta.margin, width: meta.width, height: meta.height}} 
-//     //   alt={meta.alt}
-//     // />
-//   }
-
-//   return (
-//     <div style={{display: 'flex', gap:'10px'}}>
-//       <Laptop meta={leftLaptopMeta}/>
-//       <motion.div
-//       style={{marginTop: '10px', width: '180px'}}
-//       initial={{ x: 0, opacity: 0 }}
-//       animate={{ x: 100, opacity: [0,1,0] }}
-//       transition={{
-//         duration: 1,
-//         delay: 0.5,
-//         repeat: Infinity,
-//         repeatType: 'reverse',
-//         repeatDelay: 8
-//       }}
-//       >
-//         <pre id='txt-transfer' className='txt-glow'>{state}</pre>
-//       </motion.div>
-//       <Laptop meta={rightLaptopMeta}/>
-//     </div>
-//   )
-// }
-
 function Title() {
   return (
     <div>
@@ -285,22 +111,6 @@ function Title() {
     </div>
   )
 }
-
-// function Subtitle() {
-//   return (
-//     <div>
-//       <p id='subtitle'>Accelerated Agile Development</p>
-//     </div>
-//   )
-// }
-
-// function TryUs() {
-//   return <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
-//     <p style={{color: 'rgb(220,220,220)'}}>Try</p>
-//     <BZtxt txt={'Berzerk'}/>
-//     <p style={{color: 'rgb(220,220,220)'}}>free for 30 days</p>
-//   </div>
-// }
 
 function ContentPair({ left, right }) {
   return (
@@ -421,7 +231,7 @@ const workMeta = {
 function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <RichWork meta={workMeta} isMerging={true} isToggled={true}/>
+      <RichWork meta={workMeta} status={'active'}/>
       <WorkBenefits/>
     </div>
   )
@@ -429,38 +239,7 @@ function WorkDiv() {
 
 const sections = [
   {left: IntroDiv, right: WorkDiv},
-  // {left: WorkDiv, right: SurveyDiv},
 ]
-
-
-
-// function SurveyDiv() {
-//   function Asterisk() {
-//     return <p style={{color: 'rgb(110,110,110)', fontSize: '12px'}}>*</p>
-//   }
-//   return (
-//     <div style={{display: 'flex', flexDirection: 'column'}}>
-//       <div style={{display: 'flex', alignItems: 'center', gap: '3px'}}>
-//         <p style={{color: 'rgb(220,220,220)', fontSize: '24px'}}>We surveyed hundreds of software engineers and managers</p>
-//         <Asterisk/>
-//       </div>
-//       <BZList items={[
-//         {txt: '55% unaware or vaguely unaware of OKRs'},
-//         {txt: '75% of work item features unused'},
-//         {txt: '68% reported purpose by work item metrics/optics'}
-//       ]} height={'120px'}/>
-//       <div style={{display: 'flex', alignItems: 'center', gap: '3px'}}>
-//         <Asterisk/>
-//         <p style={{color: 'rgb(110,110,110)', fontSize: '10px'}}>
-//           222 engineers and 128 managers from FAANG and startup companies were polled
-//         </p>
-//       </div>
-//       <div>
-//         <p className='txt'>Less meetings and more doing, that's why our work items are automated</p>
-//       </div>
-//     </div>
-//   )
-// }
 
 function FrictionPointDiv() {
   function Circle({ dx, dy, color }) {
