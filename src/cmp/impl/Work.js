@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import { motion } from 'framer-motion'
 
-import { Pfp } from '../../Pfp'
+import { Pfp } from './Pfp'
 
 function Badge({ className, txt, txtColor, backgroundColor }) {
   return (
@@ -64,7 +64,7 @@ function Notes({ notes }) {
 }
 
 function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }) {
-  const palette = status == 'active' ? toggledPalette : untoggledPalette
+  const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   const tagColors = {
     new: 'rgba(255, 0, 255, 0.33)',
@@ -122,9 +122,8 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }
   )
 }
 
-
 function RichWork({ meta, status, onClick }) {
-  const palette = status == 'active' ? toggledPalette : untoggledPalette
+  const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   return (
     <button style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>

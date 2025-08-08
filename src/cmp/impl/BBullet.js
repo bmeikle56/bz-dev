@@ -9,7 +9,6 @@ function BBullet({ txt, color }) {
       background: color,
       borderRadius: '5px',
       marginTop: '2px',
-      // marginLeft: '15px'
     }
 
     return <div style={bulletStyle}></div>
