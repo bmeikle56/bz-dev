@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
-import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichWork, ccode, CCode, BZCCode } from '../cmp/Components'
+import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichTicket, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList2({ items, height }) {
   return (
@@ -226,7 +226,7 @@ const workMeta = {
 function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
-      <RichWork meta={workMeta} status={'active'}/>
+      <RichTicket meta={workMeta} status={'active'}/>
       <WorkBenefits/>
     </div>
   )

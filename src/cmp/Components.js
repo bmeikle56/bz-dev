@@ -10,7 +10,7 @@ import { Pfp } from './impl/Pfp'
 import { Spacer } from './impl/Spacer'
 import { TabBar } from './impl/TabBar'
 import { Vdiv } from './impl/Vdiv'
-import { Work, RichWork } from './impl/Work'
+import { Ticket, RichTicket } from './impl/Ticket'
 
 export { 
   BBullet,
@@ -23,8 +23,8 @@ export {
   Spacer,
   TabBar,
   Vdiv,
-  Work,
-  RichWork,
+  Ticket,
+  RichTicket,
   BZCCode,
   Inlinetxt
 }

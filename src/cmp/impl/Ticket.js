@@ -58,12 +58,12 @@ function Notes({ notes }) {
 
   return <div style={{display: 'flex', alignItems:'start', flexDirection:'column'}}>
     {items.map((item, index) => (
-      <p style={{color: 'white', paddingTop: 5, paddingBottom: 5, margin: 5}} key={index}>&rArr; {item}</p>
+      <p style={{color: 'white', margin: 5}} key={index}>&rArr; {item}</p>
     ))}
   </div>
 }
 
-function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }) {
+function Ticket({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }) {
   const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   const tagColors = {
@@ -75,16 +75,15 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }
   return (
     <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
       <div style={{
-        height: 'fit-content',
-        width: 'fit-content',
-        maxWidth: '400px',
+        height: '220px',
+        width: '300px',
         padding: '20px 20px 10px 20px',
         border: `1px solid ${palette.border}`, 
         borderRadius: '10px',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
       }}
       >
         { /* Title portion of the work item */ }
@@ -110,7 +109,7 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }
         </div>
 
         { /* Branch portion of the work item */ }
-        <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
+        <div style={{display:'flex', marginRight: 'auto', marginTop: 'auto', alignItems: 'center', gap: '8px'}}>
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
           </div>
@@ -122,7 +121,7 @@ function Work({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }
   )
 }
 
-function RichWork({ meta, status, onClick }) {
+function RichTicket({ meta, status, onClick }) {
   const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   return (
@@ -175,4 +174,4 @@ function RichWork({ meta, status, onClick }) {
   )
 }
 
-export { Work, RichWork }
+export { Ticket, RichTicket }

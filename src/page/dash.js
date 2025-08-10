@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Work, TabBar } from '../cmp/Components'
+import { Ticket, TabBar } from '../cmp/Components'
 
 function TicketList({ error, tickets }) {
   return (
@@ -8,7 +8,7 @@ function TicketList({ error, tickets }) {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket, index) => (
         <div key={index} style={{zIndex: 1, background:'black', height:'fit-content', borderRadius: 10}}>
-          <Work 
+          <Ticket 
           id={index} 
           repo={ticket.repo}
           dev={ticket.dev}
@@ -93,9 +93,17 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch('/.netlify/functions/fetchTickets', {
-          method: 'POST',
-        })
+        const response = await fetch(
+          'https://berzerk-agile-dev-backend-production.up.railway.app/fetch',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer bzdev`,
+            },
+            body: JSON.stringify({ username: 'braeden' }),
+          }
+        )
 
         const data = await response.json()
 
