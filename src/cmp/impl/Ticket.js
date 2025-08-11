@@ -82,6 +82,7 @@ function Ticket({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick
         borderRadius: '10px',
         display: 'flex',
         alignItems: 'center',
+        background: 'black',
         flexDirection: 'column',
         justifyContent: 'flex-start',
       }}
