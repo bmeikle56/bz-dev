@@ -2,31 +2,45 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Ticket, TabBar } from '../cmp/Components'
 
-function TicketList({ error, tickets }) {
+function RepoTickets({ error, repo, tickets }) {
   return (
-    <div style={{position: 'absolute', zIndex: 1}}>
+    <div style={{ position: 'relative', zIndex: 1, margin: '0 16px' }}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {tickets.map((ticket, index) => (
-        <div key={index} 
-        style={{background: 'black', borderRadius: 10, position: 'absolute', zIndex: index + 1, marginTop: index * -45, marginLeft: index * -45}}
-        >
-          <Ticket 
-          id={index} 
-          repo={ticket.repo}
-          dev={ticket.dev}
-          tag={ticket.tag}
-          pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
-          title={ticket.title}
-          notes={ticket.notes}
-          status={ticket.status}
-          branch={`${ticket.tag}/${ticket.title}`}
-          onClick={() => {}}
-          />
-        </div>
-      ))}
+      <p style={{ color: 'white', marginBottom: 16 }}>{repo}</p>
+      <div style={{ position: 'relative', width: 200, height: 200 }}>
+        {tickets.map((ticket, index) => (
+          <div
+            key={index}
+            style={{
+              position: 'absolute',
+              top: index * 30,
+              left: index * 30,
+              zIndex: index + 1,
+              background: 'black',
+              borderRadius: 10,
+              width: 180,
+              cursor: 'pointer',
+            }}
+          >
+            <Ticket
+              id={index}
+              repo={ticket.repo}
+              dev={ticket.dev}
+              tag={ticket.tag}
+              pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
+              title={ticket.title}
+              notes={ticket.notes}
+              status={ticket.status}
+              branch={`${ticket.tag}/${ticket.title}`}
+              onClick={() => {}}
+            />
+          </div>
+        ))}
+      </div>
     </div>
-  );
+  )
 }
+
 
 function ByteTransfer() {
   return (
@@ -87,7 +101,7 @@ function DiamondWallpaper() {
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
-  const [tickets, setTickets] = useState([])
+  const [repos, setRepos] = useState([])
   const [error, setError] = useState(null)
 
   const animTime = 1250 // 1.25 seconds + service transit
@@ -95,18 +109,56 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch('/.netlify/functions/fetchTickets', {
-          method: 'POST',
-        })
-
-        const data = await response.json()
-
-        if (!response.ok) {
-          throw new Error(data.error || 'failed to fetch tickets')
+        const data = {
+          "response": "fetch tickets successful",
+          "repos": [
+            {
+              "repo": "braeden-meikle-site",
+              "tickets": [
+                {
+                  "dev": "braeden",
+                  "notes": "add btn for projects, reduce code, add link on main site",
+                  "repo": "braeden-meikle-site",
+                  "status": "active",
+                  "tag": "ref",
+                  "title": "launch-pg"
+                },
+                {
+                  "dev": "braeden",
+                  "notes": "some notes for new branch",
+                  "repo": "braeden-meikle-site",
+                  "status": "new",
+                  "tag": "ref",
+                  "title": "site-ticket"
+                },
+              ]
+            },
+            {
+              "repo": "bz-dev",
+              "tickets": [
+                {
+                  "dev": "braeden",
+                  "notes": "all tickets should be same size",
+                  "repo": "bz-dev",
+                  "status": "active",
+                  "tag": "ftr",
+                  "title": "unify-tickets"
+                },
+                {
+                  "dev": "braeden",
+                  "notes": "some notes for new branch",
+                  "repo": "bz-dev",
+                  "status": "new",
+                  "tag": "ftr",
+                  "title": "bz-dev-ticket"
+                }
+              ]
+            }
+          ]
         }
 
         setTimeout(() => {
-          setTickets(data.tickets)
+          setRepos(data.repos)
           setLoading(false)
         }, animTime)
       } catch (err) {
@@ -136,7 +188,7 @@ export default function DashboardPage() {
             width: '100vw',
           }}
         >
-          <ByteTransfer />
+          <ByteTransfer/>
         </motion.div>
       ) : (
         <motion.div
@@ -154,7 +206,7 @@ export default function DashboardPage() {
             width: '100vw',
           }}
         >
-          <Wallpaper />
+          <Wallpaper/>
           <div
             style={{
               display: 'flex',
@@ -166,9 +218,14 @@ export default function DashboardPage() {
               width: '100%',
             }}
           >
-            <TabBar />
+            <TabBar/>
           </div>
-          <TicketList error={error} tickets={tickets} />
+          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '100vh', justifyContent: 'center', alignItems: 'center', display: 'flex', gap: 200}}>
+            {repos.map((meta) => {
+              console.log(meta)
+              return <RepoTickets error={error} repo={meta.repo} tickets={meta.tickets}/>
+            })}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
