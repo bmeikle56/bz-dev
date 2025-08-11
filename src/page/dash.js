@@ -12,8 +12,8 @@ function RepoTickets({ error, repo, tickets }) {
             key={index}
             style={{
               position: 'absolute',
-              top: index * -30,
-              left: index * -30,
+              top: index * -10,
+              left: index * -10,
               zIndex: index + 1,
               background: 'black',
               borderRadius: 10,
