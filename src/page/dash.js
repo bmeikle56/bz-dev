@@ -181,7 +181,7 @@ export default function DashboardPage() {
           >
             <TabBar/>
           </div>
-          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '100vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex', }}>
+          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex', }}>
             {repos.map((meta) => {
               console.log(meta)
               return <RepoTickets error={error} repo={meta.repo} tickets={meta.tickets}/>
