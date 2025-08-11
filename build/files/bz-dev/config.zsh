@@ -6,5 +6,6 @@ repo=(
   "<repo2>"
   "<repo3>"
 )
-auth_token="<auth-token>"
+backend_url="<backend_url>"
+auth_token="<auth_token>"
 github_token="<github_token>"
