@@ -40,6 +40,12 @@ bz() {
     pause)
       bz_pause "$@"
       ;;
+    kill)
+      bz_kill "$@"
+      ;;
+   status)
+     bz_status "$@"
+     ;;
     *)
       echo "unknown subcommand: $subcommand"
       return 1
@@ -88,7 +94,7 @@ bz_make() {
     esac
   done
     
-    response=$(curl -X POST "$backend_url/make" \
+    response=$(curl -s -X POST "$backend_url/make" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -109,7 +115,7 @@ bz_make() {
 }
 
 bz_fetch() {
-    curl -X POST "$backend_url/fetch" \
+    curl -s -X POST "$backend_url/fetch" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -136,7 +142,7 @@ bz_workon() {
     esac
   done
     
-    response=$(curl -X POST "$backend_url/update" \
+    response=$(curl -s -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -166,7 +172,7 @@ bz_pause() {
     esac
   done
     
-    curl -X POST "$backend_url/update" \
+    curl -s -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -195,7 +201,7 @@ bz_delete() {
     esac
   done
     
-    response=$(curl -X POST "$backend_url/delete" \
+    response=$(curl -s -X POST "$backend_url/delete" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -203,19 +209,31 @@ bz_delete() {
         \"title\": \"$title\",
         \"repo\": \"$repo\"
       }")
+
     if [[ "$response" == '{"response":"delete ticket successful"}' ]]; then
-      echo "\033[32mDeleted!\033[0m"
+      echo "\033[31mDeleted!\033[0m"
     fi
 }
 
 bz_clear() {
-    curl -X POST "$backend_url/clear" \
-      --header "Authorization: Bearer $auth_token" \
-      --header "Content-Type: application/json" \
-      --data "{
-        \"username\": \"$dev\"
-      }"
+    echo -n "Confirm you want to clear all data (y/n): "
+    read confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        response=$(curl -s -X POST "$backend_url/clear" \
+          --header "Authorization: Bearer $auth_token" \
+          --header "Content-Type: application/json" \
+          --data "{
+            \"username\": \"$dev\"
+          }")
+    else
+        echo "Cancelled"
+    fi
+
+    if [[ "$response" == '{"response":"clear tickets successful"}' ]]; then
+      echo "\033[31mCleared!\033[0m"
+    fi
 }
+
 
 bz_submit() {
       local repo=""
@@ -244,7 +262,7 @@ bz_submit() {
         esac
       done
       
-    response=$(curl -X POST \
+    response=$(curl -s -X POST \
       --header "Authorization: token $github_token" \
       --header "Accept: application/vnd.github+json" \
       "https://api.github.com/repos/bmeikle56/$repo/pulls" \
@@ -284,11 +302,38 @@ bz_updateme() {
   echo "}"
 }
 
+bz_kill() {
+  local repo=""
+
+  for arg in "$@"; do
+    case "$arg" in
+      --repo=*)
+        repo="${arg#--repo=}"
+        ;;
+      *)
+        echo "unknown option: $arg"
+        return 1
+        ;;
+    esac
+  done
+  
+    response=$(curl -s -X POST "$backend_url/kill" \
+      --header "Authorization: Bearer $auth_token" \
+      --header "Content-Type: application/json" \
+      --data "{
+        \"username\": \"$dev\",
+        \"repo\": \"$repo\"
+      }")
+
+    if [[ "$response" == '{"response":"repo killed successful"}' ]]; then
+      echo -e "\033[31mKilled!\033[0m"
+    fi
+}
+
 bz_push() {
     git push
     
-    # now we know the ticket is being worked on, set status to active...
-    curl -X POST "$backend_url/update" \
+    curl -s -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -299,4 +344,8 @@ bz_push() {
           \"status\": \"active\"
         }
       }"
+}
+
+bz_status() {
+   git status
 }
