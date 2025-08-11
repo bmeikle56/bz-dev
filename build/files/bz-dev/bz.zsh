@@ -88,7 +88,7 @@ bz_make() {
     esac
   done
     
-    response=$(curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/make" \
+    response=$(curl -X POST "$backend_url/make" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -109,7 +109,7 @@ bz_make() {
 }
 
 bz_fetch() {
-    curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/fetch" \
+    curl -X POST "$backend_url/fetch" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -136,7 +136,7 @@ bz_workon() {
     esac
   done
     
-    response=$(curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/update" \
+    response=$(curl -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -166,7 +166,7 @@ bz_pause() {
     esac
   done
     
-    curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/update" \
+    curl -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -195,7 +195,7 @@ bz_delete() {
     esac
   done
     
-    response=$(curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/delete" \
+    response=$(curl -X POST "$backend_url/delete" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -209,7 +209,7 @@ bz_delete() {
 }
 
 bz_clear() {
-    curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/clear" \
+    curl -X POST "$backend_url/clear" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
@@ -265,7 +265,7 @@ bz_commit() {
 }
 
 bz_updateme() {
-  json=$(curl -s -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/fetch" \
+  json=$(curl -s -X POST "$backend_url/fetch" \
     --header "Authorization: Bearer $auth_token" \
     --header "Content-Type: application/json" \
     --data "{\"username\": \"${dev}\"}")
@@ -288,7 +288,7 @@ bz_push() {
     git push
     
     # now we know the ticket is being worked on, set status to active...
-    curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/update" \
+    curl -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
