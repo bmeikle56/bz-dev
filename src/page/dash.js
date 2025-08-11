@@ -4,10 +4,12 @@ import { Ticket, TabBar } from '../cmp/Components'
 
 function TicketList({ error, tickets }) {
   return (
-    <div style={{display: 'flex', gap: 50, position: 'absolute', zIndex: 1}}>
+    <div style={{position: 'absolute', zIndex: 1}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket, index) => (
-        <div key={index} style={{zIndex: 1, background:'black', height:'fit-content', borderRadius: 10}}>
+        <div key={index} 
+        style={{background: 'black', borderRadius: 10, position: 'absolute', zIndex: index + 1, marginTop: index * -45, marginLeft: index * -45}}
+        >
           <Ticket 
           id={index} 
           repo={ticket.repo}
@@ -102,6 +104,50 @@ export default function DashboardPage() {
         // if (!response.ok) {
         //   throw new Error(data.error || 'failed to fetch tickets')
         // }
+
+        /*
+        const data = {
+          "response": "fetch tickets successful",
+          "tickets": [
+            "braeden-meikle-site": [
+              {
+                "dev": "braeden",
+                "notes": "add btn for projects, reduce code, add link on main site",
+                "repo": "braeden-meikle-site",
+                "status": "active",
+                "tag": "ref",
+                "title": "launch-pg"
+              },
+              {
+                "dev": "braeden",
+                "notes": "some notes for new branch",
+                "repo": "braeden-meikle-site",
+                "status": "new",
+                "tag": "ref",
+                "title": "site-ticket"
+              },
+            ],
+            "bz-dev": [
+              {
+                "dev": "braeden",
+                "notes": "all tickets should be same size",
+                "repo": "bz-dev",
+                "status": "active",
+                "tag": "ftr",
+                "title": "unify-tickets"
+              },
+              {
+                "dev": "braeden",
+                "notes": "some notes for new branch",
+                "repo": "bz-dev",
+                "status": "new",
+                "tag": "ftr",
+                "title": "bz-dev-ticket"
+              }
+            ]
+          ]
+        }
+        */
 
         const data = {
           "response": "fetch tickets successful",
