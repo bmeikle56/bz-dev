@@ -1,7 +1,7 @@
 export async function handler(event, context) {
   const token = process.env.AUTH_TOKEN
 
-  const response = await fetch(`${process.env.FETCH_TICKETS_URL}`, {
+  const response = await fetch(`${process.env.BACKEND_URL}/fetch`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
