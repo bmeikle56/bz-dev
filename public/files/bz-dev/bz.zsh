@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# load config.zsh from the same folder as bz.zsh
 source "${0:A:h}/config.zsh"
 
 bz() {
@@ -90,7 +89,7 @@ bz_make() {
   done
     
     response=$(curl -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/make" \
-      --header "Authorization: Bearer bzdev" \
+      --header "Authorization: Bearer $auth_token" \
       --header "Content-Type: application/json" \
       --data "{
         \"username\": \"$dev\",
@@ -103,6 +102,7 @@ bz_make() {
           \"status\": \"new\"
         }
       }")
+
     if [[ "$response" == '{"response":"make ticket successful"}' ]]; then
       echo "\033[32mAdded!\033[0m"
     fi
@@ -178,11 +178,15 @@ bz_pause() {
 
 bz_delete() {
   local title=""
+  local repo=""
 
   for arg in "$@"; do
     case "$arg" in
       --id=*)
         title="${arg#--id=}"
+        ;;
+      --repo=*)
+        repo="${arg#--repo=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -196,7 +200,8 @@ bz_delete() {
       --header "Content-Type: application/json" \
       --data "{
         \"username\": \"$dev\",
-        \"title\": \"$title\"
+        \"title\": \"$title\",
+        \"repo\": \"$repo\"
       }")
     if [[ "$response" == '{"response":"delete ticket successful"}' ]]; then
       echo "\033[32mDeleted!\033[0m"
@@ -260,31 +265,23 @@ bz_commit() {
 }
 
 bz_updateme() {
-    json=$(curl -s -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/fetch" \
-      --header "Authorization: Bearer $auth_token" \
-      --header "Content-Type: application/json" \
-      --data "{\"username\": \"${dev}\"}")
+  json=$(curl -s -X POST "https://berzerk-agile-dev-backend-production.up.railway.app/fetch" \
+    --header "Authorization: Bearer $auth_token" \
+    --header "Content-Type: application/json" \
+    --data "{\"username\": \"${dev}\"}")
 
-    # validate response
-    if [[ -z "$json" ]]; then
-      echo "no response from server"
-      exit 1
-    fi
-    
-    echo "{"
+  echo "{"
 
-    # iterate tickets and print repo + tag/title (branch)
-    printf '%s\n' "$json" | jq -c '.tickets[]' | while read -r ticket; do
-      repo=$(printf '%s' "$ticket" | jq -r '.repo')
-      tag=$(printf '%s' "$ticket" | jq -r '.tag')
-      title=$(printf '%s' "$ticket" | jq -r '.title')
+  echo "$json" | jq -r '
+    .repos[] |
+    (
+      "  " + .repo + " {\n" +
+      ( .tickets | map("    " + .tag + "/" + .title) | join("\n") ) +
+      "\n  }"
+    )
+  '
 
-      branch="${tag}/${title}"
-
-      echo "  ${repo} > ${branch}"
-    done
-    
-    echo "}"
+  echo "}"
 }
 
 bz_push() {
