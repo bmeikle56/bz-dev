@@ -22,7 +22,7 @@ function DownloadPage() {
           width: 80,
           height: 80,
         }}/>
-        <a href='/files/bz.zsh' download style={{ textDecoration: 'none' }}>
+        <a href='/files/bz-dev.zip' download style={{ textDecoration: 'none' }}>
           <pre style={{ color: 'rgb(238, 0, 254)' }}>Download</pre>
         </a>
       </div>
