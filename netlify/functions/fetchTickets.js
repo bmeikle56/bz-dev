@@ -12,7 +12,7 @@ export async function handler(event, context) {
 
   const data = await response.json()
 
-  console.log(`__ data: ${data}`)
+  console.log(`y__ data: ${data}`)
 
   return {
     statusCode: 200,
