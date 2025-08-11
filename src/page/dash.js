@@ -108,73 +108,14 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const data = {
-          "response": "fetch tickets successful",
-          "repos": [
-            {
-              "repo": "braeden-meikle-site",
-              "tickets": [
-                {
-                  "dev": "braeden",
-                  "notes": "add btn for projects, reduce code, add link on main site",
-                  "repo": "braeden-meikle-site",
-                  "status": "active",
-                  "tag": "ref",
-                  "title": "launch-pg"
-                },
-                {
-                  "dev": "braeden",
-                  "notes": "some notes for new branch",
-                  "repo": "braeden-meikle-site",
-                  "status": "new",
-                  "tag": "ref",
-                  "title": "site-ticket"
-                },
-              ]
-            },
-            {
-              "repo": "bz-dev",
-              "tickets": [
-                {
-                  "dev": "braeden",
-                  "notes": "all tickets should be same size",
-                  "repo": "bz-dev",
-                  "status": "active",
-                  "tag": "ftr",
-                  "title": "unify-tickets"
-                },
-                {
-                  "dev": "braeden",
-                  "notes": "some notes for new branch",
-                  "repo": "bz-dev",
-                  "status": "new",
-                  "tag": "ftr",
-                  "title": "bz-dev-ticket"
-                }
-              ]
-            },
-            {
-              "repo": "new-repo",
-              "tickets": [
-                {
-                  "dev": "braeden",
-                  "notes": "all tickets should be same size",
-                  "repo": "bz-dev",
-                  "status": "active",
-                  "tag": "ftr",
-                  "title": "unify-tickets"
-                },
-                {
-                  "dev": "braeden",
-                  "notes": "some notes for new branch",
-                  "repo": "bz-dev",
-                  "status": "new",
-                  "tag": "ftr",
-                  "title": "bz-dev-ticket"
-                }
-              ]
-            }
-          ]
+        const response = await fetch('/.netlify/functions/fetchTickets', {
+          method: 'POST',
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.error || 'failed to fetch tickets')
         }
 
         setTimeout(() => {
