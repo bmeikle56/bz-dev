@@ -6,15 +6,14 @@ function RepoTickets({ error, repo, tickets }) {
   return (
     <div style={{ position: 'relative', zIndex: 1, margin: '0 16px' }}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <p style={{ color: 'white', marginBottom: 16 }}>{repo}</p>
       <div style={{ position: 'relative', width: 200, height: 200 }}>
         {tickets.map((ticket, index) => (
           <div
             key={index}
             style={{
               position: 'absolute',
-              top: index * 30,
-              left: index * 30,
+              top: index * -30,
+              left: index * -30,
               zIndex: index + 1,
               background: 'black',
               borderRadius: 10,
@@ -153,6 +152,27 @@ export default function DashboardPage() {
                   "title": "bz-dev-ticket"
                 }
               ]
+            },
+            {
+              "repo": "new-repo",
+              "tickets": [
+                {
+                  "dev": "braeden",
+                  "notes": "all tickets should be same size",
+                  "repo": "bz-dev",
+                  "status": "active",
+                  "tag": "ftr",
+                  "title": "unify-tickets"
+                },
+                {
+                  "dev": "braeden",
+                  "notes": "some notes for new branch",
+                  "repo": "bz-dev",
+                  "status": "new",
+                  "tag": "ftr",
+                  "title": "bz-dev-ticket"
+                }
+              ]
             }
           ]
         }
@@ -220,7 +240,7 @@ export default function DashboardPage() {
           >
             <TabBar/>
           </div>
-          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '100vh', justifyContent: 'center', alignItems: 'center', display: 'flex', gap: 200}}>
+          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '100vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex', }}>
             {repos.map((meta) => {
               console.log(meta)
               return <RepoTickets error={error} repo={meta.repo} tickets={meta.tickets}/>
