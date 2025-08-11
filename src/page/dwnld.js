@@ -7,7 +7,7 @@ import { Spacer } from '../cmp/Components'
 function DownloadCLI() {
   return (
     <div
-      style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '100vw', height: '100vh'}}
+      style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '100vw', height: '60vh'}}
       >
         <FontAwesomeIcon icon={faFolder}
         style={{
@@ -50,7 +50,9 @@ function RepoStructure() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width: '100vw',
+      height: '40vh',
     }}>
       <Repo txt={'repo'}/>
       <div style={{width: '1.4px', height: '8px', backgroundColor: color}}/>
