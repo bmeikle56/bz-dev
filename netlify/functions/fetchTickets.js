@@ -12,6 +12,8 @@ export async function handler(event, context) {
 
   const data = await response.json()
 
+  console.log(`__ data: ${data}`)
+
   return {
     statusCode: 200,
     body: JSON.stringify(data),
