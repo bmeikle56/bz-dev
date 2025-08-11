@@ -105,10 +105,9 @@ export default function DashboardPage() {
         //   throw new Error(data.error || 'failed to fetch tickets')
         // }
 
-        /*
         const data = {
           "response": "fetch tickets successful",
-          "tickets": [
+          "tickets": {
             "braeden-meikle-site": [
               {
                 "dev": "braeden",
@@ -145,46 +144,7 @@ export default function DashboardPage() {
                 "title": "bz-dev-ticket"
               }
             ]
-          ]
-        }
-        */
-
-        const data = {
-          "response": "fetch tickets successful",
-          "tickets": [
-            {
-              "dev": "braeden",
-              "notes": "add btn for projects, reduce code, add link on main site",
-              "repo": "braeden-meikle-site",
-              "status": "active",
-              "tag": "ref",
-              "title": "launch-pg"
-            },
-            {
-              "dev": "braeden",
-              "notes": "some notes for new branch",
-              "repo": "braeden-meikle-site",
-              "status": "new",
-              "tag": "ref",
-              "title": "site-ticket"
-            },
-            {
-              "dev": "braeden",
-              "notes": "all tickets should be same size",
-              "repo": "bz-dev",
-              "status": "active",
-              "tag": "ftr",
-              "title": "unify-tickets"
-            },
-            {
-              "dev": "braeden",
-              "notes": "some notes for new branch",
-              "repo": "bz-dev",
-              "status": "new",
-              "tag": "ftr",
-              "title": "bz-dev-ticket"
-            }
-          ]
+          }
         }
 
         setTimeout(() => {
