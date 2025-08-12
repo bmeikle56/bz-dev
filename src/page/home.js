@@ -318,7 +318,7 @@ export default function HomePage() {
     <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 0.8 }}
+    transition={{ delay: 0.5 }}
     id='home-page'
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>

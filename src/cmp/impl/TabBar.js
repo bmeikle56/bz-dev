@@ -7,7 +7,7 @@ function TabBar() {
     {txt: 'Berzerk', action: () => { navigate('/') }},
     {txt: 'Dashboard', action: () => { navigate('/dash') }},
     {txt: 'Log in', action: () => { navigate('/login') }},
-    {txt: 'Get CLI', action: () => { navigate('/dwnld') }},
+    {txt: 'Get bz-dev', action: () => { navigate('/dwnld') }},
   ]
 
   return (

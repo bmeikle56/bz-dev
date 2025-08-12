@@ -103,7 +103,7 @@ export default function DashboardPage() {
   const [repos, setRepos] = useState([])
   const [error, setError] = useState(null)
 
-  const animTime = 750 // 0.75 seconds + service transit
+  const animTime = 450 // 0.45 seconds + service transit
 
   useEffect(() => {
     const fetchTickets = async () => {
