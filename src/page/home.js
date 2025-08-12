@@ -28,7 +28,7 @@ function IntroDiv() {
       <div id='intro' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Title/>
         <div id='intro-div' style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+          <div id='intro-about' style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
               <motion.div
@@ -64,7 +64,7 @@ function IntroDiv() {
               <BZtxt txt={'for devs'}/>
             </div>
           </div>
-          <FrictionPointDiv/>
+          {/* <FrictionPointDiv/> */}
         </div>
       </div>
       {/* <Spacer height={100}/> */}
@@ -226,6 +226,7 @@ function WorkDiv() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
       <RichTicket meta={workMeta} status={'active'}/>
+      <Spacer height={40}/>
       <WorkBenefits/>
     </div>
   )
@@ -235,82 +236,82 @@ const sections = [
   {left: IntroDiv, right: WorkDiv},
 ]
 
-function FrictionPointDiv() {
-  function Circle({ dx, dy, color }) {
-    return <div style={{
-      position: 'absolute',
-      zIndex: 2,
-      width: '6px', 
-      height: '6px', 
-      background: color, 
-      borderRadius: '50%',
-      transform: `translate(${dx}px,${dy}px)`
-    }}/>
-  }
+// function FrictionPointDiv() {
+//   function Circle({ dx, dy, color }) {
+//     return <div style={{
+//       position: 'absolute',
+//       zIndex: 2,
+//       width: '6px', 
+//       height: '6px', 
+//       background: color, 
+//       borderRadius: '50%',
+//       transform: `translate(${dx}px,${dy}px)`
+//     }}/>
+//   }
 
-  function Line({ dx, dy, theta, width }) {
-    return <div style={{
-      position: 'absolute',
-      zIndex: 0,
-      width: `${width}px`, 
-      background: 'rgb(75,75,75)', 
-      height: '1px',
-      transform: `translate(${dx}px,${dy}px) rotate(${theta}deg)`
-    }}/>
-  }
+//   function Line({ dx, dy, theta, width }) {
+//     return <div style={{
+//       position: 'absolute',
+//       zIndex: 0,
+//       width: `${width}px`, 
+//       background: 'rgb(75,75,75)', 
+//       height: '1px',
+//       transform: `translate(${dx}px,${dy}px) rotate(${theta}deg)`
+//     }}/>
+//   }
 
-  function OldFrictionPoints() {
-    const color = 'rgb(180,180,180)'
+//   function OldFrictionPoints() {
+//     const color = 'rgb(180,180,180)'
   
-    return (
-      <div>
-        <Circle dx={0} dy={-1} color={color}/>
-        <Line dx={-14} dy={8} theta={-45} width={20}/>
-        <Circle dx={12} dy={8} color={color}/>
-        <Line dx={4} dy={6} theta={42} width={10}/>
-        <Circle dx={3} dy={20} color={color}/>
-        <Line dx={4} dy={15} theta={-52} width={15}/>
-        <Circle dx={-14} dy={12} color={color}/>
-        <Line dx={8} dy={21} theta={-8} width={11}/>
-        <Circle dx={16} dy={18} color={color}/>
-        <Line dx={21} dy={17} theta={-18} width={16}/>
-        <Circle dx={34} dy={12} color={color}/>
-      </div>
-    )
-  }
+//     return (
+//       <div>
+//         <Circle dx={0} dy={-1} color={color}/>
+//         <Line dx={-14} dy={8} theta={-45} width={20}/>
+//         <Circle dx={12} dy={8} color={color}/>
+//         <Line dx={4} dy={6} theta={42} width={10}/>
+//         <Circle dx={3} dy={20} color={color}/>
+//         <Line dx={4} dy={15} theta={-52} width={15}/>
+//         <Circle dx={-14} dy={12} color={color}/>
+//         <Line dx={8} dy={21} theta={-8} width={11}/>
+//         <Circle dx={16} dy={18} color={color}/>
+//         <Line dx={21} dy={17} theta={-18} width={16}/>
+//         <Circle dx={34} dy={12} color={color}/>
+//       </div>
+//     )
+//   }
   
-  function NewFrictionPoints() {
-    const color = 'rgb(238, 0, 254)'
+//   function NewFrictionPoints() {
+//     const color = 'rgb(238, 0, 254)'
   
-    return (
-      <div>
-        <Circle dx={-14} dy={6} color={color}/>
-        <Line dx={-10} dy={8.5} theta={0} width={20}/>
-        <Circle dx={10} dy={6} color={color}/>
-        <Line dx={15} dy={8.5} theta={0} width={20}/>
-        <Circle dx={34} dy={6} color={color}/>
-      </div>
-    )
-  }
+//     return (
+//       <div>
+//         <Circle dx={-14} dy={6} color={color}/>
+//         <Line dx={-10} dy={8.5} theta={0} width={20}/>
+//         <Circle dx={10} dy={6} color={color}/>
+//         <Line dx={15} dy={8.5} theta={0} width={20}/>
+//         <Circle dx={34} dy={6} color={color}/>
+//       </div>
+//     )
+//   }
 
-  return (
-    <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
-      <div style={{display: 'flex'}}>
-        <OldFrictionPoints/>
-        <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
-          Legacy software development
-        </p>
-      </div>
-      <div style={{display: 'flex', width: '280px'}}>
-        <NewFrictionPoints/>
-        <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
-        <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
-          software development
-        </p>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
+//       <div style={{display: 'flex'}}>
+//         <OldFrictionPoints/>
+//         <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
+//           Legacy software development
+//         </p>
+//       </div>
+//       <div style={{display: 'flex', width: '280px'}}>
+//         <NewFrictionPoints/>
+//         <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
+//         <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
+//           software development
+//         </p>
+//       </div>
+//     </div>
+//   )
+// }
 
 export default function HomePage() {
   return (
@@ -324,7 +325,7 @@ export default function HomePage() {
         <TabBar/>
       </div>
       {sections.map((section, i) => {
-        return <div key={i} ><ContentPair left={section.left} right={section.right}/></div>
+        return <div key={i} className='content-pair'><ContentPair left={section.left} right={section.right}/></div>
       })}
       <Footer/>
     </motion.div>

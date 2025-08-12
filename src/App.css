@@ -38,6 +38,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
+  padding: 40px;
 }
 
 #intro {
@@ -112,10 +113,6 @@ input[type=text]::placeholder, input[type=password]::placeholder {
     flex-direction: column;
   }
 
-  .content-pair {
-    flex-direction: column;
-  }
-
   .tab {
     font-size: 10px;
   }
@@ -123,6 +120,8 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   .content-pair {
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 0px;
   }
 
   .content {
@@ -135,7 +134,12 @@ input[type=text]::placeholder, input[type=password]::placeholder {
     max-width: 80vw;
   }
 
+  #intro-about {
+    padding-bottom: 40px;
+  }
+
   #title {
     font-size: 42px;
+    padding-bottom: 80px;
   }
 }
