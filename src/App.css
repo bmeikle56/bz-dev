@@ -108,6 +108,11 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   font-size: 12;
 }
 
+#repo-ticket-container {
+  width: 200px;
+  height: 200px 
+}
+
 @media screen and (max-width: 800px) {
   #tab-bar {
     flex-direction: column;
@@ -141,5 +146,16 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   #title {
     font-size: 42px;
     padding-bottom: 80px;
+  }
+
+  #repo-tickets-div {
+    flex-direction: column;
+  }
+
+  #repo-ticket-container {
+    width: 70vw;
+    margin-top: 20px;
+    padding-top: 25px;
+    height: 300px 
   }
 }
