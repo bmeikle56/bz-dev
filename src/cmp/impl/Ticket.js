@@ -130,7 +130,7 @@ function RichTicket({ meta, status, onClick }) {
       <div style={{
         height: 'fit-content',
         width: 'fit-content',
-        maxWidth: '400px',
+        maxWidth: '420px',
         padding: '20px 20px 10px 20px',
         border: `1px solid ${palette.border}`, 
         borderRadius: '10px',
@@ -141,7 +141,7 @@ function RichTicket({ meta, status, onClick }) {
       }}
       >
         { /* Title portion of the work item */ }
-        <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
+        <div style={{display:'flex', maxWidth: '420px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
             <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
           </div>

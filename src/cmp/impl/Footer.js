@@ -1,6 +1,6 @@
 
 const footerTabs = [
-  {txt: 'Copyright @ 2024'},
+  {txt: 'Copyright @ 2025'},
   {txt: 'Careers'},
   {txt: 'LinkedIn', href: 'https://linkedin.com/in/bmeikle3'},
   {txt: 'Contact Us', href: 'mailto:braedenmeikle@gmail.com'},

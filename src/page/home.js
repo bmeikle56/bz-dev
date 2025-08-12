@@ -9,7 +9,7 @@ function BZList2({ items, height }) {
       {items.map((item, i) => {
         return <div key={i} style={{display:'flex', flexGrow: 1, alignItems:'center', gap:'8px'}}>
           <p style={{margin: 0, color: 'rgb(238, 0, 254)'}}>&diams;</p>
-          <p style={{margin: 0, color: 'rgb(220,220,220)'}}>{item.txt}</p>
+          <p style={{margin: 0, color: 'rgb(120,120,120)'}}>{item.txt}</p>
         </div>
       })}
     </div>
@@ -215,7 +215,7 @@ const workMeta = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
-  title: 'Make login screen for site',
+  title: 'Make login screen',
   desc: WorkDesc,
   branch: 'ftr/8022-make-login-screen',
   status: 'Feature',
@@ -319,7 +319,6 @@ export default function HomePage() {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay: 0.5 }}
-    id='home-page'
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
