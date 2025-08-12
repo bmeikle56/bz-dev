@@ -29,7 +29,7 @@ function CCode({ txt, color }) {
 function BZCCode({ txt }) {
   return (
     <div style={{display: 'inline'}}>
-      <pre style={{display: 'inline', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)', fontSize: 13}}>{txt}</pre>
+      <pre style={{display: 'inline', whiteSpace: 'normal', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)', fontSize: 13}}>{txt}</pre>
     </div>
   )
 }

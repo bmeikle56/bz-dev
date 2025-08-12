@@ -9,7 +9,6 @@ import { Footer } from './impl/Footer'
 import { Pfp } from './impl/Pfp'
 import { Spacer } from './impl/Spacer'
 import { TabBar } from './impl/TabBar'
-import { Vdiv } from './impl/Vdiv'
 import { Ticket, RichTicket } from './impl/Ticket'
 
 export { 
@@ -22,7 +21,6 @@ export {
   Pfp,
   Spacer,
   TabBar,
-  Vdiv,
   Ticket,
   RichTicket,
   BZCCode,

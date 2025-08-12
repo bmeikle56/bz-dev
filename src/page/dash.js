@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Ticket, TabBar } from '../cmp/Components'
 
-function RepoTickets({ error, repo, tickets }) {
+function RepoTickets({ error, tickets }) {
   return (
     <div style={{ position: 'relative', zIndex: 1, margin: '0 16px' }}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div style={{ position: 'relative', width: 200, height: 200 }}>
+      <div id='repo-ticket-container' style={{ position: 'relative' }}>
         {tickets.map((ticket, index) => (
           <div
             key={index}
@@ -103,7 +103,7 @@ export default function DashboardPage() {
   const [repos, setRepos] = useState([])
   const [error, setError] = useState(null)
 
-  const animTime = 750 // 0.75 seconds + service transit
+  const animTime = 450 // 0.45 seconds + service transit
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -181,10 +181,10 @@ export default function DashboardPage() {
           >
             <TabBar/>
           </div>
-          <div style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex', }}>
+          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
               console.log(meta)
-              return <RepoTickets error={error} repo={meta.repo} tickets={meta.tickets}/>
+              return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
           </div>
         </motion.div>

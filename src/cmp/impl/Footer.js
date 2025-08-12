@@ -1,6 +1,6 @@
 
 const footerTabs = [
-  {txt: 'Copyright @ 2024'},
+  {txt: 'Copyright @ 2025'},
   {txt: 'Careers'},
   {txt: 'LinkedIn', href: 'https://linkedin.com/in/bmeikle3'},
   {txt: 'Contact Us', href: 'mailto:braedenmeikle@gmail.com'},
@@ -9,9 +9,9 @@ const footerTabs = [
 function Footer() {
   return (
     <div style={{
-      padding: '25px 10vw 0 10vw',
+      padding: '25px 19vw 0 19vw',
       display: 'flex', 
-      justifyContent: 'space-evenly', 
+      justifyContent: 'space-evenly',
       alignItems: 'center',
     }}>
       {footerTabs.map((tab, i) => {

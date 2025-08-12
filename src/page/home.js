@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
-import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichTicket, ccode, CCode, BZCCode } from '../cmp/Components'
+import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, RichTicket, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList2({ items, height }) {
   return (
@@ -9,7 +9,7 @@ function BZList2({ items, height }) {
       {items.map((item, i) => {
         return <div key={i} style={{display:'flex', flexGrow: 1, alignItems:'center', gap:'8px'}}>
           <p style={{margin: 0, color: 'rgb(238, 0, 254)'}}>&diams;</p>
-          <p style={{margin: 0, color: 'rgb(220,220,220)'}}>{item.txt}</p>
+          <p style={{margin: 0, color: 'rgb(120,120,120)'}}>{item.txt}</p>
         </div>
       })}
     </div>
@@ -24,11 +24,11 @@ function Circle({ color }) {
 
 function IntroDiv() {
   return (
-    <div id='intro'>
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
+    <div>
+      <div id='intro' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Title/>
-        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', alignItems: 'center', padding: 20, gap: 40}}>
-          <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+        <div id='intro-div' style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div id='intro-about' style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
               <motion.div
@@ -64,36 +64,35 @@ function IntroDiv() {
               <BZtxt txt={'for devs'}/>
             </div>
           </div>
-          <FrictionPointDiv/>
+          {/* <FrictionPointDiv/> */}
         </div>
       </div>
-      <Spacer height={100}/>
-      <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', width: 'fit-content', height: 'fit-content', padding: 20, marginLeft: -50}}>
-        <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
-          <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
-            <Circle color={'rgba(255,0,0,0.4)'}/>
-            <Circle color={'rgba(255,255,0,0.4)'}/>
-            <Circle color={'rgba(0,255,0,0.4)'}/>
+      {/* <Spacer height={100}/> */}
+      <div>
+        <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', padding: 20}}>
+          <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
+            <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
+              <Circle color={'rgba(255,0,0,0.4)'}/>
+              <Circle color={'rgba(255,255,0,0.4)'}/>
+              <Circle color={'rgba(0,255,0,0.4)'}/>
+            </div>
+            <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
+              <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
+              <Inlinetxt txt={'bz-dev'} color={'rgb(60,60,60)'}/>
+            </div>
           </div>
-          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
-            <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
-            <Inlinetxt txt={'bz-dev'} color={'rgb(60,60,60)'}/>
-          </div>
+          <Spacer height={16}/>
+          <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
+          <Spacer height={10}/>
+          <CCode txt={'# make a ticket'} color={ccode.green}/>
+          <BZCCode txt={'bz make -r=bz-dev -id=launch-site -n="purchase domain, forward DNS"'}/>
+          <Spacer height={16}/>
+          <CCode txt={'# work on a ticket'} color={ccode.green}/>
+          <BZCCode txt={'bz workon -r=bz-dev -id=launch-site'}/>
+          <Spacer height={16}/>
+          <CCode txt={'# update me on my tickets'} color={ccode.green}/>
+          <BZCCode txt={'bz updateme'}/>
         </div>
-        <Spacer height={16}/>
-        <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
-        <Spacer height={10}/>
-        <CCode txt={'# make a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz make --repo=bz-dev --id=launch-site --notes="purchase domain, forward DNS"'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# work on a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz workon --repo=bz-dev --id=launch-site'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# submit a PR'} color={ccode.green}/>
-        <BZCCode txt={'bz submit'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# update me on my tickets'} color={ccode.green}/>
-        <BZCCode txt={'bz updateme'}/>
       </div>
     </div>
   )
@@ -102,7 +101,7 @@ function IntroDiv() {
 function Title() {
   return (
     <div>
-      <p id='title'>Berzerk</p>
+      <p id='title' style={{margin: 0}}>Berzerk</p>
     </div>
   )
 }
@@ -216,7 +215,7 @@ const workMeta = {
   author: 'Braeden Meikle',
   pfp: 'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg',
   app: 'Web',
-  title: 'Make login screen for site',
+  title: 'Make login screen',
   desc: WorkDesc,
   branch: 'ftr/8022-make-login-screen',
   status: 'Feature',
@@ -225,8 +224,9 @@ const workMeta = {
 
 function WorkDiv() {
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
       <RichTicket meta={workMeta} status={'active'}/>
+      <Spacer height={40}/>
       <WorkBenefits/>
     </div>
   )
@@ -236,96 +236,95 @@ const sections = [
   {left: IntroDiv, right: WorkDiv},
 ]
 
-function FrictionPointDiv() {
-  function Circle({ dx, dy, color }) {
-    return <div style={{
-      position: 'absolute',
-      zIndex: 2,
-      width: '6px', 
-      height: '6px', 
-      background: color, 
-      borderRadius: '50%',
-      transform: `translate(${dx}px,${dy}px)`
-    }}/>
-  }
+// function FrictionPointDiv() {
+//   function Circle({ dx, dy, color }) {
+//     return <div style={{
+//       position: 'absolute',
+//       zIndex: 2,
+//       width: '6px', 
+//       height: '6px', 
+//       background: color, 
+//       borderRadius: '50%',
+//       transform: `translate(${dx}px,${dy}px)`
+//     }}/>
+//   }
 
-  function Line({ dx, dy, theta, width }) {
-    return <div style={{
-      position: 'absolute',
-      zIndex: 0,
-      width: `${width}px`, 
-      background: 'rgb(75,75,75)', 
-      height: '1px',
-      transform: `translate(${dx}px,${dy}px) rotate(${theta}deg)`
-    }}/>
-  }
+//   function Line({ dx, dy, theta, width }) {
+//     return <div style={{
+//       position: 'absolute',
+//       zIndex: 0,
+//       width: `${width}px`, 
+//       background: 'rgb(75,75,75)', 
+//       height: '1px',
+//       transform: `translate(${dx}px,${dy}px) rotate(${theta}deg)`
+//     }}/>
+//   }
 
-  function OldFrictionPoints() {
-    const color = 'rgb(180,180,180)'
+//   function OldFrictionPoints() {
+//     const color = 'rgb(180,180,180)'
   
-    return (
-      <div>
-        <Circle dx={0} dy={-1} color={color}/>
-        <Line dx={-14} dy={8} theta={-45} width={20}/>
-        <Circle dx={12} dy={8} color={color}/>
-        <Line dx={4} dy={6} theta={42} width={10}/>
-        <Circle dx={3} dy={20} color={color}/>
-        <Line dx={4} dy={15} theta={-52} width={15}/>
-        <Circle dx={-14} dy={12} color={color}/>
-        <Line dx={8} dy={21} theta={-8} width={11}/>
-        <Circle dx={16} dy={18} color={color}/>
-        <Line dx={21} dy={17} theta={-18} width={16}/>
-        <Circle dx={34} dy={12} color={color}/>
-      </div>
-    )
-  }
+//     return (
+//       <div>
+//         <Circle dx={0} dy={-1} color={color}/>
+//         <Line dx={-14} dy={8} theta={-45} width={20}/>
+//         <Circle dx={12} dy={8} color={color}/>
+//         <Line dx={4} dy={6} theta={42} width={10}/>
+//         <Circle dx={3} dy={20} color={color}/>
+//         <Line dx={4} dy={15} theta={-52} width={15}/>
+//         <Circle dx={-14} dy={12} color={color}/>
+//         <Line dx={8} dy={21} theta={-8} width={11}/>
+//         <Circle dx={16} dy={18} color={color}/>
+//         <Line dx={21} dy={17} theta={-18} width={16}/>
+//         <Circle dx={34} dy={12} color={color}/>
+//       </div>
+//     )
+//   }
   
-  function NewFrictionPoints() {
-    const color = 'rgb(238, 0, 254)'
+//   function NewFrictionPoints() {
+//     const color = 'rgb(238, 0, 254)'
   
-    return (
-      <div>
-        <Circle dx={-14} dy={6} color={color}/>
-        <Line dx={-10} dy={8.5} theta={0} width={20}/>
-        <Circle dx={10} dy={6} color={color}/>
-        <Line dx={15} dy={8.5} theta={0} width={20}/>
-        <Circle dx={34} dy={6} color={color}/>
-      </div>
-    )
-  }
+//     return (
+//       <div>
+//         <Circle dx={-14} dy={6} color={color}/>
+//         <Line dx={-10} dy={8.5} theta={0} width={20}/>
+//         <Circle dx={10} dy={6} color={color}/>
+//         <Line dx={15} dy={8.5} theta={0} width={20}/>
+//         <Circle dx={34} dy={6} color={color}/>
+//       </div>
+//     )
+//   }
 
-  return (
-    <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
-      <div style={{display: 'flex'}}>
-        <OldFrictionPoints/>
-        <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
-          Legacy software development
-        </p>
-      </div>
-      <div style={{display: 'flex', width: '280px'}}>
-        <NewFrictionPoints/>
-        <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
-        <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
-          software development
-        </p>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div style={{display: 'flex', gap: '40px', flexDirection: 'column'}}>
+//       <div style={{display: 'flex'}}>
+//         <OldFrictionPoints/>
+//         <p style={{color:'white', position: 'absolute', marginLeft: '60px', marginTop: '5px'}}>
+//           Legacy software development
+//         </p>
+//       </div>
+//       <div style={{display: 'flex', width: '280px'}}>
+//         <NewFrictionPoints/>
+//         <b style={{display: 'inline', marginLeft: '60px', color: 'rgb(238, 0, 254)', textShadow: '0px 0px 10px rgb(222, 218, 218)'}}>Berzerk</b>
+//         <p style={{color:'white', position: 'absolute', marginLeft: '124px', marginTop: '0px'}}>
+//           software development
+//         </p>
+//       </div>
+//     </div>
+//   )
+// }
 
 export default function HomePage() {
   return (
     <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 0.8 }}
+    transition={{ delay: 0.5 }}
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
       </div>
-      <Vdiv/>
       {sections.map((section, i) => {
-        return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
+        return <div key={i} className='content-pair'><ContentPair left={section.left} right={section.right}/></div>
       })}
       <Footer/>
     </motion.div>

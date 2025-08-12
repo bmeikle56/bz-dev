@@ -7,7 +7,7 @@ import { Spacer } from '../cmp/Components'
 function DownloadCLI() {
   return (
     <div
-      style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '100vw', height: '60vh'}}
+      style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '100vw', height: '50vh'}}
       >
         <FontAwesomeIcon icon={faFolder}
         style={{
@@ -16,7 +16,7 @@ function DownloadCLI() {
           height: 80,
         }}/>
         <a href='/files/bz-dev.zip' download style={{ textDecoration: 'none' }}>
-          <pre style={{ color: 'rgb(238, 0, 254)' }}>Download</pre>
+          <pre style={{ color: 'rgb(238, 0, 254)' }}>bz-dev</pre>
         </a>
       </div>
   )
@@ -52,9 +52,9 @@ function RepoStructure() {
       alignItems: 'center',
       flexDirection: 'column',
       width: '100vw',
-      height: '40vh',
+      height: '30vh',
     }}>
-      <Repo txt={'repo'}/>
+      <Repo txt={'repos'}/>
       <div style={{width: '1.4px', height: '8px', backgroundColor: color}}/>
       <div style={{width: '100px', height: '1.4px', backgroundColor: color}}/>
       <div style={{display: 'flex'}}>
@@ -80,7 +80,7 @@ function DownloadPage() {
     <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay: 0.8 }}
+    transition={{ delay: 0.5 }}
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
