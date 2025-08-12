@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
-import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, Vdiv, RichTicket, ccode, CCode, BZCCode } from '../cmp/Components'
+import { BBullet, BZtxt, Inlinetxt, CBList, Footer, Spacer, TabBar, RichTicket, ccode, CCode, BZCCode } from '../cmp/Components'
 
 function BZList2({ items, height }) {
   return (
@@ -323,9 +323,8 @@ export default function HomePage() {
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
       </div>
-      <Vdiv/>
       {sections.map((section, i) => {
-        return <div key={i} ><ContentPair left={section.left} right={section.right}/><Vdiv/></div>
+        return <div key={i} ><ContentPair left={section.left} right={section.right}/></div>
       })}
       <Footer/>
     </motion.div>
