@@ -126,7 +126,7 @@ function RichTicket({ meta, status, onClick }) {
   const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   return (
-    <button style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
+    <button style={{background: 'transparent', border: 'none'}} onClick={onClick}>
       <div style={{
         height: 'fit-content',
         width: 'fit-content',

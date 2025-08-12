@@ -67,7 +67,7 @@ function IntroDiv() {
           <FrictionPointDiv/>
         </div>
       </div>
-      <Spacer height={100}/>
+      {/* <Spacer height={100}/> */}
       <div>
         <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', padding: 20}}>
           <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>

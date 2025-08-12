@@ -42,6 +42,7 @@ body {
 .content-pair {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: row;
 }
 
 #intro {
@@ -104,10 +105,6 @@ input[type=text]::placeholder, input[type=password]::placeholder {
 }
 
 #tab-bar {
-  flex-direction: row;
-}
-
-.content-pair {
   flex-direction: row;
 }
 
