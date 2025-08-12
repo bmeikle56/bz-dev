@@ -24,10 +24,10 @@ function Circle({ color }) {
 
 function IntroDiv() {
   return (
-    <div id='intro'>
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 80}}>
+    <div>
+      <div id='intro' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Title/>
-        <div style={{display: 'flex', width: 'fit-content', height: 'fit-content', flexDirection: 'column', alignItems: 'center', padding: 20, gap: 40}}>
+        <div id='intro-div' style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
             <div style={{display: 'flex'}}>
               <BZtxt txt={'Fast'}/>
@@ -68,32 +68,31 @@ function IntroDiv() {
         </div>
       </div>
       <Spacer height={100}/>
-      <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', width: 'fit-content', height: 'fit-content', padding: 20, marginLeft: -50}}>
-        <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
-          <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
-            <Circle color={'rgba(255,0,0,0.4)'}/>
-            <Circle color={'rgba(255,255,0,0.4)'}/>
-            <Circle color={'rgba(0,255,0,0.4)'}/>
+      <div>
+        <div style={{border: '2px solid rgb(25,25,25)', borderRadius: '12px', display:'flex', flexDirection:'column', padding: 20}}>
+          <div style={{display: 'flex', gap: 8, alignItems: 'center', justifyContent:'center', width: '100%'}}>
+            <div style={{display: 'flex', marginRight: 'auto', gap: 6}}>
+              <Circle color={'rgba(255,0,0,0.4)'}/>
+              <Circle color={'rgba(255,255,0,0.4)'}/>
+              <Circle color={'rgba(0,255,0,0.4)'}/>
+            </div>
+            <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
+              <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
+              <Inlinetxt txt={'bz-dev'} color={'rgb(60,60,60)'}/>
+            </div>
           </div>
-          <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: 6}}>
-            <FontAwesomeIcon icon={faFolder} style={{ color: 'rgb(238, 0, 254)' }} />
-            <Inlinetxt txt={'bz-dev'} color={'rgb(60,60,60)'}/>
-          </div>
+          <Spacer height={16}/>
+          <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
+          <Spacer height={10}/>
+          <CCode txt={'# make a ticket'} color={ccode.green}/>
+          <BZCCode txt={'bz make -r=bz-dev -id=launch-site -n="purchase domain, forward DNS"'}/>
+          <Spacer height={16}/>
+          <CCode txt={'# work on a ticket'} color={ccode.green}/>
+          <BZCCode txt={'bz workon -r=bz-dev -id=launch-site'}/>
+          <Spacer height={16}/>
+          <CCode txt={'# update me on my tickets'} color={ccode.green}/>
+          <BZCCode txt={'bz updateme'}/>
         </div>
-        <Spacer height={16}/>
-        <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
-        <Spacer height={10}/>
-        <CCode txt={'# make a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz make --repo=bz-dev --id=launch-site --notes="purchase domain, forward DNS"'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# work on a ticket'} color={ccode.green}/>
-        <BZCCode txt={'bz workon --repo=bz-dev --id=launch-site'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# submit a PR'} color={ccode.green}/>
-        <BZCCode txt={'bz submit'}/>
-        <Spacer height={16}/>
-        <CCode txt={'# update me on my tickets'} color={ccode.green}/>
-        <BZCCode txt={'bz updateme'}/>
       </div>
     </div>
   )
@@ -102,7 +101,7 @@ function IntroDiv() {
 function Title() {
   return (
     <div>
-      <p id='title'>Berzerk</p>
+      <p id='title' style={{margin: 0}}>Berzerk</p>
     </div>
   )
 }
@@ -225,7 +224,7 @@ const workMeta = {
 
 function WorkDiv() {
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems:'center', gap: '25px', paddingTop:'50px'}}>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
       <RichTicket meta={workMeta} status={'active'}/>
       <WorkBenefits/>
     </div>
@@ -319,6 +318,7 @@ export default function HomePage() {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay: 0.8 }}
+    id='home-page'
     >
       <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
         <TabBar/>
