@@ -4,9 +4,9 @@ import { Ticket, TabBar } from '../cmp/Components'
 
 function RepoTickets({ error, tickets }) {
   return (
-    <div style={{ position: 'relative', zIndex: 1, margin: '0 16px' }}>
+    <div style={{ position: 'relative', zIndex: 1, marginLeft: '-10vw'}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div id='repo-ticket-container' style={{ position: 'relative' }}>
+      <div id='repo-ticket-container' >
         {tickets.map((ticket, index) => (
           <div
             key={index}
@@ -183,7 +183,6 @@ export default function DashboardPage() {
           </div>
           <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
-              console.log(meta)
               return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
           </div>
