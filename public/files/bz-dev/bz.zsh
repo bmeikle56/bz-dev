@@ -43,9 +43,9 @@ bz() {
     kill)
       bz_kill "$@"
       ;;
-   status)
-     bz_status "$@"
-     ;;
+    status)
+      bz_status "$@"
+      ;;
     *)
       echo "unknown subcommand: $subcommand"
       return 1
@@ -56,36 +56,26 @@ bz() {
 bz_make() {
   local repo=""
   local tag=""
-  local id=""
-  local tag=""
+  local key=""
   local notes=""
 
   for arg in "$@"; do
     case "$arg" in
-      --repo=*)
-        repo="${arg#--repo=}"
+      -r=*)
+        repo="${arg#-r=}"
         ;;
-      --tag=*)
-        tag="${arg#--tag=}"
-        ;;
-      --id=*)
-          full_id="${arg#--id=}"
-          if [[ "$full_id" =~ ^(ref|fix|add)-(.+)$ ]]; then
-            prefix="${match[1]}"
-            id="${match[2]}"
-            
-            case "$prefix" in
-              add) tag="ftr" ;;
-              fix) tag="bug" ;;
-              ref) tag="ref" ;;
-            esac
-          else
+      -t=*)
+        tag="${arg#-t=}"
+        if ! [[ "$tag" =~ ^(ref|bug|ftr)$ ]]; then
             echo "invalid ticket id"
             return 1
           fi
+        ;;
+      -k=*)
+        key="${arg#-k=}"
           ;;
-      --notes=*)
-        notes="${arg#--notes=}"
+      -n=*)
+        notes="${arg#-n=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -102,7 +92,7 @@ bz_make() {
         \"ticket\": {
           \"repo\": \"$repo\",
           \"tag\": \"$tag\",
-          \"title\": \"$id\",
+          \"key\": \"$key\",
           \"notes\": \"$notes\",
           \"dev\": \"$dev\",
           \"status\": \"new\"
@@ -125,15 +115,15 @@ bz_fetch() {
 
 bz_workon() {
   local repo=""
-  local title=""
+  local key=""
 
   for arg in "$@"; do
     case "$arg" in
-      --repo=*)
-        repo="${arg#--repo=}"
+      -r=*)
+        repo="${arg#-r=}"
         ;;
-      --id=*)
-        title="${arg#--id=}"
+      -k=*)
+        key="${arg#-k=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -147,7 +137,7 @@ bz_workon() {
       --header "Content-Type: application/json" \
       --data "{
         \"username\": \"$dev\",
-        \"title\": \"$title\",
+        \"key\": \"$key\",
         \"status\": \"active\"
       }")
       
@@ -158,12 +148,12 @@ bz_workon() {
 }
 
 bz_pause() {
-  local title=""
+  local key=""
 
   for arg in "$@"; do
     case "$arg" in
-      --title=*)
-        title="${arg#--title=}"
+      -k=*)
+        key="${arg#-k=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -177,22 +167,22 @@ bz_pause() {
       --header "Content-Type: application/json" \
       --data "{
         \"username\": \"$dev\",
-        \"title\": \"$title\",
+        \"key\": \"$key\",
         \"status\": \"new\"
       }"
 }
 
 bz_delete() {
-  local title=""
+  local key=""
   local repo=""
 
   for arg in "$@"; do
     case "$arg" in
-      --id=*)
-        title="${arg#--id=}"
+      -k=*)
+        key="${arg#-k=}"
         ;;
-      --repo=*)
-        repo="${arg#--repo=}"
+      -r=*)
+        repo="${arg#-r=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -206,7 +196,7 @@ bz_delete() {
       --header "Content-Type: application/json" \
       --data "{
         \"username\": \"$dev\",
-        \"title\": \"$title\",
+        \"key\": \"$key\",
         \"repo\": \"$repo\"
       }")
 
@@ -239,21 +229,21 @@ bz_submit() {
       local repo=""
       local tag=""
       local notes=""
-      local title=""
+      local key=""
 
       for arg in "$@"; do
         case "$arg" in
-          --repo=*)
-            repo="${arg#--repo=}"
+          -r=*)
+            repo="${arg#-r=}"
             ;;
-          --tag=*)
-            tag="${arg#--tag=}"
+          -t=*)
+            tag="${arg#-t=}"
             ;;
-          --title=*)
-            title="${arg#--title=}"
+          -k=*)
+            key="${arg#-k=}"
             ;;
-          --notes=*)
-            notes="${arg#--notes=}"
+          -n=*)
+            notes="${arg#-n=}"
             ;;
           *)
             echo "unknown option: $arg"
@@ -268,7 +258,7 @@ bz_submit() {
       "https://api.github.com/repos/bmeikle56/$repo/pulls" \
       --data "{
         \"title\": \"My Pull Request Title\",
-        \"head\": \"$tag/$title\",
+        \"head\": \"$tag/$key\",
         \"base\": \"master\",
         \"body\": \"$notes\"
       }")
@@ -294,7 +284,7 @@ bz_updateme() {
     .repos[] |
     (
       "  " + .repo + " {\n" +
-      ( .tickets | map("    " + .tag + "/" + .title) | join("\n") ) +
+      ( .tickets | map("    " + .tag + "/" + .key) | join("\n") ) +
       "\n  }"
     )
   '
@@ -307,8 +297,8 @@ bz_kill() {
 
   for arg in "$@"; do
     case "$arg" in
-      --repo=*)
-        repo="${arg#--repo=}"
+      -r=*)
+        repo="${arg#-r=}"
         ;;
       *)
         echo "unknown option: $arg"
@@ -332,20 +322,8 @@ bz_kill() {
 
 bz_push() {
     git push
-    
-    curl -s -X POST "$backend_url/update" \
-      --header "Authorization: Bearer $auth_token" \
-      --header "Content-Type: application/json" \
-      --data "{
-        \"username\": \"$dev\",
-        \"ticket\": {
-          \"dev\": \"$dev\",
-          \"title\": \"$title\",          
-          \"status\": \"active\"
-        }
-      }"
 }
 
 bz_status() {
-   git status
+    git status
 }
