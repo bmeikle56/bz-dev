@@ -27,10 +27,10 @@ function RepoTickets({ error, tickets }) {
               dev={ticket.dev}
               tag={ticket.tag}
               pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
-              title={ticket.title}
+              key={ticket.key}
               notes={ticket.notes}
               status={ticket.status}
-              branch={`${ticket.tag}/${ticket.title}`}
+              branch={`${ticket.tag}/${ticket.key}`}
               onClick={() => {}}
             />
           </div>

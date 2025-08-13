@@ -85,10 +85,10 @@ function IntroDiv() {
           <div style={{background: 'rgb(25,25,25)', height: 2, width: '100%'}}/>
           <Spacer height={10}/>
           <CCode txt={'# make a ticket'} color={ccode.green}/>
-          <BZCCode txt={'bz make -r=bz-dev -id=launch-site -n="purchase domain, forward DNS"'}/>
+          <BZCCode txt={'bz make -r=bz-dev -k=launch-site -n="purchase domain, forward DNS"'}/>
           <Spacer height={16}/>
           <CCode txt={'# work on a ticket'} color={ccode.green}/>
-          <BZCCode txt={'bz workon -r=bz-dev -id=launch-site'}/>
+          <BZCCode txt={'bz workon -r=bz-dev -k=launch-site'}/>
           <Spacer height={16}/>
           <CCode txt={'# update me on my tickets'} color={ccode.green}/>
           <BZCCode txt={'bz updateme'}/>
