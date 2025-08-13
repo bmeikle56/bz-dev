@@ -63,7 +63,7 @@ function Notes({ notes }) {
   </div>
 }
 
-function Ticket({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick }) {
+function Ticket({ id, repo, status, dev, tag, pfp, key, notes, branch, onClick }) {
   const palette = status === 'active' ? toggledPalette : untoggledPalette
 
   const tagColors = {
@@ -92,7 +92,7 @@ function Ticket({ id, repo, status, dev, tag, pfp, title, notes, branch, onClick
           <div style={{display: 'flex'}}>
             <Badge className={'item-app'} txt={repo} txtColor={palette.text} backgroundColor={palette.gray}/>
           </div>
-          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{title}</span>
+          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{key}</span>
           <div style={{display: 'flex'}}>
             <Badge className={'item-status'} txt={tag} txtColor={'white'} backgroundColor={tagColors[status]}/>
           </div>
