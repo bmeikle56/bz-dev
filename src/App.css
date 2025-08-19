@@ -21,6 +21,7 @@ body {
   background-size: 24px 24px;
   background-repeat: repeat;
   background-attachment: scroll;
+  min-height: 100%;
   width: 100%;
   overflow-x: hidden;
 }
@@ -166,6 +167,7 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   }
 
   #repo-tickets-div {
+    padding-top: 20vh;
     flex-direction: column;
   }
 

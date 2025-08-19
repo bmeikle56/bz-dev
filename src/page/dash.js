@@ -118,8 +118,6 @@ export default function DashboardPage() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100%',
-            width: '100%',
           }}
           className='wallpaper'
         >
