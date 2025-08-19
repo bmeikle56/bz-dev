@@ -10,6 +10,7 @@ import { Pfp } from './impl/Pfp'
 import { Spacer } from './impl/Spacer'
 import { TabBar } from './impl/TabBar'
 import { Ticket, RichTicket } from './impl/Ticket'
+import Wallpaper from './impl/Wallpaper'
 
 export { 
   BBullet,
@@ -24,5 +25,6 @@ export {
   Ticket,
   RichTicket,
   BZCCode,
-  Inlinetxt
+  Inlinetxt,
+  Wallpaper
 }

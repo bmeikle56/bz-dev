@@ -6,8 +6,8 @@ function TabBar() {
   const tabs = [
     {txt: 'Berzerk', action: () => { navigate('/') }},
     {txt: 'Dashboard', action: () => { navigate('/dash') }},
-    {txt: 'Log in', action: () => { navigate('/auth') }},
-    {txt: 'Get bz-dev', action: () => { navigate('/dwnl') }},
+    // {txt: 'Log in', action: () => { navigate('/auth') }},
+    {txt: 'CLI', action: () => { navigate('/dwnl') }},
   ]
 
   return (
