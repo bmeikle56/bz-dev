@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Ticket, TabBar, Wallpaper } from '../cmp/Components'
+import { Ticket, TabBar } from '../cmp/Components'
 
 function RepoTickets({ error, tickets }) {
   return (
@@ -43,7 +43,7 @@ function RepoTickets({ error, tickets }) {
 function ByteTransfer() {
   return (
     <div
-    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh'}}
+    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh'}}
     >
       <pre id='loading' style={{
         color: 'rgb(160,160,160)',
@@ -63,17 +63,9 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch(
-          'https://berzerk-agile-dev-backend-production.up.railway.app/fetch',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer gfa273snxxjk918a`,
-            },
-            body: JSON.stringify({ username: 'braeden' }),
-          }
-        )
+        const response = await fetch('/.netlify/functions/fetchTickets', {
+          method: 'POST',
+        })
 
         const data = await response.json()
 
@@ -109,7 +101,7 @@ export default function DashboardPage() {
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
-            width: '100vw',
+            width: '100%',
           }}
         >
           <ByteTransfer/>
@@ -126,11 +118,11 @@ export default function DashboardPage() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh',
-            width: '100vw',
+            height: '100%',
+            width: '100%',
           }}
+          className='wallpaper'
         >
-          <Wallpaper/>
           <div
             style={{
               display: 'flex',
@@ -144,7 +136,7 @@ export default function DashboardPage() {
           >
             <TabBar/>
           </div>
-          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
+          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
               return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
