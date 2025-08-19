@@ -24,5 +24,5 @@ export {
   Ticket,
   RichTicket,
   BZCCode,
-  Inlinetxt
+  Inlinetxt,
 }

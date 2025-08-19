@@ -40,60 +40,15 @@ function RepoTickets({ error, tickets }) {
   )
 }
 
-
 function ByteTransfer() {
   return (
     <div
-    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh'}}
+    style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh'}}
     >
       <pre id='loading' style={{
         color: 'rgb(160,160,160)',
         textShadow: '0px 0px 15px rgb(46, 190, 238), 0px 0px 12px rgb(46, 190, 238), 0px 0px 15px rgb(46, 190, 238)'
       }}></pre>
-    </div>
-  )
-}
-
-function Wallpaper() {
-  return (
-    <div style={{display: 'flex', position: 'absolute', zIndex: 0, width: '100vw', height: '100vh'}}>
-      <DiamondWallpaper/>
-    </div>
-  )
-}
-
-function DiamondWallpaper() {
-  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 })
-  const diamondSize = 40 // width & height in pixels (includes padding)
-
-  useEffect(() => {
-    const updateSize = () => {
-      setScreenSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
-
-  const cols = Math.ceil(screenSize.width / diamondSize)
-  const rows = Math.ceil(screenSize.height / diamondSize)
-  const total = rows * cols
-
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${cols}, ${diamondSize}px)`,
-        gridTemplateRows: `repeat(${rows}, ${diamondSize}px)`,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 1
-      }}
-    >
-      {Array.from({ length: total }).map((_, i) => (
-        <p key={i} style={{color: 'rgba(58, 0, 62, 1)', zIndex: 1}}>&diams;</p>
-      ))}
     </div>
   )
 }
@@ -146,7 +101,7 @@ export default function DashboardPage() {
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
-            width: '100vw',
+            width: '100%',
           }}
         >
           <ByteTransfer/>
@@ -163,11 +118,11 @@ export default function DashboardPage() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh',
-            width: '100vw',
+            height: '100%',
+            width: '100%',
           }}
+          className='wallpaper'
         >
-          <Wallpaper/>
           <div
             style={{
               display: 'flex',
@@ -181,7 +136,7 @@ export default function DashboardPage() {
           >
             <TabBar/>
           </div>
-          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100vw', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
+          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
               return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
