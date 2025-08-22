@@ -28,6 +28,9 @@ bz() {
     kill)
       bz_kill "$@"
       ;;
+    dash)
+      bz_dash "$@"
+      ;;
     help)
       bz_help "$@"
       ;;
@@ -79,6 +82,15 @@ bz_make() {
       bz_color "Added!"
     fi
 }
+
+#bz_fetch() {
+#    curl -s -X POST "$backend_url/fetch" \
+#      --header "Authorization: Bearer $auth_token" \
+#      --header "Content-Type: application/json" \
+#      --data "{
+#        \"username\": \"$dev\"
+#      }"
+#}
 
 bz_workon() {
   local repo=""
@@ -240,9 +252,13 @@ bz_kill() {
     fi
 }
 
+bz_dash() {
+    open https://berzerkagile.dev/dash
+}
+
 bz_help() {
     echo "{"
-    bz_color "  bz make -r=<repo> -k=<key> -n=<notes>\n  bz clear\n  bz delete -r=<repo>\n  bz workon -r=<repo> -k=<key>\n  bz update\n  bz pause -r=<repo> -k=<key>\n  bz kill -r=<repo>"
+    bz_color "  bz make -r=<repo> -k=<key> -n=<notes>\n  bz clear\n  bz delete -r=<repo>\n  bz workon -r=<repo> -k=<key>\n  bz update\n  bz pause -r=<repo> -k=<key>\n  bz kill -r=<repo>\n  bz dash"
     echo "}"
 }
 
