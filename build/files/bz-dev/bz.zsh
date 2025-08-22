@@ -10,21 +10,6 @@ bz() {
     make)
       bz_make "$@"
       ;;
-    submit)
-      bz_submit "$@"
-      ;;
-    add)
-      bz_add "$@"
-      ;;
-    commit)
-      bz_commit "$@"
-      ;;
-    push)
-      bz_push "$@"
-      ;;
-    fetch)
-      bz_fetch "$@"
-      ;;
     clear)
       bz_clear "$@"
       ;;
@@ -34,8 +19,8 @@ bz() {
     workon)
       bz_workon "$@"
       ;;
-    updateme)
-      bz_updateme "$@"
+    update)
+      bz_update "$@"
       ;;
     pause)
       bz_pause "$@"
@@ -43,11 +28,11 @@ bz() {
     kill)
       bz_kill "$@"
       ;;
-    status)
-      bz_status "$@"
+    help)
+      bz_help "$@"
       ;;
     *)
-      echo "unknown subcommand: $subcommand"
+      echo "type $(bz_color "bz help") to list commands"
       return 1
       ;;
   esac
@@ -70,7 +55,7 @@ bz_make() {
         notes="${arg#-n=}"
         ;;
       *)
-        echo "unknown option: $arg"
+        echo "use flags $(bz_color "-r") $(bz_color "-k") $(bz_color "-n") only"
         return 1
         ;;
     esac
@@ -95,15 +80,6 @@ bz_make() {
     fi
 }
 
-bz_fetch() {
-    curl -s -X POST "$backend_url/fetch" \
-      --header "Authorization: Bearer $auth_token" \
-      --header "Content-Type: application/json" \
-      --data "{
-        \"username\": \"$dev\"
-      }"
-}
-
 bz_workon() {
   local repo=""
   local key=""
@@ -117,15 +93,11 @@ bz_workon() {
         key="${arg#-k=}"
         ;;
       *)
-        echo "unknown option: $arg"
+                echo "use flags $(bz_color "-r") $(bz_color "-k") only"
         return 1
         ;;
     esac
   done
-  
-#    cd "~/Documents/repos/$repo"
-#    git checkout -b "$key"
-#    git push --set-upstream origin "$key"
     
     response=$(curl -s -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
@@ -136,9 +108,7 @@ bz_workon() {
         \"repo\": \"$repo\",
         \"status\": \"active\"
       }")
-      
-      echo "$response"
-      
+
     if [[ "$response" == '{"response":"update status successful"}' ]]; then
         bz_color "Activated!"
     fi
@@ -154,7 +124,7 @@ bz_pause() {
         key="${arg#-k=}"
         ;;
       *)
-        echo "unknown option: $arg"
+        echo "use flag $(bz_color "-k") only"
         return 1
         ;;
     esac
@@ -171,19 +141,19 @@ bz_pause() {
 }
 
 bz_delete() {
-  local key=""
   local repo=""
+  local key=""
 
   for arg in "$@"; do
     case "$arg" in
-      -k=*)
-        key="${arg#-k=}"
-        ;;
       -r=*)
         repo="${arg#-r=}"
         ;;
+      -k=*)
+        key="${arg#-k=}"
+        ;;
       *)
-        echo "unknown option: $arg"
+      echo "use flags $(bz_color "-r") $(bz_color "-k") only"
         return 1
         ;;
     esac
@@ -222,15 +192,7 @@ bz_clear() {
     fi
 }
 
-bz_add() {
-    git add "$1"
-}
-
-bz_commit() {
-    git commit -m "$1"
-}
-
-bz_updateme() {
+bz_update() {
   json=$(curl -s -X POST "$backend_url/fetch" \
     --header "Authorization: Bearer $auth_token" \
     --header "Content-Type: application/json" \
@@ -259,7 +221,7 @@ bz_kill() {
         repo="${arg#-r=}"
         ;;
       *)
-        echo "unknown option: $arg"
+        echo "use flag $(bz_color "-r") only"
         return 1
         ;;
     esac
@@ -278,12 +240,10 @@ bz_kill() {
     fi
 }
 
-bz_push() {
-    git push
-}
-
-bz_status() {
-    git status
+bz_help() {
+    echo "{"
+    bz_color "  bz make -r=<repo> -k=<key> -n=<notes>\n  bz clear\n  bz delete -r=<repo>\n  bz workon -r=<repo> -k=<key>\n  bz update\n  bz pause -r=<repo> -k=<key>\n  bz kill -r=<repo>"
+    echo "}"
 }
 
 bz_color() {
