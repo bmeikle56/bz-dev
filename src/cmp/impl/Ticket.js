@@ -20,7 +20,9 @@ const toggledPalette = {
   author: 'rgb(150,150,150)',
   text: 'rgb(255,255,255)',
   gray: 'rgb(50,50,50)',
-  type: 'rgb(238, 0, 254)'
+  type: 'rgb(238, 0, 254)',
+  black: 'rgb(20,20,20)',
+  special: 'rgb(238, 0, 254)',
 }
 
 const untoggledPalette = {
@@ -28,7 +30,9 @@ const untoggledPalette = {
   author: 'rgb(80,80,80)',
   text: 'rgb(100,100,100)',
   gray: 'rgb(20,20,20)',
-  type: 'rgb(147, 0, 158)'
+  type: 'rgb(147, 0, 158)',
+  black: 'rgb(20,20,20)',
+  special: 'rgb(238, 0, 254)',
 }
 
 function ActiveAnim() {
@@ -81,26 +85,19 @@ function Ticket({ id, pfp, meta }) {
         justifyContent: 'flex-start',
       }}
       >
-        { /* Title portion of the work item */ }
         <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
-            <Badge className={'item-app'} txt={meta.repo} txtColor={palette.text} backgroundColor={palette.gray}/>
+            <Badge className={'item-app'} txt={meta.repo} txtColor={palette.special} backgroundColor={palette.black}/>
           </div>
           <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{meta.key}</span>
         </div>
-
-        { /* Author portion of the work item */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <Pfp meta={{imgLink: pfp, radius: 25, alt: 'Dev picture'}}/>
           <p style={{color: palette.author, fontSize: '12px'}}>{meta.dev}</p>
         </div>
-        
-        { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
           <Notes notes={meta.notes}/>
         </div>
-
-        { /* Branch portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto', marginTop: 'auto', alignItems: 'center', gap: '8px'}}>
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
@@ -131,7 +128,6 @@ function RichTicket({ meta, status, onClick }) {
         justifyContent: 'center',
       }}
       >
-        { /* Title portion of the work item */ }
         <div style={{display:'flex', maxWidth: '420px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
             <Badge className={'item-app'} txt={meta.app} txtColor={palette.text} backgroundColor={palette.gray}/>
@@ -141,19 +137,13 @@ function RichTicket({ meta, status, onClick }) {
             <Badge className={'item-status'} txt={meta.status} txtColor={'white'} backgroundColor={meta.statusColor}/>
           </div>
         </div>
-
-        { /* Author portion of the work item */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <Pfp meta={{imgLink: meta.pfp, radius: 25, alt: 'Author picture'}}/>
           <p style={{color: palette.author, fontSize: '12px'}}>{meta.author}</p>
         </div>
-        
-        { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
           {meta.desc()}
         </div>
-
-        { /* Branch portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>

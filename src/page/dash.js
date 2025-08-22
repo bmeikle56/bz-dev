@@ -56,17 +56,9 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch(
-          'https://berzerk-agile-dev-backend-production.up.railway.app/fetch',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer gfa273snxxjk918a`,
-            },
-            body: JSON.stringify({ username: 'braeden' }),
-          }
-        )
+        const response = await fetch('/.netlify/functions/fetchTickets', {
+          method: 'POST',
+        })
 
         const data = await response.json()
 
