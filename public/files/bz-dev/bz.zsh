@@ -222,46 +222,6 @@ bz_clear() {
     fi
 }
 
-
-bz_submit() {
-      local repo=""
-      local tag=""
-      local notes=""
-      local key=""
-
-      for arg in "$@"; do
-        case "$arg" in
-          -r=*)
-            repo="${arg#-r=}"
-            ;;
-          -t=*)
-            tag="${arg#-t=}"
-            ;;
-          -k=*)
-            key="${arg#-k=}"
-            ;;
-          -n=*)
-            notes="${arg#-n=}"
-            ;;
-          *)
-            echo "unknown option: $arg"
-            return 1
-            ;;
-        esac
-      done
-      
-    response=$(curl -s -X POST \
-      --header "Authorization: token $github_token" \
-      --header "Accept: application/vnd.github+json" \
-      "https://api.github.com/repos/bmeikle56/$repo/pulls" \
-      --data "{
-        \"title\": \"My Pull Request Title\",
-        \"head\": \"$tag/$key\",
-        \"base\": \"master\",
-        \"body\": \"$notes\"
-      }")
-}
-
 bz_add() {
     git add "$1"
 }
@@ -282,7 +242,7 @@ bz_updateme() {
     .repos[] |
     (
       "  " + .repo + " {\n" +
-      ( .tickets | map("    " + .tag + "/" + .key) | join("\n") ) +
+      ( .tickets | map("    " + .key) | join("\n") ) +
       "\n  }"
     )
   '
