@@ -63,17 +63,11 @@ function Notes({ notes }) {
   </div>
 }
 
-function Ticket({ id, repo, status, dev, tag, pfp, key, notes, branch, onClick }) {
-  const palette = status === 'active' ? toggledPalette : untoggledPalette
-
-  const tagColors = {
-    new: 'rgba(255, 0, 255, 0.33)',
-    active: 'rgba(255, 0, 255, 0.66)',
-    merging: 'rgba(255, 0, 255, 1)'
-  }
+function Ticket({ id, pfp, meta }) {
+  const palette = meta.status === 'active' ? toggledPalette : untoggledPalette
 
   return (
-    <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}} onClick={onClick}>
+    <button key={id} style={{padding: 0, background: 'transparent', border: 'none'}}>
       <div style={{
         height: '220px',
         width: '300px',
@@ -90,23 +84,20 @@ function Ticket({ id, repo, status, dev, tag, pfp, key, notes, branch, onClick }
         { /* Title portion of the work item */ }
         <div style={{display:'flex', maxWidth: '410px', width: '100%', alignItems: 'center', paddingBottom: '8px'}}>
           <div style={{display: 'flex'}}>
-            <Badge className={'item-app'} txt={repo} txtColor={palette.text} backgroundColor={palette.gray}/>
+            <Badge className={'item-app'} txt={meta.repo} txtColor={palette.text} backgroundColor={palette.gray}/>
           </div>
-          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{key}</span>
-          <div style={{display: 'flex'}}>
-            <Badge className={'item-status'} txt={tag} txtColor={'white'} backgroundColor={tagColors[status]}/>
-          </div>
+          <span style={{display: 'flex', flex: 1, color: palette.text, fontSize: '14px', padding: '0 8px 0 8px'}}>{meta.key}</span>
         </div>
 
         { /* Author portion of the work item */ }
         <div style={{display: 'flex', marginRight: 'auto', alignItems: 'center', gap: '8px'}}>
           <Pfp meta={{imgLink: pfp, radius: 25, alt: 'Dev picture'}}/>
-          <p style={{color: palette.author, fontSize: '12px'}}>{dev}</p>
+          <p style={{color: palette.author, fontSize: '12px'}}>{meta.dev}</p>
         </div>
         
         { /* Description portion of the work item */ }
         <div style={{display:'flex', marginRight: 'auto'}}>
-          <Notes notes={notes}/>
+          <Notes notes={meta.notes}/>
         </div>
 
         { /* Branch portion of the work item */ }
@@ -114,8 +105,8 @@ function Ticket({ id, repo, status, dev, tag, pfp, key, notes, branch, onClick }
           <div style={{background: palette.gray, borderRadius: '4px', padding: '3px 3px 1px 3px'}}>
             <i className='fa fa-code-branch' style={{color: palette.text, fontSize: '14px'}}></i>
           </div>
-          <pre style={{color: palette.text, fontSize: '12px'}}>{branch}</pre>
-          {status === 'active' && ActiveAnim({ color: palette.text })}
+          <pre style={{color: palette.text, fontSize: '12px'}}>{meta.key}</pre>
+          {meta.status === 'active' && ActiveAnim({ color: palette.text })}
         </div>
       </div>
     </button>

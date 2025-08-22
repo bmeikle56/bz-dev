@@ -23,15 +23,8 @@ function RepoTickets({ error, tickets }) {
           >
             <Ticket
               id={index}
-              repo={ticket.repo}
-              dev={ticket.dev}
-              tag={ticket.tag}
               pfp={'https://i.postimg.cc/GhTKWxyY/IMG-6071.jpg'}
-              key={ticket.key}
-              notes={ticket.notes}
-              status={ticket.status}
-              branch={`${ticket.tag}/${ticket.key}`}
-              onClick={() => {}}
+              meta={ticket}
             />
           </div>
         ))}
@@ -63,9 +56,17 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch('/.netlify/functions/fetchTickets', {
-          method: 'POST',
-        })
+        const response = await fetch(
+          'https://berzerk-agile-dev-backend-production.up.railway.app/fetch',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer gfa273snxxjk918a`,
+            },
+            body: JSON.stringify({ username: 'braeden' }),
+          }
+        )
 
         const data = await response.json()
 
@@ -136,6 +137,7 @@ export default function DashboardPage() {
           </div>
           <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
+              console.log(meta)
               return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
           </div>
