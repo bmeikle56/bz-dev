@@ -100,7 +100,7 @@ bz_make() {
       }")
 
     if [[ "$response" == '{"response":"make ticket successful"}' ]]; then
-      echo "\033[32mAdded!\033[0m"
+      bz_color "Added!"
     fi
 }
 
@@ -138,11 +138,12 @@ bz_workon() {
       --data "{
         \"username\": \"$dev\",
         \"key\": \"$key\",
+        \"repo\": \"$repo\",
         \"status\": \"active\"
       }")
-      
+            
     if [[ "$response" == '{"response":"update status successful"}' ]]; then
-      echo "\033[32mAdded!\033[0m"
+        bz_color "Activated!"
     fi
       
 }
@@ -201,7 +202,7 @@ bz_delete() {
       }")
 
     if [[ "$response" == '{"response":"delete ticket successful"}' ]]; then
-      echo "\033[31mDeleted!\033[0m"
+        bz_color "Deleted!"
     fi
 }
 
@@ -220,7 +221,7 @@ bz_clear() {
     fi
 
     if [[ "$response" == '{"response":"clear tickets successful"}' ]]; then
-      echo "\033[31mCleared!\033[0m"
+        bz_color "Cleared!"
     fi
 }
 
@@ -316,7 +317,7 @@ bz_kill() {
       }")
 
     if [[ "$response" == '{"response":"repo killed successful"}' ]]; then
-      echo -e "\033[31mKilled!\033[0m"
+        bz_color "Killed!"
     fi
 }
 
@@ -326,4 +327,9 @@ bz_push() {
 
 bz_status() {
     git status
+}
+
+bz_color() {
+  # print all arguments in bright magenta (95) and bold (1)
+  echo -e "\e[1;95m$*\e[0m"
 }
