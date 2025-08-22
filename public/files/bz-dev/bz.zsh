@@ -55,7 +55,6 @@ bz() {
 
 bz_make() {
   local repo=""
-  local tag=""
   local key=""
   local notes=""
 
@@ -63,13 +62,6 @@ bz_make() {
     case "$arg" in
       -r=*)
         repo="${arg#-r=}"
-        ;;
-      -t=*)
-        tag="${arg#-t=}"
-        if ! [[ "$tag" =~ ^(ref|bug|ftr)$ ]]; then
-            echo "invalid ticket id"
-            return 1
-          fi
         ;;
       -k=*)
         key="${arg#-k=}"
@@ -91,7 +83,6 @@ bz_make() {
         \"username\": \"$dev\",
         \"ticket\": {
           \"repo\": \"$repo\",
-          \"tag\": \"$tag\",
           \"key\": \"$key\",
           \"notes\": \"$notes\",
           \"dev\": \"$dev\",
@@ -131,6 +122,10 @@ bz_workon() {
         ;;
     esac
   done
+  
+#    cd "~/Documents/repos/$repo"
+#    git checkout -b "$key"
+#    git push --set-upstream origin "$key"
     
     response=$(curl -s -X POST "$backend_url/update" \
       --header "Authorization: Bearer $auth_token" \
@@ -141,7 +136,9 @@ bz_workon() {
         \"repo\": \"$repo\",
         \"status\": \"active\"
       }")
-            
+      
+      echo "$response"
+      
     if [[ "$response" == '{"response":"update status successful"}' ]]; then
         bz_color "Activated!"
     fi
@@ -217,7 +214,7 @@ bz_clear() {
             \"username\": \"$dev\"
           }")
     else
-        echo "Cancelled"
+        bz_color "Cancelled!"
     fi
 
     if [[ "$response" == '{"response":"clear tickets successful"}' ]]; then
