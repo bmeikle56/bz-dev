@@ -143,7 +143,7 @@ export default function DashboardPage() {
             }}
           >
           </div>
-          <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
+          <div id='repo-tickets-div' style={{ zIndex: 0, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
               console.log(meta)
               return <RepoTickets error={error} tickets={meta.tickets}/>
