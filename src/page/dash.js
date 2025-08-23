@@ -100,7 +100,8 @@ export default function DashboardPage() {
           <ByteTransfer/>
         </motion.div>
       ) : (
-        <motion.div
+        <body className='wallpaper'>
+          <motion.div
           key='content'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -112,7 +113,22 @@ export default function DashboardPage() {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          className='wallpaper'
+        >
+          <TabBar/>
+          </motion.div>
+        <motion.div
+          key='content'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '90%',
+          }}
         >
           <div
             style={{
@@ -125,7 +141,6 @@ export default function DashboardPage() {
               width: '100%',
             }}
           >
-            <TabBar/>
           </div>
           <div id='repo-tickets-div' style={{ zIndex: 2, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
             {repos.map((meta) => {
@@ -134,6 +149,7 @@ export default function DashboardPage() {
             })}
           </div>
         </motion.div>
+        </body>
       )}
     </AnimatePresence>
   )
