@@ -100,7 +100,8 @@ export default function DashboardPage() {
           <ByteTransfer/>
         </motion.div>
       ) : (
-        <body className='wallpaper'>
+        <div style={{width: '100%', height: '100%'}}>
+          <div className='wallpaper'/>
           <motion.div
           key='content'
           initial={{ opacity: 0 }}
@@ -149,7 +150,7 @@ export default function DashboardPage() {
             })}
           </div>
         </motion.div>
-        </body>
+        </div>
       )}
     </AnimatePresence>
   )
