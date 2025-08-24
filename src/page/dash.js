@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Ticket, TabBar } from '../cmp/Components'
+import { Ticket, TabBar, BZtxt } from '../cmp/Components'
 
 function RepoTickets({ error, tickets }) {
   return (
@@ -50,6 +50,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [repos, setRepos] = useState([])
   const [error, setError] = useState(null)
+  const [empty, setEmpty] = useState(false)
 
   const animTime = 450 // 0.45 seconds + service transit
 
@@ -64,6 +65,12 @@ export default function DashboardPage() {
 
         if (!response.ok) {
           throw new Error(data.error || 'failed to fetch tickets')
+        } else if (data.repos.length === 0) {
+          // we do not have data
+          setEmpty(true)
+        } else {
+          // we have data
+          setEmpty(false)
         }
 
         setTimeout(() => {
@@ -144,8 +151,14 @@ export default function DashboardPage() {
           >
           </div>
           <div id='repo-tickets-div' style={{ zIndex: 0, position: 'absolute', width: '100%', height: '80vh', justifyContent: 'space-evenly', alignItems: 'center', display: 'flex'}}>
+            {empty && 
+              <div style={{background: 'black', padding: '16px 20px 16px 20px', borderRadius: 16, display: 'flex', alignItems: 'center'}}>
+                <p style={{color: 'rgb(150,150,150)', paddingRight: 8, margin: 0}}>run</p>
+                <BZtxt txt={'bz make'}/>
+                <p style={{color: 'rgb(150,150,150)', paddingLeft: 8, margin: 0}}> to get started!</p>
+              </div>
+            }
             {repos.map((meta) => {
-              console.log(meta)
               return <RepoTickets error={error} tickets={meta.tickets}/>
             })}
           </div>
